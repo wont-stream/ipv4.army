@@ -2,13 +2,10 @@
 @import "sakura.css/css/sakura-vader.css";
 @import "src/css/font.css";
 
-<<<<<<< HEAD
-=======
 :root {
 	--bpm: 0;
 }
 
->>>>>>> f495ae3 (update)
 * {
 	font-family: monospace !important;
 }
