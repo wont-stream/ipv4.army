@@ -1,0 +1,39 @@
+@import "modern-normalize/modern-normalize.css";
+@import "sakura.css/css/sakura-vader.css";
+@import "src/css/font.css";
+
+<<<<<<< HEAD
+=======
+:root {
+	--bpm: 0;
+}
+
+>>>>>>> f495ae3 (update)
+* {
+	font-family: monospace !important;
+}
+
+main {
+	align-content: center;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@keyframes pulse {
+
+	0%,
+	100% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.1);
+	}
+}
+
+.heart {
+	animation: pulse calc(60s / var(--bpm)) infinite ease;
+}
