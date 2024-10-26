@@ -1,5 +1,5 @@
 import { createRef } from "tsx-dom";
-import { on } from "../lib/event.ts";
+import { on } from "../ts/lib/event.ts";
 
 const colors = {
 	online: "hsl(153, calc(1 * 46%), 49%)",
@@ -12,6 +12,7 @@ export const Avatar = () => {
 	const img = createRef<HTMLImageElement>();
 
 	on("discord", (activity: Activity) => {
+		console.log("avatar", activity);
 		if (img.current?.style.border) {
 			img.current.style.border = `solid ${colors[activity.discord_status as keyof typeof colors]}`;
 		}
@@ -23,7 +24,7 @@ export const Avatar = () => {
 			class="small-width small-height circle"
 			width="192px"
 			height="192px"
-			src="https://wsrv.nl/?output=webp&w=192&url=https://wont-stream.github.io/wont-stream/avatar.png"
+			src="https://wsrv.nl/?output=webp&w=192&url=https://github.com/wont-stream.png"
 			style="border: solid rgb(128, 132, 142)"
 			ref={img}
 		/>

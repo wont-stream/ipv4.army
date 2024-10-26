@@ -1,4 +1,4 @@
-import "./main/index.js";
+import "./ts/index.js";
 import { App } from "./tsx/App.tsx";
 
 declare global {

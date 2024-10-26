@@ -1,11 +1,11 @@
 import { createRef } from "tsx-dom";
-import { on } from "../lib/event.ts";
+import { on } from "../ts/lib/event.ts";
 
 export const Tidal = () => {
 	const link = createRef<HTMLAnchorElement>();
 
 	on("discord", (activity: Activity) => {
-		console.log(activity);
+		console.log("tidal", activity);
 		if (link.current) {
 			if (activity.listening_to_tidal) {
 				link.current.href = `https://tidal.com/browse/track/${activity.tidal.trackId}/u`;
