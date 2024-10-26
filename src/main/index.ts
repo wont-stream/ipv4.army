@@ -1,5 +1,5 @@
-import { Socket } from "./lib/socket.ts";
-import { emit } from "./lib/event.ts";
+import { Socket } from "../lib/socket.ts";
+import { emit } from "../lib/event.ts";
 
 const lanyard = new Socket("wss://api.lanyard.rest/socket");
 

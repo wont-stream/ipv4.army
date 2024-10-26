@@ -1,5 +1,5 @@
 import { createRef } from "tsx-dom";
-import { on } from "../ts/lib/event.ts";
+import { on } from "../lib/event.ts";
 
 export const Heartrate = () => {
 	const hr = createRef<HTMLSpanElement>();
