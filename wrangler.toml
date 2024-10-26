@@ -3,4 +3,4 @@ pages_build_output_dir = "./dist"
 compatibility_date = "*"
 
 [vars]
-BUN_VERSION  = "*"
+BUN_VERSION  = "latest"
