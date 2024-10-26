@@ -1,6 +1,5 @@
 import "./ts/index.js";
-import "./ts/lib/1.js";
-import { App } from "./ts/tsx/App.tsx";
+import { App } from "./tsx/App.tsx";
 
 declare global {
 	type Activity = {

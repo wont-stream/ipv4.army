@@ -1,5 +1,5 @@
 import { createRef } from "tsx-dom";
-import { on } from "../lib/event.ts";
+import { on } from "../ts/lib/event.ts";
 
 const colors = {
 	online: "hsl(153, calc(1 * 46%), 49%)",

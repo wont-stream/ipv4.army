@@ -1,5 +1,5 @@
 import { createRef } from "tsx-dom";
-import { on } from "../lib/event.ts";
+import { on } from "../ts/lib/event.ts";
 
 export const Tidal = () => {
 	const link = createRef<HTMLAnchorElement>();

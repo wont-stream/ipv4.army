@@ -4,6 +4,6 @@
 	"short_name": "S€th",
 	"start_url": ".",
 	"display": "standalone",
-	"background_color": "#000",
-	"description": "A self taught fullstack developer."
+	"background_color": "#120c0e",
+	"description": "Developing for both frontends and backends."
 }
