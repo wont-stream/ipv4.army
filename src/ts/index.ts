@@ -1,7 +1,7 @@
 import { Socket } from "./lib/socket.ts";
 import { emit } from "./lib/event.ts";
 
-const string = new Socket("wss://string.ipv4.army");
+const string = new Socket("wss://string.ipv4.army/ws");
 
 type Activity = {
 	application_id: string;
