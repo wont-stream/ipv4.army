@@ -1,53 +1,29 @@
 import { Socket } from "./lib/socket.ts";
 import { emit } from "./lib/event.ts";
 
-const lanyard = new Socket("wss://api.lanyard.rest/socket");
+const string = new Socket("wss://string.ipv4.army");
 
 type Activity = {
 	application_id: string;
 };
 
-lanyard.onmessage = ({ data }) => {
-	const { op, d } = JSON.parse(data);
-	switch (op) {
-		case 0: {
-			const tidalData = d.activities.filter((act: Activity) => {
-				return act.application_id === "1288341778637918208";
-			})[0];
+string.onmessage = ({ data }) => {
+	data = JSON.parse(data);
 
-			d.listening_to_tidal = typeof tidalData === "object";
+	const tidalData = data.activities.filter((act: Activity) => {
+		return act.application_id === "1288341778637918208";
+	})[0];
 
-			d.tidal = {
-				trackId: tidalData?.assets?.small_text.split("|")[1],
-				song: tidalData?.name,
-				artist: tidalData?.state,
-				album: tidalData?.assets?.large_text,
-			};
+	data.listening_to_tidal = typeof tidalData === "object";
 
-			emit("discord", d);
+	data.tidal = {
+		trackId: tidalData?.assets?.small_text.split("|")[1],
+		song: tidalData?.name,
+		artist: tidalData?.state,
+		album: tidalData?.assets?.large_text,
+	};
 
-			break;
-		}
-		case 1: {
-			// Setup Heartbeat
-			setInterval(() => {
-				lanyard.send(JSON.stringify({ op: 3 }));
-			}, d.heartbeat_interval);
-			// Subscribe to user id 1273447359417942128
-			lanyard.send(
-				JSON.stringify({
-					op: 2,
-					d: {
-						subscribe_to_id: "1273447359417942128",
-					},
-				}),
-			);
-			break;
-		}
-		default: {
-			break;
-		}
-	}
+	emit("discord", data);
 };
 
 const hyperate = new Socket(
