@@ -24,7 +24,7 @@ export const Avatar = () => {
 			class="small-width small-height circle"
 			width="192px"
 			height="192px"
-			src="https://wsrv.nl/?output=webp&url=https://github.com/wont-stream.png"
+			src="profile.JPG"
 			style="border: solid rgb(128, 132, 142)"
 			ref={img}
 		/>
