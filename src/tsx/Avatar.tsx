@@ -23,7 +23,7 @@ export const Avatar = () => {
 			class="small-width small-height circle"
 			width="192px"
 			height="192px"
-			src="profile.JPG"
+			src="profile.webp"
 			style="border: solid rgb(128, 132, 142)"
 			ref={img}
 		/>
