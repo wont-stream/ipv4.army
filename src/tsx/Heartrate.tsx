@@ -6,7 +6,7 @@ export const Heartrate = () => {
 
 	on("heartrate", (rate: string) => {
 		if (hr.current) {
-			hr.current.textContent = `${rate} BPM`;
+			hr.current.textContent = rate === "Inactive" ? "Inactive" : `${rate} BPM`;
 		}
 
 		document.documentElement.style.setProperty("--bpm", rate);
