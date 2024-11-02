@@ -4,7 +4,7 @@ import { on } from "../ts/lib/event.ts";
 export const Heartrate = () => {
 	const hr = createRef<HTMLSpanElement>();
 
-	on("heartrate", (rate: string) => {
+	on("heartrate", async (rate: string) => {
 		if (hr.current) {
 			hr.current.textContent = rate === "Inactive" ? "Inactive" : `${rate} BPM`;
 		}

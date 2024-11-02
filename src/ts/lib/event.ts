@@ -2,25 +2,12 @@
 type Event = { name: string; callback: Function };
 const events: Event[] = [];
 
-export const on = (name: Event["name"], callback: Event["callback"]) => {
-	events.push({ name, callback });
+export const on = async (name: Event["name"], callback: Event["callback"]) => {
+	return events.push({ name, callback });
 };
 
-type Activity = {
-	discordStatus: string;
-	listeningToTidal: boolean;
-	tidal: {
-		color: string;
-		trackId: string;
-		song: string;
-		artist: string;
-		albumArtUrl: string;
-		album: string;
-	};
-};
-
-export const emit = (name: string, data: Activity | string) => {
+export const emit = async (name: string, data: Activity | string) => {
 	for (const event of events.filter((event) => event.name === name)) {
-		event.callback(data);
+		return await event.callback(data);
 	}
 };

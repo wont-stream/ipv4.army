@@ -1,18 +1,12 @@
 import { Socket } from "./lib/socket.ts";
 import { emit } from "./lib/event.ts";
 
-const string = new Socket("wss://string.ipv4.army/ws");
-
-type Activity = {
-	application_id: string;
-};
-
-string.onmessage = ({ data }) => {
-	data = JSON.parse(data);
-
-	const tidalData = data.activities.filter((act: Activity) => {
-		return act.application_id === "1288341778637918208";
-	})[0];
+const handleStringData = async (data: Activity) => {
+	const tidalData: Activities = data.activities.filter(
+		async (act: Activities) => {
+			return act.application_id === "1288341778637918208";
+		},
+	)[0];
 
 	data.listening_to_tidal = typeof tidalData === "object";
 
@@ -23,7 +17,17 @@ string.onmessage = ({ data }) => {
 		album: tidalData?.assets?.large_text,
 	};
 
-	emit("discord", data);
+	return await emit("discord", data);
+};
+
+fetch("https://string.ipv4.army/")
+	.then((res) => res.json())
+	.then(handleStringData);
+
+const string = new Socket("wss://string.ipv4.army/ws");
+
+string.onmessage = async ({ data }) => {
+	return await handleStringData(JSON.parse(data));
 };
 
 const hyperate = new Socket(
@@ -33,13 +37,13 @@ const hyperate = new Socket(
 
 let hrTimeout: ReturnType<typeof setTimeout>;
 
-const setHrInterval = () => {
-	hrTimeout = setTimeout(() => {
-		emit("heartrate", "Inactive");
+const setHrInterval = async () => {
+	hrTimeout = setTimeout(async () => {
+		return await emit("heartrate", "Inactive");
 	}, 6000);
 };
 
-hyperate.onopen = () => {
+hyperate.onopen = async () => {
 	hyperate.send(
 		JSON.stringify({
 			topic: "hr:0BCA",
@@ -49,7 +53,7 @@ hyperate.onopen = () => {
 		}),
 	);
 
-	setInterval(() => {
+	setInterval(async () => {
 		hyperate.send(
 			JSON.stringify({
 				topic: "phoenix",
@@ -60,17 +64,17 @@ hyperate.onopen = () => {
 		);
 	}, 10000);
 
-	setHrInterval();
+	return await setHrInterval();
 };
 
-hyperate.onmessage = ({ data }) => {
+hyperate.onmessage = async ({ data }) => {
 	const { event, payload } = JSON.parse(data);
 	switch (event) {
 		case "hr_update": {
 			clearTimeout(hrTimeout);
-			setHrInterval();
+			await setHrInterval();
 
-			emit("heartrate", payload.hr);
+			await emit("heartrate", payload.hr);
 
 			break;
 		}

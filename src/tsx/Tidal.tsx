@@ -4,7 +4,7 @@ import { on } from "../ts/lib/event.ts";
 export const Tidal = () => {
 	const link = createRef<HTMLAnchorElement>();
 
-	on("discord", (activity: Activity) => {
+	on("discord", async (activity: Activity) => {
 		if (link.current) {
 			if (activity.listening_to_tidal) {
 				link.current.href = `https://tidal.com/browse/track/${activity.tidal.trackId}/u`;

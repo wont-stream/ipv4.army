@@ -11,7 +11,7 @@ const colors = {
 export const Avatar = () => {
 	const img = createRef<HTMLImageElement>();
 
-	on("discord", (activity: Activity) => {
+	on("discord", async (activity: Activity) => {
 		if (img.current?.style.border) {
 			img.current.style.border = `solid ${colors[activity.status as keyof typeof colors]}`;
 		}
