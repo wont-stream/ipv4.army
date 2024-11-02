@@ -5,7 +5,6 @@ export const Tidal = () => {
 	const link = createRef<HTMLAnchorElement>();
 
 	on("discord", (activity: Activity) => {
-		console.log("tidal", activity);
 		if (link.current) {
 			if (activity.listening_to_tidal) {
 				link.current.href = `https://tidal.com/browse/track/${activity.tidal.trackId}/u`;

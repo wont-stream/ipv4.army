@@ -3,7 +3,7 @@ import { App } from "./tsx/App.tsx";
 
 declare global {
 	type Activity = {
-		discord_status: string;
+		status: string;
 		listening_to_tidal: boolean;
 		tidal: {
 			color: string;
