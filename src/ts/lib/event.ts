@@ -1,5 +1,5 @@
 // biome-ignore lint/complexity/noBannedTypes: This is a custom event emitter that uses a banned type
-type Event = { name: string; callback: Function; };
+type Event = { name: string; callback: Function };
 const events: Event[] = [];
 
 export const on = async (name: Event["name"], callback: Event["callback"]) => {

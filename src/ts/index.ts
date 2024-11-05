@@ -1,17 +1,15 @@
 import { emit } from "./lib/event.ts";
 
-const lanyardApiUrl = "frenchcat.aspy.dev"
+const lanyardApiUrl = "frenchcat.aspy.dev";
 
 const handleDiscordData = async (data: Activity) => {
 	await emit("discord", data);
 
 	const { activities } = data;
 
-	const tidalData: Activities = activities.filter(
-		async (act: Activities) => {
-			return act.application_id === "1288341778637918208";
-		},
-	)[0];
+	const tidalData: Activities = activities.filter(async (act: Activities) => {
+		return act.application_id === "1288341778637918208";
+	})[0];
 
 	if (typeof tidalData === "object") {
 		await emit("tidal", {
@@ -34,7 +32,7 @@ fetch(`https://${lanyardApiUrl}/v1/users/1273447359417942128`)
 
 const lanyard = new WebSocket(`wss://${lanyardApiUrl}/socket`);
 
-const sendToLanyard = async (op: Number, d: Object) => {
+const sendToLanyard = async (op: number, d: { subscribe_to_id?: string }) => {
 	if (lanyard.readyState === WebSocket.OPEN) {
 		return lanyard.send(JSON.stringify({ op, d }));
 	}

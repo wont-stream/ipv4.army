@@ -9,7 +9,7 @@ import { unlink } from "node:fs/promises";
 
 try {
 	await $`rm -rf ./dist/index.html`;
-} catch (_) { }
+} catch (_) {}
 
 let html = await file("./src/index.html").text();
 
