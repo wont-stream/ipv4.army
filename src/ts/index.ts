@@ -3,22 +3,27 @@ import { emit } from "./lib/event.ts";
 const lanyardApiUrl = "frenchcat.aspy.dev"
 
 const handleDiscordData = async (data: Activity) => {
-	const tidalData: Activities = data.activities.filter(
+	await emit("discord", data);
+
+	const { activities } = data;
+
+	const tidalData: Activities = activities.filter(
 		async (act: Activities) => {
 			return act.application_id === "1288341778637918208";
 		},
 	)[0];
 
-	data.listening_to_tidal = typeof tidalData === "object";
-
-	data.tidal = {
-		trackId: tidalData?.assets?.small_text.split("|")[1],
-		song: tidalData?.name,
-		artist: tidalData?.state,
-		album: tidalData?.assets?.large_text,
-	};
-
-	return await emit("discord", data);
+	if (typeof tidalData === "object") {
+		await emit("tidal", {
+			listening_to_tidal: true,
+			trackId: tidalData?.assets?.small_text.split("|")[1],
+			song: tidalData?.name,
+			artist: tidalData?.state,
+			album: tidalData?.assets?.large_text,
+		});
+	} else {
+		await emit("tidal", { listening_to_tidal: false });
+	}
 };
 
 fetch(`https://${lanyardApiUrl}/v1/users/1273447359417942128`)

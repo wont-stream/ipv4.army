@@ -3,6 +3,7 @@ import { Heartrate } from "./Heartrate.tsx";
 import { Tidal } from "./Tidal.tsx";
 
 export const App = () => {
+	const events = new EventTarget();
 	return (
 		<main>
 			<header>

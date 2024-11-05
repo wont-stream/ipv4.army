@@ -1,17 +1,16 @@
-import "./ts/index.js";
+import "./ts/index.ts";
 import { App } from "./tsx/App.tsx";
 
 declare global {
 	type Tidal = {
-		trackId: string;
-		song: string;
-		artist: string;
-		album: string;
+		listening_to_tidal: boolean;
+		trackId?: string;
+		song?: string;
+		artist?: string;
+		album?: string;
 	};
 	type Activity = {
 		discord_status: string;
-		listening_to_tidal: boolean;
-		tidal: Tidal;
 		activities: [];
 	};
 	type Activities = {
