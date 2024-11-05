@@ -1,6 +1,8 @@
 import { emit } from "./lib/event.ts";
 
-const handleStringData = async (data: Activity) => {
+const lanyardApiUrl = "frenchcat.aspy.dev"
+
+const handleDiscordData = async (data: Activity) => {
 	const tidalData: Activities = data.activities.filter(
 		async (act: Activities) => {
 			return act.application_id === "1288341778637918208";
@@ -19,14 +21,37 @@ const handleStringData = async (data: Activity) => {
 	return await emit("discord", data);
 };
 
-fetch("https://string.ipv4.army/")
+fetch(`https://${lanyardApiUrl}/v1/users/1273447359417942128`)
 	.then((res) => res.json())
-	.then(handleStringData);
+	.then(async ({data}) => {
+		return await handleDiscordData(data);
+	});
 
-const string = new WebSocket("wss://string.ipv4.army/ws");
+const lanyard = new WebSocket(`wss://${lanyardApiUrl}/socket`);
 
-string.onmessage = async ({ data }) => {
-	return await handleStringData(JSON.parse(data));
+const sendToLanyard = async (op: Number, d: Object) => {
+	if (lanyard.readyState === WebSocket.OPEN) {
+		return lanyard.send(JSON.stringify({ op, d }));
+	}
+};
+
+lanyard.onmessage = async ({ data }) => {
+	const { op, d } = JSON.parse(data);
+
+	switch (op) {
+		case 0: {
+			return await handleDiscordData(d);
+		}
+		case 1: {
+			setInterval(async () => {
+				return await sendToLanyard(3, {});
+			}, d.heartbeat_interval);
+			return await sendToLanyard(2, { subscribe_to_id: "1273447359417942128" });
+		}
+		default: {
+			break;
+		}
+	}
 };
 
 const hyperate = new WebSocket(
