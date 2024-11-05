@@ -30,7 +30,7 @@ string.onmessage = async ({ data }) => {
 };
 
 const hyperate = new WebSocket(
-	// Yes, this can be hardcoded.
+	// Yes, the token can be hardcoded.
 	"wss://app.hyperate.io/socket/websocket?token=wv39nM6iyrNJulvpmMQrimYPIXy2dVrYRjkuHpbRapKT2VSh65ngDGHdCdCtmEN9",
 );
 
