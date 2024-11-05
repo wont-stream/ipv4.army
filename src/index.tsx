@@ -9,7 +9,7 @@ declare global {
 		album: string;
 	};
 	type Activity = {
-		status: string;
+		discord_status: string;
 		listening_to_tidal: boolean;
 		tidal: Tidal;
 		activities: [];

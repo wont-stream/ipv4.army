@@ -13,7 +13,7 @@ export const Avatar = () => {
 
 	on("discord", async (activity: Activity) => {
 		if (img.current) {
-			img.current.style.border = `solid ${colors[activity.status as keyof typeof colors]}`;
+			img.current.style.border = `solid ${colors[activity.discord_status as keyof typeof colors]}`;
 		}
 	});
 
