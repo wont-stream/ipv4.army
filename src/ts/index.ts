@@ -28,7 +28,7 @@ const handleDiscordData = async (data: Activity) => {
 
 fetch(`https://${lanyardApiUrl}/v1/users/1273447359417942128`)
 	.then((res) => res.json())
-	.then(async ({data}) => {
+	.then(async ({ data }) => {
 		return await handleDiscordData(data);
 	});
 
