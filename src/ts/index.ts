@@ -1,4 +1,3 @@
-import { Socket } from "./lib/socket.ts";
 import { emit } from "./lib/event.ts";
 
 const handleStringData = async (data: Activity) => {
@@ -24,13 +23,13 @@ fetch("https://string.ipv4.army/")
 	.then((res) => res.json())
 	.then(handleStringData);
 
-const string = new Socket("wss://string.ipv4.army/ws");
+const string = new WebSocket("wss://string.ipv4.army/ws");
 
 string.onmessage = async ({ data }) => {
 	return await handleStringData(JSON.parse(data));
 };
 
-const hyperate = new Socket(
+const hyperate = new WebSocket(
 	// Yes, this can be hardcoded.
 	"wss://app.hyperate.io/socket/websocket?token=wv39nM6iyrNJulvpmMQrimYPIXy2dVrYRjkuHpbRapKT2VSh65ngDGHdCdCtmEN9",
 );
