@@ -1,6 +1,7 @@
 import { Avatar } from "./Avatar.tsx";
 import { Heartrate } from "./Heartrate.tsx";
 import { Tidal } from "./Tidal.tsx";
+import Gafam from "./unused/gafam.tsx";
 
 export const App = () => {
 	const events = new EventTarget();
