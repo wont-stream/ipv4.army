@@ -19,6 +19,10 @@ main {
 	transform: translate(-50%, -50%);
 }
 
+a::after {
+	content: "🔗";
+}
+
 @keyframes pulse {
 	0%,
 	100% {
