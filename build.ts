@@ -48,7 +48,7 @@ const { css } = await postCss.process(await file("./src/index.css").text(), {
 await unlink("./dist/index.js");
 
 html = html.replace(
-	`<link href="./index.css" rel="stylesheet" />`,
+	`<link href="./index.css"rel="stylesheet"/>`,
 	`<style>${css}</style>`,
 );
 
