@@ -20,5 +20,7 @@ export const Tidal = () => {
 	});
 
 	// biome-ignore lint/a11y/useAnchorContent: Content is set via JS
-	return <a href="/#" ref={link} style={"display:none"} aria-label="Tidal link" />
+	return (
+		<a href="/#" ref={link} style={"display:none"} aria-label="Tidal link" />
+	);
 };
