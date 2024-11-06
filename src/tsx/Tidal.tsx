@@ -15,15 +15,10 @@ export const Tidal = () => {
 				)} by ${tidal.artist}`;
 			} else {
 				link.current.style.display = "none";
-				link.current.href = "#";
-				link.current.textContent = "Not listening to anything.";
 			}
 		}
 	});
 
-	return (
-		<a href="/#" ref={link} style={"display:none"}>
-			Not listening to anything.
-		</a>
-	);
+	// biome-ignore lint/a11y/useAnchorContent: Content is set via JS
+	return <a href="/#" ref={link} style={"display:none"} aria-label="Tidal link" />
 };

@@ -20,7 +20,7 @@ main {
 }
 
 a::after {
-	content: "🔗";
+	content: " 🔗";
 }
 
 @keyframes pulse {
