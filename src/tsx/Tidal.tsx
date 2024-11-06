@@ -19,8 +19,8 @@ export const Tidal = () => {
 		}
 	});
 
-	// biome-ignore lint/a11y/useAnchorContent: Content is set via JS
 	return (
+		// biome-ignore lint/a11y/useAnchorContent: Content is set via JS
 		<a href="/#" ref={link} style={"display:none"} aria-label="Tidal link" />
 	);
 };
