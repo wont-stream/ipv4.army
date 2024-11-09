@@ -14,6 +14,12 @@ serve({
 			});
 		}
 
+		const possibleFile = Bun.file(`./dist${pathname}`)
+
+		if (await possibleFile.exists()) {
+			return new Response(possibleFile);
+		}
+
 		return new Response("Not Found", { status: 404 });
 	},
 
