@@ -10,7 +10,7 @@ serve({
 			return new Response(await file("./dist/index.html"));
 		}
 
-		const possibleFile = file(`./dist${pathname}`)
+		const possibleFile = file(`./dist${pathname}`);
 
 		if (await possibleFile.exists()) {
 			return new Response(possibleFile);
@@ -22,4 +22,4 @@ serve({
 	error() {
 		return new Response(null, { status: 500 });
 	},
-})
+});
