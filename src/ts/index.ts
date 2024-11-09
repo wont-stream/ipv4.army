@@ -6,8 +6,8 @@ const handleDiscordData = async (data: Activity) => {
 	await emit("discord", data);
 
 	const { activities } = data;
-
-	const tidalData: Activities = activities.filter(async (act: Activities) => {
+	
+	const tidalData: Activities = activities.filter((act: Activities) => {
 		return act?.application_id === "1288341778637918208";
 	})[0];
 
