@@ -22,4 +22,4 @@ serve({
 	error() {
 		return new Response(null, { status: 500 });
 	},
-});
+})
