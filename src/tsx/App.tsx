@@ -10,6 +10,7 @@ export const App = () => {
 				<h3>Hallo, Ich bin Seth.</h3>
 			</header>
 			<h4>Developing for both frontends and backends.</h4>
+			<h4>Audiophile, Basshead and Techie.</h4>
 			<Heartrate />
 			<Tidal />
 		</main>
