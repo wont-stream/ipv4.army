@@ -24,4 +24,6 @@ declare global {
 	};
 }
 
+//document.body.style.backgroundImage = "url('https://')";
+
 document.body.appendChild(<App />);

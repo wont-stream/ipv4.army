@@ -17,6 +17,10 @@ main {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-image: url("acrylic.png");
 }
 
 a::after {
