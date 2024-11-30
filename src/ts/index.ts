@@ -1,6 +1,6 @@
 import { emit } from "./lib/event.ts";
 
-const lanyardApiUrl = "frenchcat.aspy.dev";
+const lanyardApiUrl = "ru.t7.wtf";
 
 const handleDiscordData = async (data: Activity) => {
 	await emit("discord", data);
