@@ -1,6 +1,6 @@
 @import "modern-normalize/modern-normalize.css";
 @import "sakura.css/css/sakura-dark.css";
-@import "../src/css/font.css";
+@import "./src/css/font.css";
 
 :root {
 	--bpm: 0;
