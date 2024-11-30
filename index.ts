@@ -10,6 +10,10 @@ serve({
 			return new Response(await file("./dist/index.html"));
 		}
 
+		if (pathname === "/artist") {
+			return new Response(await file("./dist/artist.html"));
+		}
+
 		const possibleFile = file(`./dist${pathname}`);
 
 		if (await possibleFile.exists()) {

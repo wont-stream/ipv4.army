@@ -7,49 +7,59 @@ import postcssImport from "postcss-import";
 import { $, build, file, write } from "bun";
 import { unlink } from "node:fs/promises";
 
-try {
-	await $`rm -rf ./dist/index.html`;
-} catch (_) {}
+const pages = ["default", "artist"];
 
-let html = await file("./src/index.html").text();
+for (const page of pages) {
+	const dirName = page === "default" ? "" : `-${page}`;
+	const fileName = dirName === "" ? "index" : page;
 
-const js = await build({
-	entrypoints: ["./src/index.tsx"],
-	format: "esm",
-	minify: true,
-});
-if (!js.success) {
-	console.error(js.logs);
-	process.exit(1);
+	try {
+		await $`rm -rf ./dist/${fileName}.html`;
+	} catch (_) { }
+
+	let html = await file(`./src${dirName}/index.html`).text();
+
+	const js = await build({
+		entrypoints: [`./src${dirName}/index.tsx`],
+		format: "esm",
+		minify: true,
+	});
+
+	if (!js.success) {
+		console.error(js.logs);
+		process.exit(1);
+	}
+
+	const jsOut = await js.outputs[0].text();
+
+	html = html.replace(
+		`<script src="./index.tsx"></script>`,
+		`<script>${jsOut}</script>`,
+	);
+
+	write(`./dist/${fileName}.js`, jsOut);
+
+	const postCss = postcss([
+		autoprefixer(),
+		postcssImport(),
+		postcssPurge({
+			content: [`./src${dirName}/index.html`, `./dist/${fileName}.js`],
+		}),
+		cssnano({ preset: "default" }),
+	]);
+
+	const { css } = await postCss.process(await file(`./src${dirName}/index.css`).text(), {
+		to: undefined,
+		from: undefined,
+	});
+
+	await unlink(`./dist/${fileName}.js`);
+
+	html = html.replace(
+		`<link href="./index.css" rel="stylesheet">`,
+		`<style>${css}</style>`,
+	);
+
+	await write(`./dist/${fileName}.html`, html);
+
 }
-
-const jsOut = await js.outputs[0].text();
-
-html = html.replace(
-	`<script src="./index.tsx"></script>`,
-	`<script>${jsOut}</script>`,
-);
-
-write("./dist/index.js", jsOut);
-
-const postCss = postcss([
-	autoprefixer(),
-	postcssImport(),
-	postcssPurge({
-		content: ["./src/index.html", "./dist/index.js"],
-	}),
-	cssnano({ preset: "default" }),
-]);
-const { css } = await postCss.process(await file("./src/index.css").text(), {
-	to: undefined,
-	from: undefined,
-});
-
-await unlink("./dist/index.js");
-
-html = html.replace(
-	`<link href="./index.css" rel="stylesheet">`,
-	`<style>${css}</style>`,
-);
-
-await write("./dist/index.html", html);
