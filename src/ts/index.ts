@@ -8,7 +8,7 @@ const handleDiscordData = async (data: Activity) => {
 	const { activities } = data;
 
 	const tidalData: Activities = activities.filter((act: Activities) => {
-		return act?.application_id === "1288341778637918208";
+		return act?.application_id === "1130698654987067493";
 	})[0];
 
 	if (typeof tidalData === "object") {
