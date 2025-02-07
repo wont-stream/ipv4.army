@@ -26,5 +26,7 @@
 		"sakura.css": "latest",
 		"tsx-dom": "latest"
 	},
-	"trustedDependencies": ["@biomejs/biome"]
+	"trustedDependencies": [
+		"@biomejs/biome"
+	]
 }

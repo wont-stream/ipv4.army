@@ -10,7 +10,8 @@
 	font-family: "Circular Std", sans-serif !important;
 }
 
-html, body {
+html,
+body {
 	margin: 0;
 	padding: 0;
 }
@@ -40,6 +41,6 @@ iframe {
 	width: 100vw;
 	height: 100vh;
 	left: 0%;
-	filter:blur(10px);
+	filter: blur(10px);
 	pointer-events: none;
 }

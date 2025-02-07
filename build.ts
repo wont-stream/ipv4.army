@@ -15,7 +15,7 @@ for (const page of pages) {
 
 	try {
 		await $`rm -rf ./dist/${fileName}.html`;
-	} catch (_) { }
+	} catch (_) {}
 
 	let html = await file(`./src${dirName}/index.html`).text();
 
@@ -48,10 +48,13 @@ for (const page of pages) {
 		cssnano({ preset: "default" }),
 	]);
 
-	const { css } = await postCss.process(await file(`./src${dirName}/index.css`).text(), {
-		to: undefined,
-		from: undefined,
-	});
+	const { css } = await postCss.process(
+		await file(`./src${dirName}/index.css`).text(),
+		{
+			to: undefined,
+			from: undefined,
+		},
+	);
 
 	await unlink(`./dist/${fileName}.js`);
 
@@ -61,5 +64,4 @@ for (const page of pages) {
 	);
 
 	await write(`./dist/${fileName}.html`, html);
-
 }
