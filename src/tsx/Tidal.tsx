@@ -9,7 +9,7 @@ export const Tidal = () => {
 			if (tidal.listening_to_tidal) {
 				link.current.style.display = "";
 				link.current.href = `https://tidal.com/browse/track/${tidal.trackId}/u`;
-				link.current.innerHTML = `Listening to:<br>${(tidal.song || "").replace(
+				link.current.innerHTML = `Listening to<br>${(tidal.song || "").replace(
 					/\s?[\(\[].*?[\)\]]/g,
 					"",
 				)} by ${tidal.artist}`;
