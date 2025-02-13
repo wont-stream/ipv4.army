@@ -1,6 +1,6 @@
 name = "ipv4-army"
 pages_build_output_dir = "./dist"
-compatibility_date = "*"
+# compatibility_date = "*"
 
 [vars]
 BUN_VERSION  = "latest"
