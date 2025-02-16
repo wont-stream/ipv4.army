@@ -49,7 +49,7 @@ export const Together = () => {
 		parts.push(`${hours.toString().padStart(2,"0")}h`);
 		parts.push(`${minutes.toString().padStart(2,"0")}m`);
 		parts.push(`${seconds.toString().padStart(2,"0")}s`);
-		parts.push(`${milliseconds.toString().padStart(4,"0")}ms`);
+		parts.push(`${milliseconds.toString().padStart(3,"0")}ms`);
 
 		if (text.current) {
 			text.current.innerText = `With him for ${parts.join(", ")}.`;
