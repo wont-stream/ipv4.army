@@ -42,14 +42,20 @@ export const Together = () => {
 			years--;
 		}
 
+		// Compute total days difference
+		const totalDays = Math.floor((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+		const weeks = Math.floor(totalDays / 7);
+		const remainingDays = totalDays % 7;
+
 		const parts = [];
-		parts.push(`${years.toString().padStart(2,"0")}y`);
-		parts.push(`${months.toString().padStart(2,"0")}m`);
-		parts.push(`${days.toString().padStart(2,"0")}d`);
-		parts.push(`${hours.toString().padStart(2,"0")}h`);
-		parts.push(`${minutes.toString().padStart(2,"0")}m`);
-		parts.push(`${seconds.toString().padStart(2,"0")}s`);
-		parts.push(`${milliseconds.toString().padStart(3,"0")}ms`);
+		parts.push(`${years.toString().padStart(2, "0")}y`);
+		parts.push(`${months.toString().padStart(2, "0")}m`);
+		parts.push(`${weeks.toString().padStart(2, "0")}w`);
+		parts.push(`${remainingDays.toString().padStart(2, "0")}d`);
+		parts.push(`${hours.toString().padStart(2, "0")}h`);
+		parts.push(`${minutes.toString().padStart(2, "0")}m`);
+		parts.push(`${seconds.toString().padStart(2, "0")}s`);
+		parts.push(`${milliseconds.toString().padStart(4, "0")}ms`);
 
 		if (text.current) {
 			text.current.innerText = `With him for ${parts.join(", ")}.`;
