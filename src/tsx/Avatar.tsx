@@ -23,8 +23,8 @@ export const Avatar = () => {
 			class="small-width small-height circle"
 			width="192px"
 			height="192px"
-			src="profile.webp"
-			style="border: solid rgb(128, 132, 142)"
+			src="favico.svg"
+			style="border: solid rgb(128, 132, 142); border-radius: 100%;"
 			ref={img}
 		/>
 	);
