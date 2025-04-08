@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "bunx --bun tsc -b && vite build",
-    "preview": "vite preview"
+    "dev": "bunx --bun vite",
+    "build": "bunx --bun tsc -b && bunx --bun vite build",
+    "preview": "bunx --bun vite preview"
   },
   "dependencies": {
     "halfmoon": "^2.0.2",
