@@ -2,13 +2,6 @@ const pfp = document.getElementById("pfp");
 const music = document.getElementById("music");
 const heartrate = document.getElementById("heartrate");
 
-const presenceMap = {
-    "online": "border-success-subtle",
-    "idle": "border-warning-subtle",
-    "dnd": "border-danger-subtle",
-    "offline": "border-light-subtle"
-}
-
 const lanyard = new WebSocket("wss://lanyard.creations.works/socket");
 
 lanyard.onopen = () => {
@@ -25,9 +18,14 @@ lanyard.onmessage = ({ data }) => {
 
     switch (op) {
         case 0: {
-            pfp.className = `border border-4 rounded-circle ${presenceMap[d.discord_status]}`
+            pfp.className = `border border-4 rounded-circle ${{
+				"online": "border-success-subtle",
+				"idle": "border-warning-subtle",
+				"dnd": "border-danger-subtle",
+				"offline": "border-light-subtle"
+			}[d.discord_status]}`
 
-            const tidalData = d.activities.filter((act: Activities) => {
+            const tidalData = d.activities.filter((act) => {
                 return act?.application_id === "1130698654987067493";
             })[0];
 
@@ -57,7 +55,7 @@ const hyperate = new WebSocket(
 	"wss://app.hyperate.io/socket/websocket?token=wv39nM6iyrNJulvpmMQrimYPIXy2dVrYRjkuHpbRapKT2VSh65ngDGHdCdCtmEN9",
 );
 
-let hrTimeout: ReturnType<typeof setTimeout>;
+let hrTimeout;
 
 const setHrInterval = async () => {
 	hrTimeout = setTimeout(async () => {
