@@ -1,0 +1,18 @@
+:root {
+	--bpm: 0;
+}
+
+@keyframes pulse {
+	0%,
+	100% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.1);
+	}
+}
+
+.heart {
+	animation: pulse calc(60s / var(--bpm)) infinite ease;
+}

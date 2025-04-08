@@ -1,17 +1,22 @@
 {
-  "name": "ipv4.army",
-  "module": "index.ts",
-  "type": "module",
+  "name": "ipv4.army-vite",
   "private": true,
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "NODE_ENV=production tsc -b && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "bootstrap": "^5.3.5",
     "halfmoon": "^2.0.2",
-    "purgecss": "^7.0.2"
+    "preact": "^10.26.2"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^7.0.2",
+    "@preact/preset-vite": "^2.10.1",
+    "lightningcss": "^1.29.3",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0"
   }
 }
