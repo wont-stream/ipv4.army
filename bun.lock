@@ -5,6 +5,7 @@
       "name": "ipv4.army-vite",
       "dependencies": {
         "halfmoon": "^2.0.2",
+        "lucide-preact": "^0.487.0",
         "preact": "^10.26.2",
       },
       "devDependencies": {
@@ -316,6 +317,8 @@
     "lightningcss-win32-x64-msvc": ["lightningcss-win32-x64-msvc@1.29.3", "", { "os": "win32", "cpu": "x64" }, "sha512-IszwRPu2cPnDQsZpd7/EAr0x2W7jkaWqQ1SwCVIZ/tSbZVXPLt6k8s6FkcyBjViCzvB5CW0We0QbbP7zp2aBjQ=="],
 
     "lru-cache": ["lru-cache@5.1.1", "", { "dependencies": { "yallist": "^3.0.2" } }, "sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w=="],
+
+    "lucide-preact": ["lucide-preact@0.487.0", "", { "peerDependencies": { "preact": "^10.5.13" } }, "sha512-fy8Gn8bjoRTJ171SVUys+Xe65YsXCUdf8out16vdBvgpJtKKencwarKKJR26ZKSOzVydjnKsCEs/DRLB78qLtg=="],
 
     "magic-string": ["magic-string@0.30.17", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.0" } }, "sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA=="],
 
