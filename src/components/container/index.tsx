@@ -27,16 +27,16 @@ export default () => {
     return (
         <>
             <div class="container bg-body-tertiary shadow text-center position-absolute top-50 start-50 translate-middle mx-auto py-4">
-                <img src="favicon.svg" class={`img-thumbnail rounded-circle border border-4  ${statusMap[status]}`} alt="..." width="100" />
+                <img src="favicon.svg" class={`img-thumbnail rounded-circle border border-4  ${statusMap[status]}`} alt="..." width="100px" height="100px" />
                 <br />
                 <h1>Seth</h1>
-                <h6 class="lead">Dedicated Backend Developer
+                <h2 class="lead">Dedicated Backend Developer
                     <br />
                     <br />
                     <small class="text-body-secondary">
                         With a passsion for high-fidelity audio, gaming, and web development
                     </small>
-                </h6>
+                </h2>
                 <Heart />
             </div>
         </>
