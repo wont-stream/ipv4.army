@@ -1,0 +1,17 @@
+{
+  "name": "ipv4.army",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.5",
+    "halfmoon": "^2.0.2",
+    "purgecss": "^7.0.2"
+  }
+}
