@@ -2,8 +2,6 @@ import { useState } from 'preact/hooks';
 
 import Heart from '../heart';
 
-const api = "lanyard.creations.works"
-
 const statusMap = {
     online: "border-success-subtle",
     idle: "border-warning-subtle",
@@ -14,7 +12,7 @@ const statusMap = {
 export default () => {
     const [status, setStatus] = useState<keyof typeof statusMap>('offline');
 
-    fetch(`https://${api}/v1/users/1273447359417942128`)
+    fetch("https://lanyard.creations.works/v1/users/1273447359417942128")
     .then(req => req.json())
     .then((res) => {
             if (res.data.discord_status) {

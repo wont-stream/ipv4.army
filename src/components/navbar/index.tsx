@@ -1,4 +1,9 @@
-import { Minus, Minimize2, X } from 'lucide-preact';
+import { Minus, Minimize, X } from 'lucide-preact';
+
+const close = () => {
+    window.close();
+    window.history.back();
+}
 
 export default () => {
     return (
@@ -13,9 +18,9 @@ export default () => {
                         IPv4 dot Army
                     </span>
                     <div class="d-flex hstack gap-2" role="search">
-                        <button type="button" class="btn btn-outline-success btn-sm"><Minus size={15} /></button>
-                        <button type="button" class="btn btn-outline-warning btn-sm"><Minimize2 size={15} /></button>
-                        <button type="button" class="btn btn-outline-danger btn-sm"><X size={15} /></button>
+                        <button type="button" class="btn btn-outline-success btn-sm"><Minus size={20} /></button>
+                        <button type="button" class="btn btn-outline-warning btn-sm"><Minimize size={20} /></button>
+                        <button type="button" class="btn btn-outline-danger btn-sm" onClick={close}><X size={20} /></button>
                     </div>
                 </div>
             </nav>
