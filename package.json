@@ -9,7 +9,6 @@
     "preview": "bunx --bun vite preview"
   },
   "dependencies": {
-    "@preact/signals": "^2.0.3",
     "halfmoon": "^2.0.2",
     "lucide-preact": "^0.487.0",
     "preact": "^10.26.2"
