@@ -59,9 +59,9 @@ export default () => {
     return (
         <>
             <div style={heartrate === 0 ? "display:none" : `--bpm: ${heartrate};`} class="heart">
-                    ♥️
-                    <br />
-                    <span>{heartrate} BPM</span>
+                ♥️
+                <br />
+                <span>{heartrate} BPM</span>
             </div>
         </>
     )

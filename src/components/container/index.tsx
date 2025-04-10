@@ -13,8 +13,8 @@ export default () => {
     const [status, setStatus] = useState<keyof typeof statusMap>('offline');
 
     fetch("https://lanyard.creations.works/v1/users/1273447359417942128")
-    .then(req => req.json())
-    .then((res) => {
+        .then(req => req.json())
+        .then((res) => {
             if (res.data.discord_status) {
                 setStatus(res.data.discord_status);
             } else {
