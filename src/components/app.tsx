@@ -1,13 +1,13 @@
-import Navbar from './navbar';
-import Container from './container';
+import Container from "./container";
+import Navbar from "./navbar";
 
-import './app.css';
+import "./app.css";
 
 export default () => {
-  return (
-    <>
-      <Navbar />
-      <Container />
-    </>
-  )
-}
+	return (
+		<>
+			<Navbar />
+			<Container />
+		</>
+	);
+};
