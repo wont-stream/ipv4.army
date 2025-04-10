@@ -17,7 +17,7 @@ export default () => {
                     <span class="navbar-text">
                         IPv4 dot Army
                     </span>
-                    <div class="d-flex hstack gap-2" role="search">
+                    <div class="d-flex hstack gap-2">
                         <button type="button" class="btn btn-outline-success btn-sm"><Minus size={20} /></button>
                         <button type="button" class="btn btn-outline-warning btn-sm"><Minimize size={20} /></button>
                         <button type="button" class="btn btn-outline-danger btn-sm" onClick={close}><X size={20} /></button>
