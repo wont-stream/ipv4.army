@@ -1,0 +1,28 @@
+@import "./App.css";
+
+:root {
+    --color-background-primary: #1a1d1f;
+    --color-background-secondary: #24282b;
+    --color-background-tertiary: #222527;
+
+    --color-text-primary: #DEDEDE;
+    --color-text-secondary: #ACACAC;
+    --color-link: #7289DA;
+    --color-link-hover: #4E5D94;
+    --color-link-active: #5B6EAE;
+}
+
+html,
+head,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Circular Std', sans-serif;
+}
+
+body {
+    background-color: var(--color-background-primary);
+    color: var(--color-text-primary);
+    font-size: 16px;
+    line-height: 1.5;
+}
