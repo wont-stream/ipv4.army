@@ -167,13 +167,7 @@ const webserver = serve({
         },
         message: async (ws, message) => {
             ws.send(JSON.stringify({ type: "echo", data: message }), true)
-        },
-        close: async (ws) => {
-            console.log("WebSocket closed", ws.id);
-        },
-        drain: async (ws) => {
-            console.log("WebSocket drain", ws.id);
-        },
+        }
     },
     development,
     port: 3000,
