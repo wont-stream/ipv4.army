@@ -4,6 +4,7 @@
     "": {
       "name": "ipv4.army",
       "dependencies": {
+        "microlight": "^0.0.7",
         "tsx-dom": "^3.1.0",
       },
       "devDependencies": {
@@ -11,7 +12,7 @@
         "@types/bun": "latest",
       },
       "peerDependencies": {
-        "typescript": "^5",
+        "typescript": "^5.8.3",
       },
     },
   },
@@ -39,6 +40,8 @@
     "@types/node": ["@types/node@22.14.1", "", { "dependencies": { "undici-types": "~6.21.0" } }, "sha512-u0HuPQwe/dHrItgHHpmw3N2fYCR6x4ivMNbPHRkBVP4CvN+kiRrKHWk3i8tXiO/joPwXLMYvF9TTF0eqgHIuOw=="],
 
     "bun-types": ["bun-types@1.2.10", "", { "dependencies": { "@types/node": "*" } }, "sha512-b5ITZMnVdf3m1gMvJHG+gIfeJHiQPJak0f7925Hxu6ZN5VKA8AGy4GZ4lM+Xkn6jtWxg5S3ldWvfmXdvnkp3GQ=="],
+
+    "microlight": ["microlight@0.0.7", "", {}, "sha512-kigwsJYoy4mAMkGZpS839/KZ5WWQQm4TzD+eIjR5leS5H0j+EhExvK0Z2Or2ewkBR/t7/AHHhxRyeXi1kurG0g=="],
 
     "tsx-dom": ["tsx-dom@3.1.0", "", { "dependencies": { "tsx-dom-types": "2.1.0" } }, "sha512-PGN7iL6zNC4Jj7bA1groSIz5mFB3Rr+SeoywZk2g4+c9uV8wwzCf+5tFQ8SyZxQIBHech3ueB0KxV3OFieqhOA=="],
 

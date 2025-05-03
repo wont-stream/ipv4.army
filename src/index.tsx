@@ -2,7 +2,9 @@ import "tsx-dom";
 
 import App from './App';
 
-document.getElementById("font")!.innerText = `@font-face {
+const font = document.getElementById("font")
+if (font) {
+    font.innerText = `@font-face {
     font-family: 'Circular Std';
     src: url('/public/font/Black.woff2') format('woff2');
     font-weight: black;
@@ -65,7 +67,7 @@ document.getElementById("font")!.innerText = `@font-face {
     font-style: italic;
     font-display: swap
 }`
-
+}
 document.body.appendChild(<App />);
 
 // You're garbage, let me collect you.

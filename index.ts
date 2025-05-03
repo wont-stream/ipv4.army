@@ -4,25 +4,37 @@ import pkg from "./package.json";
 
 const development = process.env.NODE_ENV === "development";
 
-require("fs/promises").rm("./dist", { recursive: true, force: true }).catch(() => {
+let heartrate = 0;
+let lanyard = {};
+
+require("node:fs/promises").rm("./dist", { recursive: true, force: true }).catch(() => {
     // ignore
 });
 
-await build({
-    entrypoints: ['./src/index.html'],
-    outdir: './dist',
-    minify: !development,
-    sourcemap: (development ? "inline" : "none"),
-    splitting: true,
-    publicPath: "/assets/",
-    loader: {
-        ".woff2": "file"
-    },
-})
+const buildWeb = async () => {
+    return await build({
+        entrypoints: ['./src/index.html'],
+        outdir: './dist',
+        minify: !development,
+        sourcemap: (development ? "inline" : "none"),
+        splitting: true,
+        publicPath: "/assets/",
+        loader: {
+            ".woff2": "file"
+        },
+    })
+}
 
-serve({
+if (!development) {
+    await buildWeb()
+}
+
+const server = serve({
     routes: {
         "/": async () => {
+            if (development) {
+                await buildWeb()
+            }
             return new Response(gzipSync(await file("./dist/index.html").arrayBuffer()), {
                 headers: {
                     "Content-Type": "text/html",
@@ -109,14 +121,12 @@ serve({
                 }
             })
         },
-        "/api/status": () => {
-            return new Response(gzipSync(JSON.stringify({ data: process.uptime() })), {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Cache-Control": "no-cache",
-                    "Content-Encoding": "gzip",
-                }
-            })
+        "/api/ws": (req, server) => {
+            if (server.upgrade(req)) {
+                return;
+            }
+
+            return new Response("Upgrade failed", { status: 500 });
         },
         "/api/gc": () => {
             gc(true)
@@ -129,6 +139,109 @@ serve({
             })
         },
     },
+    websocket: {
+        open: async (ws) => {
+            ws.subscribe("lanyard");
+            ws.send(JSON.stringify({ type: "lanyard", data: lanyard }), true);
+
+            ws.subscribe("hyperate");
+            ws.send(JSON.stringify({ type: "hyperate", data: { hr: heartrate } }), true);
+        },
+        message: async (ws, message) => {
+            ws.send(JSON.stringify({ type: "echo", data: message }), true)
+        },
+        close: async (ws) => {
+            console.log("WebSocket closed", ws.id);
+        },
+        drain: async (ws) => {
+            console.log("WebSocket drain", ws.id);
+        },
+    },
     development,
     port: 3000,
 });
+
+const lanyardSocket = new WebSocket("wss://lanyard.creations.works/socket");
+
+const setLanyard = (data: object) => {
+    lanyard = data;
+
+    return server.publish("lanyard", JSON.stringify({ type: "lanyard", data }), true);
+}
+
+lanyardSocket.onmessage = ({ data }) => {
+    data = JSON.parse(data);
+
+    switch (data.op) {
+        case 0: {
+            setLanyard(data.d)
+            break;
+        }
+        case 1: {
+            lanyardSocket.send(JSON.stringify({
+                op: 2,
+                d: {
+                    subscribe_to_id: "1273447359417942128"
+                }
+            }))
+            break;
+        }
+    }
+}
+
+const hyperate = new WebSocket(
+    "wss://app.hyperate.io/socket/websocket?token=wv39nM6iyrNJulvpmMQrimYPIXy2dVrYRjkuHpbRapKT2VSh65ngDGHdCdCtmEN9",
+);
+
+let hrTimeout: ReturnType<typeof setTimeout>;
+
+const setHeartrate = async (hr: number) => {
+    heartrate = hr;
+
+    return server.publish("hyperate", JSON.stringify({ type: "hyperate", data: { hr } }), true);
+}
+
+const setHrInterval = () => {
+    hrTimeout = setTimeout(() => {
+        setHeartrate(0);
+    }, 6000);
+};
+
+hyperate.onopen = () => {
+    hyperate.send(
+        JSON.stringify({
+            topic: "hr:0BCA",
+            event: "phx_join",
+            payload: {},
+            ref: 0,
+        }),
+    );
+
+    setInterval(() => {
+        hyperate.send(
+            JSON.stringify({
+                topic: "phoenix",
+                event: "heartbeat",
+                payload: {},
+                ref: 0,
+            }),
+        );
+    }, 10000);
+
+    return setHrInterval();
+};
+
+hyperate.onmessage = ({ data }) => {
+    const { event, payload } = JSON.parse(data);
+    switch (event) {
+        case "hr_update": {
+            clearTimeout(hrTimeout);
+            setHrInterval();
+            setHeartrate(payload.hr);
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+};

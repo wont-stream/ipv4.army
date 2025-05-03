@@ -15,6 +15,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "microlight": "^0.0.7",
     "tsx-dom": "^3.1.0"
   }
 }
