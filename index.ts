@@ -170,7 +170,7 @@ const webserver = serve({
         }
     },
     development,
-    port: 3000,
+    port: 2056
 });
 
 const lanyardSocket = new WebSocket("wss://lanyard.creations.works/socket");
