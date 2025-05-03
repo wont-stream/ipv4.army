@@ -29,7 +29,7 @@ if (!development) {
     await buildWeb()
 }
 
-const server = serve({
+const webserver = serve({
     routes: {
         "/": async () => {
             if (development) {
@@ -128,8 +128,9 @@ const server = serve({
 
             return new Response("Upgrade failed", { status: 500 });
         },
-        "/api/gc": () => {
+        "/api/gc": async (req, server) => {
             gc(true)
+
             return new Response(gzipSync(JSON.stringify({ data: "triggered" })), {
                 headers: {
                     "Content-Type": "application/json",
@@ -138,6 +139,23 @@ const server = serve({
                 }
             })
         },
+        "/api/script.js": async () => {
+            const req = await fetch("https://plausible.creations.works/js/script.js")
+            const script = await req.text()
+
+            return new Response(gzipSync(script), {
+                headers: {
+                    "Content-Type": "application/javascript",
+                    "Content-Encoding": "gzip",
+                    "Cache-Control": "public, max-age=31536000",
+                }
+            })
+        },
+        "/api/script": async (req) => {
+            const request = new Request(req);
+            request.headers.delete('cookie');
+            return await fetch("https://plausible.creations.works/api/event", request);
+        }
     },
     websocket: {
         open: async (ws) => {
@@ -166,7 +184,7 @@ const lanyardSocket = new WebSocket("wss://lanyard.creations.works/socket");
 const setLanyard = (data: object) => {
     lanyard = data;
 
-    return server.publish("lanyard", JSON.stringify({ type: "lanyard", data }), true);
+    return webserver.publish("lanyard", JSON.stringify({ type: "lanyard", data }), true);
 }
 
 lanyardSocket.onmessage = ({ data }) => {
@@ -198,7 +216,7 @@ let hrTimeout: ReturnType<typeof setTimeout>;
 const setHeartrate = async (hr: number) => {
     heartrate = hr;
 
-    return server.publish("hyperate", JSON.stringify({ type: "hyperate", data: { hr } }), true);
+    return webserver.publish("hyperate", JSON.stringify({ type: "hyperate", data: { hr } }), true);
 }
 
 const setHrInterval = () => {
