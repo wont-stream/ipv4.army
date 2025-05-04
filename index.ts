@@ -155,6 +155,15 @@ const webserver = serve({
             const request = new Request(req);
             request.headers.delete('cookie');
             return await fetch("https://plausible.creations.works/api/event", request);
+        },
+        "/api/headers": async (req) => {
+            return new Response(gzipSync(JSON.stringify({ headers: req.headers })), {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Content-Encoding": "gzip",
+                    "Cache-Control": "no-cache",
+                }
+            })
         }
     },
     websocket: {
