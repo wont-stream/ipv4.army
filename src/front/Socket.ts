@@ -19,12 +19,24 @@ class Socket extends EventTarget {
                     this.emitHyperate(data.hr);
                     break;
                 }
+                case "echo": {
+                    console.log("Echo: ", data);
+                    break;
+                }
+                default: {
+                    console.error("Unknown message type: ", type, data);
+                    break;
+                }
             }
+        };
+
+        this._socket.onclose = () => {
+            location.reload();
         };
 
         setInterval(() => {
             this._socket.send("ping");
-        }, 10000);
+        }, 30 * 1000);
     }
 
     emitLanyard(lanyard: object) {
