@@ -1,22 +1,24 @@
 {
-  "name": "ipv4.army",
-  "module": "index.ts",
-  "scripts": {
-    "dev": "NODE_ENV=development bun run --hot . --watch",
-    "start": "bun run ."
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.8.3"
-  },
-  "private": true,
-  "type": "module",
-  "dependencies": {
-    "@speed-highlight/core": "latest",
-    "reconnecting-websocket": "latest",
-    "tsx-dom": "latest"
-  }
+	"name": "ipv4.army",
+	"module": "index.ts",
+	"scripts": {
+		"dev": "NODE_ENV=development bun run --hot . --watch",
+		"start": "bun run .",
+		"lint": "bunx biome ci . --verbose",
+		"lint:fix": "bunx biome check --fix"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.8.3"
+	},
+	"private": true,
+	"type": "module",
+	"dependencies": {
+		"@speed-highlight/core": "latest",
+		"reconnecting-websocket": "latest",
+		"tsx-dom": "latest"
+	}
 }
