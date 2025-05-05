@@ -1,22 +1,22 @@
-import { highlightAll } from "@speed-highlight/core";
+import { highlightElement } from "@speed-highlight/core";
 import { createRef } from "tsx-dom";
-
 import socket from "../../Socket";
 
-const statusTypes: { [key: string]: string } = {
+const statusTypes = {
 	online: "rgb(0, 150, 0)",
 	idle: "rgb(150, 150, 0)",
 	dnd: "rgb(150, 0, 0)",
 	offline: "rgb(150, 150, 150)",
 };
 
-const gradientTypes: { [key: string]: string } = {
+const gradientTypes = {
 	online: "rgba(0, 150, 0, 0.1)",
 	idle: "rgba(150, 150, 0, 0.1)",
 	dnd: "rgba(150, 0, 0, 0.1)",
 	offline: "rgba(150, 150, 150, 0.1)",
 };
-const activityTypes: { [key: number]: string } = {
+
+const activityTypes: Record<number, string> = {
 	0: "Playing",
 	1: "Streaming",
 	2: "Listening to",
@@ -25,43 +25,37 @@ const activityTypes: { [key: number]: string } = {
 	5: "Competing in",
 };
 
-const stringify = (data: { [key: string]: string }) => {
-	return JSON.stringify(data, null, 2);
-};
-
 export default () => {
-	const code = createRef<HTMLDivElement>();
+	const container = createRef<HTMLDivElement>();
 
 	socket.addEventListener("lanyard", (event: Event) => {
-		const lanyard = (event as CustomEvent).detail;
+		const lanyard = (event as CustomEvent<LanyardData>).detail;
+
 		document.body.style = `--status-color: ${statusTypes[lanyard.discord_status]}; --gradient-color: ${gradientTypes[lanyard.discord_status]};`;
-		if (code.current) {
-			code.current.innerHTML = stringify({
-				status: lanyard.discord_status,
-				activities: lanyard.activities.map(
-					(act: {
-						type: number;
-						name: string;
-						details: string;
-						state: string;
-					}) => {
-						return [
-							...new Set([
-								activityTypes[act.type],
-								act.name,
-								act.details,
-								act.state,
-							]),
-						].filter((n) => n);
-					},
-				),
-			});
+
+		if (container.current) {
+			container.current.className = "shj-lang-json";
+			container.current.textContent = JSON.stringify(
+				{
+					status: lanyard.discord_status,
+					activities: lanyard.activities.map((act) => {
+						const type = activityTypes[act.type];
+						const parts = [type];
+						if (act.name !== type) parts.push(act.name);
+						if (act.details) parts.push(act.details);
+						if (act.state) parts.push(act.state);
+						return parts;
+					}),
+				},
+				null,
+				2
+			);
+			highlightElement(container.current);
 		}
-		highlightAll();
 	});
 
 	return (
-		<div class="shj-lang-json" ref={code}>
+		<div class="shj-lang-json" ref={container}>
 			{"{}"}
 		</div>
 	);

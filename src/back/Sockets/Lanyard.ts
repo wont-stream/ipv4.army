@@ -3,9 +3,9 @@ import ReconnectingWebSocket from "reconnecting-websocket";
 export default class {
 	private _socket: ReconnectingWebSocket;
 	private _keepAlive: NodeJS.Timeout | null;
-	private _callback: (data: { [key: string]: string }) => void;
+	private _callback: (data: LanyardData) => void;
 
-	constructor(callback: (data: { [key: string]: string }) => void) {
+	constructor(callback: (data: LanyardData) => void) {
 		this._socket = new ReconnectingWebSocket(
 			"wss://lanyard.creations.works/socket",
 		);
