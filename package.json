@@ -2,8 +2,8 @@
 	"name": "ipv4.army",
 	"module": "index.ts",
 	"scripts": {
-		"dev": "NODE_ENV=development bun run --hot . --watch",
-		"start": "bun run .",
+		"dev": "NODE_ENV=development bun run --hot src/index.ts",
+		"start": "bun run src/index.ts",
 		"lint": "bunx biome ci . --verbose",
 		"lint:fix": "bunx biome check --fix"
 	},

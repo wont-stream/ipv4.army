@@ -39,8 +39,11 @@ class Socket extends EventTarget {
 		}, 30 * 1000);
 	}
 
-	emitLanyard(lanyard: object) {
+	emitLanyard(lanyard: LanyardData) {
 		this.dispatchEvent(new CustomEvent("lanyard", { detail: lanyard }));
+		window.dispatchEvent(
+			new CustomEvent("lanyard-update", { detail: lanyard }),
+		);
 	}
 	emitHyperate(heartRate: number) {
 		this.dispatchEvent(new CustomEvent("hyperate", { detail: heartRate }));
