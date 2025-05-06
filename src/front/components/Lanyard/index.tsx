@@ -48,7 +48,7 @@ export default () => {
 					}),
 				},
 				null,
-				2
+				2,
 			);
 			highlightElement(container.current);
 		}

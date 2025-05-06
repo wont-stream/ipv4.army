@@ -56,7 +56,7 @@ export default () => {
 				),
 		"/tmp/discord-ipc": () => lanyardInstance,
 		"/tmp/heartrate": () => Hyperate(),
-	};	
+	};
 
 	const history: string[] = [];
 	let historyIndex = -1;
@@ -119,7 +119,7 @@ export default () => {
 				].join("\n");
 			} else {
 				out = `bash: ${cmd}: command not found`;
-			}			
+			}
 
 			appendLine(out);
 			inputBox.value = "";
