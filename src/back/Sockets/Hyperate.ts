@@ -37,7 +37,7 @@ export default class {
 						ref: 0,
 					}),
 				);
-			}, 10000);
+			}, 10000 - 1000);
 		};
 
 		this._socket.onmessage = ({ data }: MessageEvent) => {

@@ -41,7 +41,7 @@ export default class {
 								op: 3,
 							}),
 						);
-					}, data.d.heartbeat_interval);
+					}, data.d.heartbeat_interval - 1000);
 					break;
 				}
 			}
