@@ -47,6 +47,13 @@ const postAnalytics = async (
 	req: Request | Bun.BunRequest,
 	server: Bun.Server,
 ) => {
+	console.log(String(
+		req.headers.get("CF-Connecting-IP") ||
+		req.headers.get("X-Real-IP") ||
+		req.headers.get("X-Forwarded-For")?.split(",")[0] ||
+		(typeof server.requestIP(req) === "string"
+			? server.requestIP(req)
+			: server.requestIP(req)?.address || "")));
 	return await fetch("https://plausible.creations.works/api/event", {
 		method: "POST",
 		headers: {
@@ -54,11 +61,11 @@ const postAnalytics = async (
 			"User-Agent": req.headers.get("user-agent") || "",
 			"X-Forwarded-For": String(
 				req.headers.get("CF-Connecting-IP") ||
-					req.headers.get("X-Real-IP") ||
-					req.headers.get("X-Forwarded-For")?.split(",")[0] ||
-					(typeof server.requestIP(req) === "string"
-						? server.requestIP(req)
-						: server.requestIP(req)?.address || ""),
+				req.headers.get("X-Real-IP") ||
+				req.headers.get("X-Forwarded-For")?.split(",")[0] ||
+				(typeof server.requestIP(req) === "string"
+					? server.requestIP(req)
+					: server.requestIP(req)?.address || ""),
 			),
 		},
 		body: JSON.stringify({
