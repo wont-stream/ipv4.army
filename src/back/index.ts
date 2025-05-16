@@ -10,7 +10,7 @@ const build = async () => {
 		minify: !development,
 		sourcemap: development ? "inline" : "none",
 		splitting: true,
-		publicPath: "/assets/"
+		publicPath: "/assets/",
 	});
 };
 
@@ -65,10 +65,7 @@ const postAnalytics = async (
 			"Content-Type": "application/json",
 			"User-Agent": req.headers.get("user-agent") || "",
 			"X-Forwarded-For": String(
-				cfIp ||
-				realIp ||
-				forwardedIp?.split(",")[0] ||
-				serverIp,
+				cfIp || realIp || forwardedIp?.split(",")[0] || serverIp,
 			),
 		},
 		body: JSON.stringify({

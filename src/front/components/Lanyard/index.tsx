@@ -37,13 +37,18 @@ export default () => {
 			container.current.textContent = JSON.stringify(
 				{
 					status: lanyard.discord_status,
-					activities: [... new Set(lanyard.activities.map((act) => {
-						const type = activityTypes[act.type];
-						const parts = [`${type} ${act.name}`];
-						if (act.details && act.details !== act.name) parts.push(act.details);
-						if (act.state && act.state !== act.name) parts.push(act.state);
-						return parts;
-					}))],
+					activities: [
+						...new Set(
+							lanyard.activities.map((act) => {
+								const type = activityTypes[act.type];
+								const parts = [`${type} ${act.name}`];
+								if (act.details && act.details !== act.name)
+									parts.push(act.details);
+								if (act.state && act.state !== act.name) parts.push(act.state);
+								return parts;
+							}),
+						),
+					],
 				},
 				null,
 				2,

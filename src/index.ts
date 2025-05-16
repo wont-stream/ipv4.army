@@ -9,7 +9,7 @@ let lanyard: LanyardData = {
 	activities: [],
 };
 
-await fs.rm("./dist", { recursive: true, force: true }).catch(() => { });
+await fs.rm("./dist", { recursive: true, force: true }).catch(() => {});
 
 if (!Backend.development) {
 	await Backend.build();
@@ -30,7 +30,8 @@ const server = serve({
 		"/assets/:file": async (req) =>
 			Backend.Responses.file(file(`./dist/${req.params.file}`)),
 
-		"/robots.txt": async () => Backend.Responses.file(file("./public/robots.txt")),
+		"/robots.txt": async () =>
+			Backend.Responses.file(file("./public/robots.txt")),
 		"/favicon.svg": async () =>
 			Backend.Responses.file(file("./public/favicon.svg")),
 
