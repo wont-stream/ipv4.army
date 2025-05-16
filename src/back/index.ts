@@ -10,7 +10,7 @@ const build = async () => {
 		minify: !development,
 		sourcemap: development ? "inline" : "none",
 		splitting: true,
-		publicPath: "/assets/",
+		publicPath: "/assets/"
 	});
 };
 
@@ -47,18 +47,28 @@ const postAnalytics = async (
 	req: Request | Bun.BunRequest,
 	server: Bun.Server,
 ) => {
+	const cfIp = req.headers.get("CF-Connecting-IP");
+	const realIp = req.headers.get("X-Real-IP");
+	const forwardedIp = req.headers.get("X-Forwarded-For");
+	const serverIp = server.requestIP(req)?.address;
+
+	console.log({
+		cfIp,
+		realIp,
+		forwardedIp,
+		serverIp,
+	});
+
 	return await fetch("https://plausible.creations.works/api/event", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 			"User-Agent": req.headers.get("user-agent") || "",
 			"X-Forwarded-For": String(
-				req.headers.get("CF-Connecting-IP") ||
-				req.headers.get("X-Real-IP") ||
-				req.headers.get("X-Forwarded-For")?.split(",")[0] ||
-				(typeof server.requestIP(req) === "string"
-					? server.requestIP(req)
-					: server.requestIP(req)?.address || ""),
+				cfIp ||
+				realIp ||
+				forwardedIp?.split(",")[0] ||
+				serverIp,
 			),
 		},
 		body: JSON.stringify({

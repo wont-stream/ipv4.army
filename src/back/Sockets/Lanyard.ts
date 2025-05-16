@@ -7,7 +7,7 @@ export default class {
 
 	constructor(callback: (data: LanyardData) => void) {
 		this._socket = new ReconnectingWebSocket(
-			"wss://lanyard.creations.works/socket",
+			"wss://lanyard.atums.world/socket",
 		);
 		this._keepAlive = null;
 		this._callback = callback;
@@ -55,7 +55,7 @@ export default class {
 			}
 		};
 
-		this._socket.onclose = () => {
+		this._socket.onclose = (e) => {
 			console.log("Lanyard socket closed");
 			if (this._keepAlive) {
 				clearInterval(this._keepAlive);
