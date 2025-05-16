@@ -55,7 +55,7 @@ export default class {
 			}
 		};
 
-		this._socket.onclose = (e) => {
+		this._socket.onclose = (_e) => {
 			console.log("Lanyard socket closed");
 			if (this._keepAlive) {
 				clearInterval(this._keepAlive);

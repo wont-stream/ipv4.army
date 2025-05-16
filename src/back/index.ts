@@ -45,7 +45,7 @@ const Responses = {
 
 const postAnalytics = async (
 	req: Request | Bun.BunRequest,
-	server: Bun.Server,
+	_server: Bun.Server,
 ) => {
 	const cfIp = req.headers.get("CF-Connecting-IP");
 	//const realIp = req.headers.get("X-Real-IP");
