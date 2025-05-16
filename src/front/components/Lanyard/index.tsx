@@ -42,7 +42,7 @@ export default () => {
 							lanyard.activities.map((act) => {
 								const type = activityTypes[act.type];
 								const parts = [
-									`${type} ${act.name === "Custom Status" ? "" : act.name}`,
+									`${type}${act.name === "Custom Status" ? "" : ` ${act.name}`}`,
 								];
 								if (act.details && act.details !== act.name)
 									parts.push(act.details);
