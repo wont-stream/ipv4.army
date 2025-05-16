@@ -57,9 +57,7 @@ const postAnalytics = async (
 		headers: {
 			"Content-Type": "application/json",
 			"User-Agent": req.headers.get("user-agent") || "",
-			"X-Forwarded-For": String(
-				cfIp || forwardedIp?.split(",")[0],
-			),
+			"X-Forwarded-For": String(cfIp || forwardedIp?.split(",")[0]),
 		},
 		body: JSON.stringify({
 			domain: "ipv4.army",
