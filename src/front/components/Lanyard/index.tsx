@@ -1,6 +1,15 @@
 import { highlightElement } from "@speed-highlight/core";
+import { artist } from "../../utilities/artist";
 import { createRef } from "tsx-dom";
 import socket from "../../utilities/socket";
+
+const colorMap = {
+	online: "#00ff00",
+	idle: "#ffff00",
+	dnd: "#ff0000",
+	offline: "",
+	streaming: "#ff00ff",
+};
 
 const activityTypes: Record<number, string> = {
 	0: "Playing",
@@ -17,10 +26,23 @@ export default () => {
 	socket.addEventListener("lanyard", (event: Event) => {
 		const lanyard = (event as CustomEvent<LanyardData>).detail;
 
+		const streamingActivity = lanyard.activities.find((act) => act.type === 1);
+		if (streamingActivity) {
+			artist(colorMap.streaming);
+		} else {
+			artist(colorMap[lanyard.discord_status]);
+		}
+
+		if (lanyard.activities.length === 0) {
+			document.body.style.setProperty("--lanyard-display", "none");
+		} else {
+			document.body.style.removeProperty("--lanyard-display");
+		}
+
+
 		if (container.current) {
 			container.current.textContent = JSON.stringify(
 				{
-					status: lanyard.discord_status,
 					activities: [
 						...new Set(
 							lanyard.activities.map((act) => {
@@ -44,8 +66,8 @@ export default () => {
 	});
 
 	return (
-		<div class="shj-lang-json" ref={container}>
+		<code class="shj-lang-json" ref={container}>
 			{"{}"}
-		</div>
+		</code>
 	);
 };

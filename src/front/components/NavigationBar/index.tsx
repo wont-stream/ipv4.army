@@ -9,20 +9,11 @@ import "@mdui/icons/more-vert--rounded";
 
 export default () => {
     return (
-        <mdui-navigation-bar value="item-1">
-            <mdui-navigation-bar-item value="item-1">
+        <mdui-navigation-bar value="about">
+            <mdui-navigation-bar-item value="about">
                 <mdui-icon-person--outlined slot="icon" />
                 <mdui-icon-person--rounded slot="active-icon" />
-                Item 1
-            </mdui-navigation-bar-item>
-            <mdui-navigation-bar-item value="item-2">
-                <mdui-icon-more-vert--rounded slot="icon" /> Item 2
-            </mdui-navigation-bar-item>
-            <mdui-navigation-bar-item value="item-3">
-                <mdui-icon-more-vert--rounded slot="icon" /> Item 3
-            </mdui-navigation-bar-item>
-            <mdui-navigation-bar-item value="item-4">
-                <mdui-icon-more-vert--rounded slot="icon" /> Item 4
+                About
             </mdui-navigation-bar-item>
         </mdui-navigation-bar>
     );
