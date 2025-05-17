@@ -17,7 +17,11 @@
 	"private": true,
 	"type": "module",
 	"dependencies": {
+		"@fontsource/roboto": "^5.2.5",
+		"@fontsource/roboto-mono": "^5.2.5",
+		"@mdui/icons": "^1.0.3",
 		"@speed-highlight/core": "latest",
+		"mdui": "^2.1.4",
 		"reconnecting-websocket": "latest",
 		"tsx-dom": "latest"
 	}

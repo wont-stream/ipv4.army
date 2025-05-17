@@ -8,6 +8,9 @@ class Socket extends EventTarget {
 
 		this._socket = new WebSocket(url);
 		this._socket.onmessage = (event) => {
+			if (event.data === "ping") return;
+			if (event.data === "pong") return;
+
 			const { type, data } = JSON.parse(event.data);
 
 			switch (type) {
@@ -20,7 +23,7 @@ class Socket extends EventTarget {
 					break;
 				}
 				case "echo": {
-					console.log("Echo: ", data);
+					//console.log("Echo: ", data);
 					break;
 				}
 				default: {
@@ -36,7 +39,7 @@ class Socket extends EventTarget {
 
 		setInterval(() => {
 			this._socket.send("ping");
-		}, 30 * 1000);
+		}, 10 * 1000);
 	}
 
 	emitLanyard(lanyard: LanyardData) {

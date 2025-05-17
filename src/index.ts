@@ -30,10 +30,12 @@ const server = serve({
 		"/assets/:file": async (req) =>
 			Backend.Responses.file(file(`./dist/${req.params.file}`)),
 
+		"/public/*": async (req) => {
+			return Backend.Responses.file(file(`.${new URL(req.url).pathname}`));
+		},
+
 		"/robots.txt": async () =>
 			Backend.Responses.file(file("./public/robots.txt")),
-		"/favicon.svg": async () =>
-			Backend.Responses.file(file("./public/favicon.svg")),
 
 		"/api/server": () => {
 			const safeProcess = JSON.parse(JSON.stringify(process));
@@ -71,7 +73,7 @@ const server = serve({
 	},
 
 	websocket: {
-		idleTimeout: 1,
+		idleTimeout: 60,
 		open: (ws) => {
 			ws.subscribe("lanyard");
 			ws.send(JSON.stringify({ type: "lanyard", data: lanyard }), true);
@@ -83,7 +85,9 @@ const server = serve({
 			);
 		},
 		message: (ws, msg) => {
-			ws.send(JSON.stringify({ type: "echo", data: msg }), true);
+			if (msg === "ping") ws.send("pong", true);
+			if (msg === "pong") ws.send("ping", true);
+			return;
 		},
 	},
 });

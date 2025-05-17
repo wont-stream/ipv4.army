@@ -1,6 +1,6 @@
 import { createRef } from "tsx-dom";
 
-import socket from "../../Socket";
+import socket from "../../utilities/socket";
 
 export default () => {
 	const paragraph = createRef<HTMLParagraphElement>();

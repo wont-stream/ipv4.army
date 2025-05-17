@@ -1,0 +1,1172 @@
+{
+	"v": "5.6.10",
+	"fr": 30,
+	"ip": 0,
+	"op": 119,
+	"w": 332,
+	"h": 332,
+	"nm": "睡意-猫男",
+	"ddd": 0,
+	"assets": [
+		{
+			"id": "image_0",
+			"w": 44,
+			"h": 46,
+			"u": "",
+			"p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAuCAMAAABkkgs4AAAAflBMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABkif9fhPYAAABjhP8AAABlhv9JYLZliP9lh/8AAAD/3cQyQ4AOEyQKCg5Xdd1qW1EgHBmAb2LfwatEWquTgHHPs58wKiUhLVVff+9FOzWvmIfvz7i/pZMsO297oWsPAAAAFHRSTlMAIN8Qf7ufYO/PMJAgdHDfSJhwv57fR7cAAAFWSURBVHjaldSFssMgFATQuL46UPc28v8fWGVp7hC5b8fJmcyiDo0/zaN86juM+EEi3/GCYZt5Egn9IZvIXzy317qwDO2iA5Jk3TiSVuLOwhD789booAOH+nuhlNoP6Kn+elLvnHo1fnxR3xRr6Kj7xwelc95Bp37HUmyVyVYa7VLr6vHK2KJ7e+Lv6N3Yw1p26hRLAYvG0JnVYgdbXjRa21uPFlvgLexmaW99Tqe3BzgK8dNjuiPamu1bCtHUQROvy+92ECvEkWhgeScLcRVC6zVpEuB0NuzqJpANtPfGfmL0HXbzZtArPeq8M5Y6ZoFhiQ6tO4VFs3Wid91PwcxC0IziKHdb73Zt2RmcpVeWnfw5lu4uAdSvUYKtUYKlYTkahTl6QkW/Rol+fUUJnr4JseijRK9uWDWWnvdLegY9/z967DASmeeZkxwPESsBOrMShx5uEvIEyrZWVsjUzNYAAAAASUVORK5CYII=",
+			"e": 1
+		},
+		{
+			"id": "image_1",
+			"w": 20,
+			"h": 20,
+			"u": "",
+			"p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAiklEQVR42u3UVxXDMAxGYUMwBKHpBmEIhiQIZRAoghAI6u1us+db/nO+15udsM+XRYUtGFiEIM4OsowS/qI4TAqyBG9hr7iMCRbwAQokxL6gwUcoq2ddDSp8AoM0BQU2MXqtBn+jOiFsjcFKPI15UL3BylnnnrNOzcH++AFaedJ5kW+ZyTo/hy14A4yrft+T0BbXAAAAAElFTkSuQmCC",
+			"e": 1
+		},
+		{
+			"id": "image_2",
+			"w": 67,
+			"h": 25,
+			"u": "",
+			"p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEMAAAAZCAMAAABdAWPQAAAAM1BMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADbQS4qAAAAEHRSTlMAgEC/ECBg79+gMM9QkHCvh3myWQAAAMVJREFUeNrF04dqAzEQhOHZVde1ef+nzVncHiY2IasE/NFEmR8BEgANhUuGW3/sJOIkHJYIn8yhJqDzcsAl8RKAQBPh0WgUhSbDY6HZwclGpREEGoXHQbNit2OFiz7vAoeS4NPua5w2nkLHq7RmOWWNeEPqY6cYomrCqxh4E7yj2n/zEE2Cw/82YuEtYNJOUxJmiSU6zHSk4+8N/WAjypZwN7Tt8NtItsZhC/YvfITfZLjFxmdFMCO1yssiEbPWLdR6iOJHX4LSE/L3Ni23AAAAAElFTkSuQmCC",
+			"e": 1
+		},
+		{
+			"id": "image_3",
+			"w": 98,
+			"h": 26,
+			"u": "",
+			"p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAAAaCAMAAAB7CnmQAAAAM1BMVEVHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADbQS4qAAAAEHRSTlMAECAwQFBgcICQn6+/z9/vsoxurQAAAMVJREFUeNrt1AMWxTAUBNCJ+bD/zX7bZu9BPVMlGHyNgbEhlRqeEu0m0Y1E5x6dXhqLbgPggzd4kKrbhFsA3GyVesn3V60qhFpJwS3ykm6iXnOwuJWtdRJtDbYY1j3+8X+AT7l10ZWIZ3E+TqpYyeLvGTxbVmnR4iQXcA/SqZ4cjvCFJ8dxh9U44+qxy8QqD5i5fCFdkLbZYlNfHci4k42rMLN6Ol7l12DwACbUWaZdbuscZY8H8qWnVaXMfgKLJ7I5GjzJGFghDlJwiFmbAAAAAElFTkSuQmCC",
+			"e": 1
+		},
+		{
+			"id": "image_4",
+			"w": 188,
+			"h": 242,
+			"u": "",
+			"p": "data:image/png;base64,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",
+			"e": 1
+		},
+		{
+			"id": "image_5",
+			"w": 229,
+			"h": 56,
+			"u": "",
+			"p": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOUAAAA4CAMAAAA1t8/VAAAADFBMVEVHcEwAAAAAAAAAAAALttw0AAAABHRSTlMABxQaZRBeMAAAAQxJREFUeNrt2oFmxkAQReE9d97/nYvKFTVBZbvZ3vwHgOAzhk2y4y/C6VT9SKdwY+tOqrqX1WyFs2x+B/hZXa1KWosFFuo6bLCvt4YBm+ZSDdwwCaYIa/sE2UInSCcaGk10EjeIaVAT/3HixhgzVhTKxQ6UCgsu9zF5nFCRiexBmhmNdAeTig5PMp9pZPJuUvHhUUb3DiWjUvooX7KXVHzyoSD9WMAbkPFMje/IR4Yz41+jjXQQ/aXAoXxjoNPGXKdszHWK3F9eJtoYCzUxFioTY6EyMVUqTAyVWph6sUkWTgxQKrChKs7Xh7GLeYz1sUKrnvccdx54t7vrDdhm6Rcqw0zbPRr3Zc2Ds/sC/wl0P1o6Bj4AAAAASUVORK5CYII=",
+			"e": 1
+		},
+		{
+			"id": "comp_0",
+			"layers": [
+				{
+					"ddd": 0,
+					"ind": 1,
+					"ty": 2,
+					"nm": "猫男-手.png",
+					"cl": "png",
+					"refId": "image_0",
+					"sr": 1,
+					"ks": {
+						"o": { "a": 0, "k": 100, "ix": 11 },
+						"r": {
+							"a": 1,
+							"k": [
+								{
+									"i": { "x": [0.667], "y": [1] },
+									"o": { "x": [0.333], "y": [0] },
+									"t": 9,
+									"s": [-15]
+								},
+								{
+									"i": { "x": [0.667], "y": [1] },
+									"o": { "x": [0.333], "y": [0] },
+									"t": 23,
+									"s": [0]
+								},
+								{
+									"i": { "x": [0.667], "y": [1] },
+									"o": { "x": [0.333], "y": [0] },
+									"t": 81,
+									"s": [0]
+								},
+								{ "t": 104, "s": [-15] }
+							],
+							"ix": 10
+						},
+						"p": { "a": 0, "k": [211, 200, 0], "ix": 2 },
+						"a": { "a": 0, "k": [40.5, 26, 0], "ix": 1 },
+						"s": { "a": 0, "k": [100, 100, 100], "ix": 6 }
+					},
+					"ao": 0,
+					"ip": 0,
+					"op": 150,
+					"st": 0,
+					"bm": 0
+				},
+				{
+					"ddd": 0,
+					"ind": 2,
+					"ty": 4,
+					"nm": "形状图层 1",
+					"parent": 1,
+					"sr": 1,
+					"ks": {
+						"o": { "a": 0, "k": 100, "ix": 11 },
+						"r": { "a": 0, "k": 0, "ix": 10 },
+						"p": { "a": 0, "k": [28.5, 25.25, 0], "ix": 2 },
+						"a": { "a": 0, "k": [35.25, 31, 0], "ix": 1 },
+						"s": { "a": 0, "k": [100, 100, 100], "ix": 6 }
+					},
+					"ao": 0,
+					"shapes": [
+						{
+							"ty": "gr",
+							"it": [
+								{
+									"ind": 0,
+									"ty": "sh",
+									"ix": 1,
+									"ks": {
+										"a": 1,
+										"k": [
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.333, "y": 0 },
+												"t": 8,
+												"s": [
+													{
+														"i": [
+															[0.75, 0],
+															[0, 0],
+															[-7.5, -1],
+															[0, 0],
+															[0, 0]
+														],
+														"o": [
+															[-0.75, 0],
+															[0, 0],
+															[4.688, -6.062],
+															[0, 0],
+															[0, 0]
+														],
+														"v": [
+															[34.125, 20.25],
+															[21.375, 25.75],
+															[36.986, 46.666],
+															[46.375, 29.562],
+															[41.5, 24]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.333, "y": 0 },
+												"t": 23,
+												"s": [
+													{
+														"i": [
+															[0.75, 0],
+															[0, 0],
+															[-7.5, -1],
+															[0, 0],
+															[0, 0]
+														],
+														"o": [
+															[-0.75, 0],
+															[0, 0],
+															[4.688, -6.062],
+															[0, 0],
+															[0, 0]
+														],
+														"v": [
+															[34.125, 20.25],
+															[21.375, 25.75],
+															[41.938, 49.75],
+															[46.375, 29.562],
+															[41.5, 24]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.333, "y": 0 },
+												"t": 81,
+												"s": [
+													{
+														"i": [
+															[0.75, 0],
+															[0, 0],
+															[-7.5, -1],
+															[0, 0],
+															[0, 0]
+														],
+														"o": [
+															[-0.75, 0],
+															[0, 0],
+															[4.688, -6.062],
+															[0, 0],
+															[0, 0]
+														],
+														"v": [
+															[34.125, 20.25],
+															[21.375, 25.75],
+															[41.938, 49.75],
+															[46.375, 29.562],
+															[41.5, 24]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"t": 104,
+												"s": [
+													{
+														"i": [
+															[0.75, 0],
+															[0, 0],
+															[-7.5, -1],
+															[0, 0],
+															[0, 0]
+														],
+														"o": [
+															[-0.75, 0],
+															[0, 0],
+															[4.688, -6.062],
+															[0, 0],
+															[0, 0]
+														],
+														"v": [
+															[34.125, 20.25],
+															[21.375, 25.75],
+															[36.986, 46.666],
+															[46.375, 29.562],
+															[41.5, 24]
+														],
+														"c": true
+													}
+												]
+											}
+										],
+										"ix": 2
+									},
+									"nm": "路径 1",
+									"mn": "ADBE Vector Shape - Group",
+									"hd": false
+								},
+								{
+									"ty": "fl",
+									"c": {
+										"a": 0,
+										"k": [0.396078461292, 0.529411764706, 1, 1],
+										"ix": 4
+									},
+									"o": { "a": 0, "k": 100, "ix": 5 },
+									"r": 1,
+									"bm": 0,
+									"nm": "填充 1",
+									"mn": "ADBE Vector Graphic - Fill",
+									"hd": false
+								},
+								{
+									"ty": "tr",
+									"p": { "a": 0, "k": [0, 0], "ix": 2 },
+									"a": { "a": 0, "k": [0, 0], "ix": 1 },
+									"s": { "a": 0, "k": [100, 100], "ix": 3 },
+									"r": { "a": 0, "k": 0, "ix": 6 },
+									"o": { "a": 0, "k": 100, "ix": 7 },
+									"sk": { "a": 0, "k": 0, "ix": 4 },
+									"sa": { "a": 0, "k": 0, "ix": 5 },
+									"nm": "变换"
+								}
+							],
+							"nm": "形状 1",
+							"np": 3,
+							"cix": 2,
+							"bm": 0,
+							"ix": 1,
+							"mn": "ADBE Vector Group",
+							"hd": false
+						}
+					],
+					"ip": 0,
+					"op": 150,
+					"st": 0,
+					"bm": 0
+				},
+				{
+					"ddd": 0,
+					"ind": 3,
+					"ty": 2,
+					"nm": "猫女-眼睛.png",
+					"cl": "png",
+					"refId": "image_1",
+					"sr": 1,
+					"ks": {
+						"o": {
+							"a": 1,
+							"k": [
+								{
+									"i": { "x": [0.833], "y": [0.833] },
+									"o": { "x": [0.167], "y": [0.167] },
+									"t": 22,
+									"s": [0]
+								},
+								{
+									"i": { "x": [0.833], "y": [0.833] },
+									"o": { "x": [0.167], "y": [0.167] },
+									"t": 25,
+									"s": [100]
+								},
+								{
+									"i": { "x": [0.833], "y": [0.833] },
+									"o": { "x": [0.167], "y": [0.167] },
+									"t": 78,
+									"s": [100]
+								},
+								{ "t": 81, "s": [0] }
+							],
+							"ix": 11
+						},
+						"r": { "a": 0, "k": 0, "ix": 10 },
+						"p": { "a": 0, "k": [143.25, 136.375, 0], "ix": 2 },
+						"a": { "a": 0, "k": [10, 10, 0], "ix": 1 },
+						"s": { "a": 0, "k": [-100, 100, 100], "ix": 6 }
+					},
+					"ao": 0,
+					"ip": 0,
+					"op": 150,
+					"st": 0,
+					"bm": 0
+				},
+				{
+					"ddd": 0,
+					"ind": 4,
+					"ty": 2,
+					"nm": "猫女-眼睛.png",
+					"cl": "png",
+					"refId": "image_1",
+					"sr": 1,
+					"ks": {
+						"o": {
+							"a": 1,
+							"k": [
+								{
+									"i": { "x": [0.833], "y": [0.833] },
+									"o": { "x": [0.167], "y": [0.167] },
+									"t": 22,
+									"s": [0]
+								},
+								{
+									"i": { "x": [0.833], "y": [0.833] },
+									"o": { "x": [0.167], "y": [0.167] },
+									"t": 25,
+									"s": [100]
+								},
+								{
+									"i": { "x": [0.833], "y": [0.833] },
+									"o": { "x": [0.167], "y": [0.167] },
+									"t": 78,
+									"s": [100]
+								},
+								{ "t": 81, "s": [0] }
+							],
+							"ix": 11
+						},
+						"r": { "a": 0, "k": 0, "ix": 10 },
+						"p": { "a": 0, "k": [199.5, 136.25, 0], "ix": 2 },
+						"a": { "a": 0, "k": [10, 10, 0], "ix": 1 },
+						"s": { "a": 0, "k": [100, 100, 100], "ix": 6 }
+					},
+					"ao": 0,
+					"ip": 0,
+					"op": 150,
+					"st": 0,
+					"bm": 0
+				},
+				{
+					"ddd": 0,
+					"ind": 5,
+					"ty": 4,
+					"nm": "形状图层 4",
+					"sr": 1,
+					"ks": {
+						"o": {
+							"a": 1,
+							"k": [
+								{
+									"i": { "x": [0.667], "y": [1] },
+									"o": { "x": [0.333], "y": [0] },
+									"t": 26.919,
+									"s": [0]
+								},
+								{
+									"i": { "x": [0.667], "y": [1] },
+									"o": { "x": [0.333], "y": [0] },
+									"t": 30.284,
+									"s": [100]
+								},
+								{
+									"i": { "x": [0.667], "y": [1] },
+									"o": { "x": [0.333], "y": [0] },
+									"t": 69.541,
+									"s": [100]
+								},
+								{ "t": 72.9052734375, "s": [0] }
+							],
+							"ix": 11
+						},
+						"r": { "a": 0, "k": 0, "ix": 10 },
+						"p": { "a": 0, "k": [167.375, 201.5, 0], "ix": 2 },
+						"a": { "a": 0, "k": [0, 0, 0], "ix": 1 },
+						"s": { "a": 0, "k": [100, 100, 100], "ix": 6 }
+					},
+					"ao": 0,
+					"shapes": [
+						{
+							"ty": "gr",
+							"it": [
+								{
+									"ind": 0,
+									"ty": "sh",
+									"ix": 1,
+									"ks": {
+										"a": 1,
+										"k": [
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.333, "y": 0 },
+												"t": 28.041,
+												"s": [
+													{
+														"i": [
+															[7.264, 0.024],
+															[-0.271, -4.333],
+															[-4.632, -0.007],
+															[-2.208, -3.167]
+														],
+														"o": [
+															[-7.653, -0.028],
+															[1.979, -3.458],
+															[4.056, 0.243],
+															[-0.021, -4.979]
+														],
+														"v": [
+															[3.312, -56.722],
+															[-6.417, -47.417],
+															[3.257, -52.243],
+															[12.208, -47.521]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.333, "y": 0 },
+												"t": 32.527,
+												"s": [
+													{
+														"i": [
+															[7.264, 0.024],
+															[-0.271, -4.333],
+															[-4.632, -0.007],
+															[-2.208, -3.167]
+														],
+														"o": [
+															[-7.653, -0.028],
+															[1.979, -3.458],
+															[4.056, 0.243],
+															[-0.021, -4.979]
+														],
+														"v": [
+															[3.75, -55.91],
+															[-8.792, -44.229],
+															[3.944, -50.306],
+															[16.083, -44.458]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.333, "y": 0 },
+												"t": 43.743,
+												"s": [
+													{
+														"i": [
+															[7.264, 0.024],
+															[-0.271, -4.333],
+															[-4.632, -0.007],
+															[-2.208, -3.167]
+														],
+														"o": [
+															[-7.653, -0.028],
+															[1.979, -3.458],
+															[4.056, 0.243],
+															[-0.021, -4.979]
+														],
+														"v": [
+															[3.643, -56.108],
+															[-8.212, -45.007],
+															[3.777, -50.778],
+															[15.138, -45.205]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.333, "y": 0 },
+												"t": 53.838,
+												"s": [
+													{
+														"i": [
+															[7.264, 0.024],
+															[-0.271, -4.333],
+															[-4.632, -0.007],
+															[-2.208, -3.167]
+														],
+														"o": [
+															[-7.653, -0.028],
+															[1.979, -3.458],
+															[4.056, 0.243],
+															[-0.021, -4.979]
+														],
+														"v": [
+															[3.75, -55.91],
+															[-8.792, -44.229],
+															[3.944, -50.306],
+															[16.083, -44.458]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.333, "y": 0 },
+												"t": 65.055,
+												"s": [
+													{
+														"i": [
+															[7.264, 0.024],
+															[-0.271, -4.333],
+															[-4.632, -0.007],
+															[-2.208, -3.167]
+														],
+														"o": [
+															[-7.653, -0.028],
+															[1.979, -3.458],
+															[4.056, 0.243],
+															[-0.021, -4.979]
+														],
+														"v": [
+															[3.643, -56.108],
+															[-8.212, -45.007],
+															[3.777, -50.778],
+															[15.138, -45.205]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.333, "y": 0 },
+												"t": 71.784,
+												"s": [
+													{
+														"i": [
+															[1.522, 0.04],
+															[-0.271, -4.333],
+															[-4.632, -0.007],
+															[-2.236, -2.574]
+														],
+														"o": [
+															[-1.353, 0.04],
+															[2.127, -2.476],
+															[4.056, 0.243],
+															[-0.021, -4.979]
+														],
+														"v": [
+															[3.603, -57.04],
+															[-4.002, -52.149],
+															[3.579, -54.698],
+															[11.048, -51.676]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"t": 78.513671875,
+												"s": [
+													{
+														"i": [
+															[7.264, 0.024],
+															[-0.271, -4.333],
+															[-4.632, -0.007],
+															[-2.208, -3.167]
+														],
+														"o": [
+															[-7.653, -0.028],
+															[1.979, -3.458],
+															[4.056, 0.243],
+															[-0.021, -4.979]
+														],
+														"v": [
+															[3.312, -56.722],
+															[-6.417, -47.417],
+															[3.257, -52.243],
+															[12.208, -47.521]
+														],
+														"c": true
+													}
+												]
+											}
+										],
+										"ix": 2
+									},
+									"nm": "路径 1",
+									"mn": "ADBE Vector Shape - Group",
+									"hd": false
+								},
+								{
+									"ty": "fl",
+									"c": {
+										"a": 0,
+										"k": [0.882352948189, 0.521568655968, 0.46274510026, 1],
+										"ix": 4
+									},
+									"o": { "a": 0, "k": 100, "ix": 5 },
+									"r": 1,
+									"bm": 0,
+									"nm": "填充 1",
+									"mn": "ADBE Vector Graphic - Fill",
+									"hd": false
+								},
+								{
+									"ty": "tr",
+									"p": { "a": 0, "k": [0, 0], "ix": 2 },
+									"a": { "a": 0, "k": [0, 0], "ix": 1 },
+									"s": { "a": 0, "k": [100, 100], "ix": 3 },
+									"r": { "a": 0, "k": 0, "ix": 6 },
+									"o": { "a": 0, "k": 100, "ix": 7 },
+									"sk": { "a": 0, "k": 0, "ix": 4 },
+									"sa": { "a": 0, "k": 0, "ix": 5 },
+									"nm": "变换"
+								}
+							],
+							"nm": "形状 1",
+							"np": 3,
+							"cix": 2,
+							"bm": 0,
+							"ix": 1,
+							"mn": "ADBE Vector Group",
+							"hd": false
+						}
+					],
+					"ip": 0,
+					"op": 150,
+					"st": 0,
+					"bm": 0
+				},
+				{
+					"ddd": 0,
+					"ind": 6,
+					"ty": 4,
+					"nm": "形状图层 3",
+					"sr": 1,
+					"ks": {
+						"o": {
+							"a": 1,
+							"k": [
+								{
+									"i": { "x": [0.833], "y": [0.833] },
+									"o": { "x": [0.167], "y": [0.167] },
+									"t": 22,
+									"s": [0]
+								},
+								{
+									"i": { "x": [0.833], "y": [0.833] },
+									"o": { "x": [0.167], "y": [0.167] },
+									"t": 24,
+									"s": [100]
+								},
+								{
+									"i": { "x": [0.833], "y": [0.833] },
+									"o": { "x": [0.167], "y": [0.167] },
+									"t": 78,
+									"s": [100]
+								},
+								{ "t": 81, "s": [0] }
+							],
+							"ix": 11
+						},
+						"r": { "a": 0, "k": 0, "ix": 10 },
+						"p": { "a": 0, "k": [167.375, 201.5, 0], "ix": 2 },
+						"a": { "a": 0, "k": [0, 0, 0], "ix": 1 },
+						"s": { "a": 0, "k": [100, 100, 100], "ix": 6 }
+					},
+					"ao": 0,
+					"shapes": [
+						{
+							"ty": "gr",
+							"it": [
+								{
+									"ind": 0,
+									"ty": "sh",
+									"ix": 1,
+									"ks": {
+										"a": 1,
+										"k": [
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.167, "y": 0.167 },
+												"t": 0,
+												"s": [
+													{
+														"i": [
+															[5.875, 0.054],
+															[-0.062, -2.75],
+															[-6.062, -0.062],
+															[-0.062, 2.312]
+														],
+														"o": [
+															[-6.75, -0.062],
+															[0.038, 1.687],
+															[4.441, 0.046],
+															[0.078, -2.875]
+														],
+														"v": [
+															[3.25, -61.812],
+															[-5.375, -57.5],
+															[2.5, -54.625],
+															[9.938, -57.375]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.333, "y": 0 },
+												"t": 22.433,
+												"s": [
+													{
+														"i": [
+															[5.875, 0.054],
+															[-0.062, -2.75],
+															[-6.062, -0.062],
+															[-0.062, 2.312]
+														],
+														"o": [
+															[-6.75, -0.062],
+															[0.038, 1.687],
+															[4.441, 0.046],
+															[0.078, -2.875]
+														],
+														"v": [
+															[3.25, -61.812],
+															[-5.375, -57.5],
+															[2.5, -54.625],
+															[9.938, -57.375]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.333, "y": 0 },
+												"t": 32.527,
+												"s": [
+													{
+														"i": [
+															[8.375, 0],
+															[-0.375, -11.625],
+															[-12.125, 0],
+															[0, 8.375]
+														],
+														"o": [
+															[-8.375, 0],
+															[0.246, 7.621],
+															[13.625, 0],
+															[0, -13.125]
+														],
+														"v": [
+															[3.25, -59.625],
+															[-14, -39.125],
+															[2.625, -19.625],
+															[19.875, -38.625]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.333, "y": 0 },
+												"t": 43.743,
+												"s": [
+													{
+														"i": [
+															[7.887, 0.011],
+															[-0.314, -9.893],
+															[-10.942, -0.012],
+															[-0.012, 7.192]
+														],
+														"o": [
+															[-8.058, -0.012],
+															[0.205, 6.463],
+															[11.833, 0.009],
+															[0.015, -11.125]
+														],
+														"v": [
+															[3.25, -60.052],
+															[-12.317, -42.71],
+															[2.601, -26.454],
+															[17.936, -42.284]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.333, "y": 0 },
+												"t": 53.838,
+												"s": [
+													{
+														"i": [
+															[8.375, 0],
+															[-0.375, -11.625],
+															[-12.125, 0],
+															[0, 8.375]
+														],
+														"o": [
+															[-8.375, 0],
+															[0.246, 7.621],
+															[13.625, 0],
+															[0, -13.125]
+														],
+														"v": [
+															[3.25, -59.625],
+															[-14, -39.125],
+															[2.625, -19.625],
+															[19.875, -38.625]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"i": { "x": 0.667, "y": 1 },
+												"o": { "x": 0.333, "y": 0 },
+												"t": 65.055,
+												"s": [
+													{
+														"i": [
+															[7.887, 0.011],
+															[-0.314, -9.893],
+															[-10.942, -0.012],
+															[-0.012, 7.192]
+														],
+														"o": [
+															[-8.058, -0.012],
+															[0.205, 6.463],
+															[11.833, 0.009],
+															[0.015, -11.125]
+														],
+														"v": [
+															[3.25, -60.052],
+															[-12.317, -42.71],
+															[2.601, -26.454],
+															[17.936, -42.284]
+														],
+														"c": true
+													}
+												]
+											},
+											{
+												"t": 78.513671875,
+												"s": [
+													{
+														"i": [
+															[5.875, 0.054],
+															[-0.062, -2.75],
+															[-6.062, -0.062],
+															[-0.062, 2.312]
+														],
+														"o": [
+															[-6.75, -0.062],
+															[0.038, 1.687],
+															[4.441, 0.046],
+															[0.078, -2.875]
+														],
+														"v": [
+															[3.25, -61.812],
+															[-5.375, -57.5],
+															[2.5, -54.625],
+															[9.938, -57.375]
+														],
+														"c": true
+													}
+												]
+											}
+										],
+										"ix": 2
+									},
+									"nm": "路径 1",
+									"mn": "ADBE Vector Shape - Group",
+									"hd": false
+								},
+								{
+									"ty": "st",
+									"c": { "a": 0, "k": [0, 0, 0, 1], "ix": 3 },
+									"o": { "a": 0, "k": 100, "ix": 4 },
+									"w": { "a": 0, "k": 6.9, "ix": 5 },
+									"lc": 1,
+									"lj": 1,
+									"ml": 4,
+									"bm": 0,
+									"nm": "描边 1",
+									"mn": "ADBE Vector Graphic - Stroke",
+									"hd": false
+								},
+								{
+									"ty": "fl",
+									"c": {
+										"a": 1,
+										"k": [
+											{
+												"i": { "x": [0.667], "y": [1] },
+												"o": { "x": [0.333], "y": [0] },
+												"t": 22.433,
+												"s": [0, 0, 0, 1]
+											},
+											{
+												"i": { "x": [0.667], "y": [1] },
+												"o": { "x": [0.333], "y": [0] },
+												"t": 23.555,
+												"s": [0.937254905701, 0.705882370472, 0.65098041296, 1]
+											},
+											{
+												"i": { "x": [0.667], "y": [1] },
+												"o": { "x": [0.333], "y": [0] },
+												"t": 78.514,
+												"s": [0.937254905701, 0.705882370472, 0.65098041296, 1]
+											},
+											{ "t": 79.634765625, "s": [0, 0, 0, 1] }
+										],
+										"ix": 4
+									},
+									"o": { "a": 0, "k": 100, "ix": 5 },
+									"r": 1,
+									"bm": 0,
+									"nm": "填充 1",
+									"mn": "ADBE Vector Graphic - Fill",
+									"hd": false
+								},
+								{
+									"ty": "tr",
+									"p": { "a": 0, "k": [0, 0], "ix": 2 },
+									"a": { "a": 0, "k": [0, 0], "ix": 1 },
+									"s": { "a": 0, "k": [100, 100], "ix": 3 },
+									"r": { "a": 0, "k": 0, "ix": 6 },
+									"o": { "a": 0, "k": 100, "ix": 7 },
+									"sk": { "a": 0, "k": 0, "ix": 4 },
+									"sa": { "a": 0, "k": 0, "ix": 5 },
+									"nm": "变换"
+								}
+							],
+							"nm": "形状 1",
+							"np": 3,
+							"cix": 2,
+							"bm": 0,
+							"ix": 1,
+							"mn": "ADBE Vector Group",
+							"hd": false
+						}
+					],
+					"ip": 0,
+					"op": 150,
+					"st": 0,
+					"bm": 0
+				},
+				{
+					"ddd": 0,
+					"ind": 7,
+					"ty": 2,
+					"nm": "猫男-五官.png",
+					"cl": "png",
+					"refId": "image_2",
+					"sr": 1,
+					"ks": {
+						"o": {
+							"a": 1,
+							"k": [
+								{
+									"i": { "x": [0.833], "y": [0.833] },
+									"o": { "x": [0.167], "y": [0.167] },
+									"t": 22,
+									"s": [100]
+								},
+								{
+									"i": { "x": [0.833], "y": [0.833] },
+									"o": { "x": [0.167], "y": [0.167] },
+									"t": 25.365,
+									"s": [0]
+								},
+								{
+									"i": { "x": [0.833], "y": [0.833] },
+									"o": { "x": [0.167], "y": [0.167] },
+									"t": 78.081,
+									"s": [0]
+								},
+								{ "t": 81.4453125, "s": [100] }
+							],
+							"ix": 11
+						},
+						"r": { "a": 0, "k": 0, "ix": 10 },
+						"p": {
+							"a": 1,
+							"k": [
+								{
+									"i": { "x": 0.833, "y": 0.833 },
+									"o": { "x": 0.167, "y": 0.167 },
+									"t": 0,
+									"s": [171.5, 152.75, 0],
+									"to": [0, -1.542, 0],
+									"ti": [0, 1.542, 0]
+								},
+								{
+									"i": { "x": 0.833, "y": 0.833 },
+									"o": { "x": 0.167, "y": 0.167 },
+									"t": 23,
+									"s": [171.5, 143.5, 0],
+									"to": [0, 0, 0],
+									"ti": [0, 0, 0]
+								},
+								{
+									"i": { "x": 0.833, "y": 0.833 },
+									"o": { "x": 0.167, "y": 0.167 },
+									"t": 81,
+									"s": [171.5, 143.5, 0],
+									"to": [0, 1.542, 0],
+									"ti": [0, -1.542, 0]
+								},
+								{ "t": 104, "s": [171.5, 152.75, 0] }
+							],
+							"ix": 2
+						},
+						"a": { "a": 0, "k": [33.5, 12.5, 0], "ix": 1 },
+						"s": { "a": 0, "k": [100, 100, 100], "ix": 6 }
+					},
+					"ao": 0,
+					"ip": 0,
+					"op": 150,
+					"st": 0,
+					"bm": 0
+				},
+				{
+					"ddd": 0,
+					"ind": 8,
+					"ty": 2,
+					"nm": "猫男-胡须.png",
+					"cl": "png",
+					"parent": 7,
+					"refId": "image_3",
+					"sr": 1,
+					"ks": {
+						"o": { "a": 0, "k": 100, "ix": 11 },
+						"r": { "a": 0, "k": 0, "ix": 10 },
+						"p": { "a": 0, "k": [33.25, 18.75, 0], "ix": 2 },
+						"a": { "a": 0, "k": [49, 13, 0], "ix": 1 },
+						"s": { "a": 0, "k": [100, 100, 100], "ix": 6 }
+					},
+					"ao": 0,
+					"ip": 0,
+					"op": 150,
+					"st": 0,
+					"bm": 0
+				},
+				{
+					"ddd": 0,
+					"ind": 9,
+					"ty": 2,
+					"nm": "猫男-身体.png",
+					"cl": "png",
+					"refId": "image_4",
+					"sr": 1,
+					"ks": {
+						"o": { "a": 0, "k": 100, "ix": 11 },
+						"r": { "a": 0, "k": 0, "ix": 10 },
+						"p": { "a": 0, "k": [166, 166, 0], "ix": 2 },
+						"a": { "a": 0, "k": [94, 121, 0], "ix": 1 },
+						"s": { "a": 0, "k": [100, 100, 100], "ix": 6 }
+					},
+					"ao": 0,
+					"ip": 0,
+					"op": 150,
+					"st": 0,
+					"bm": 0
+				}
+			]
+		}
+	],
+	"layers": [
+		{
+			"ddd": 0,
+			"ind": 1,
+			"ty": 0,
+			"nm": "预合成 1-猫男",
+			"refId": "comp_0",
+			"sr": 1,
+			"ks": {
+				"o": { "a": 0, "k": 100, "ix": 11 },
+				"r": { "a": 0, "k": 0, "ix": 10 },
+				"p": { "a": 0, "k": [171, 163.5, 0], "ix": 2 },
+				"a": { "a": 0, "k": [166, 166, 0], "ix": 1 },
+				"s": { "a": 0, "k": [104, 104, 100], "ix": 6 }
+			},
+			"ao": 0,
+			"w": 332,
+			"h": 332,
+			"ip": 0,
+			"op": 150,
+			"st": 0,
+			"bm": 0
+		},
+		{
+			"ddd": 0,
+			"ind": 2,
+			"ty": 2,
+			"nm": "阴影.png",
+			"cl": "png",
+			"refId": "image_5",
+			"sr": 1,
+			"ks": {
+				"o": { "a": 0, "k": 100, "ix": 11 },
+				"r": { "a": 0, "k": 0, "ix": 10 },
+				"p": { "a": 0, "k": [166, 285, 0], "ix": 2 },
+				"a": { "a": 0, "k": [114.5, 28, 0], "ix": 1 },
+				"s": { "a": 0, "k": [100, 100, 100], "ix": 6 }
+			},
+			"ao": 0,
+			"ip": 0,
+			"op": 150,
+			"st": 0,
+			"bm": 0
+		}
+	],
+	"markers": []
+}

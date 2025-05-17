@@ -1,20 +1,6 @@
 import { highlightElement } from "@speed-highlight/core";
 import { createRef } from "tsx-dom";
-import socket from "../../Socket";
-
-const statusTypes = {
-	online: "0, 150, 0",
-	idle: "150, 150, 0",
-	dnd: "150, 0, 0",
-	offline: "150, 150, 150",
-};
-
-const gradientTypes = {
-	online: "0, 150, 0",
-	idle: "150, 150, 0",
-	dnd: "150, 0, 0",
-	offline: "150, 150, 150",
-};
+import socket from "../../utilities/socket";
 
 const activityTypes: Record<number, string> = {
 	0: "Playing",
@@ -30,8 +16,6 @@ export default () => {
 
 	socket.addEventListener("lanyard", (event: Event) => {
 		const lanyard = (event as CustomEvent<LanyardData>).detail;
-
-		document.body.style = `--status-color: rgb(${statusTypes[lanyard.discord_status]}); --gradient-color: rgba(${gradientTypes[lanyard.discord_status]}, 0.1);`;
 
 		if (container.current) {
 			container.current.textContent = JSON.stringify(
