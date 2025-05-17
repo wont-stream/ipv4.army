@@ -49,12 +49,12 @@ body {
 	background: #bdf5;
 }
 
-[class*="shj-lang-"]>div {
+[class*="shj-lang-"] > div {
 	display: flex;
 	overflow: auto;
 }
 
-[class*="shj-lang-"]>div :last-child {
+[class*="shj-lang-"] > div :last-child {
 	outline: none;
 	flex: 1;
 }

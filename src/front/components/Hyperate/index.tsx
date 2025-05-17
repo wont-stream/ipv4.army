@@ -22,7 +22,9 @@ export default () => {
 	});
 	return (
 		<div>
-			<p class="heartbeat" ref={paragraph}>❤️ 0 BPM</p>
+			<p class="heartbeat" ref={paragraph}>
+				❤️ 0 BPM
+			</p>
 		</div>
 	);
 };

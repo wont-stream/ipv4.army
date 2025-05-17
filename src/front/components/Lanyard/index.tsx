@@ -1,6 +1,6 @@
 import { highlightElement } from "@speed-highlight/core";
-import { artist } from "../../utilities/artist";
 import { createRef } from "tsx-dom";
+import { artist } from "../../utilities/artist";
 import socket from "../../utilities/socket";
 
 const colorMap = {
@@ -38,7 +38,6 @@ export default () => {
 		} else {
 			document.body.style.removeProperty("--lanyard-display");
 		}
-
 
 		if (container.current) {
 			container.current.textContent = JSON.stringify(
