@@ -34,7 +34,9 @@ class Socket extends EventTarget {
 		};
 
 		this._socket.onclose = () => {
-			const willRefresh = confirm("Realtime Data Connection closed\nWould you like to reconnect?");
+			const willRefresh = confirm(
+				"Realtime Data Connection closed\nWould you like to reconnect?",
+			);
 			if (willRefresh) {
 				location.reload();
 			}
