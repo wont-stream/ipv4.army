@@ -49,6 +49,7 @@ body {
 	background: #bdf5;
 }
 
+/*
 [class*="shj-lang-"] > div {
 	display: flex;
 	overflow: auto;
@@ -91,12 +92,13 @@ body {
 .shj-syn-class {
 	color: #f60;
 }
-
+*/
 .shj-syn-insert,
 .shj-syn-str {
 	color: #7d8;
 }
 
+/*
 .shj-syn-bool {
 	color: #3bf;
 }
@@ -110,12 +112,13 @@ body {
 .shj-syn-func {
 	color: #84f;
 }
-
+*/
 .shj-syn-deleted,
 .shj-syn-var {
 	color: #f44;
 }
 
+/*
 .shj-oneline {
 	padding: 12px 10px;
 }
@@ -126,7 +129,7 @@ body {
 	border-radius: 5px;
 	padding: 5px 7px;
 }
-
+*/
 [class*="shj-lang-"] {
 	color: #f8f8f2;
 	background: var(--mdui-color-secondary-container);
@@ -142,6 +145,7 @@ body {
 	color: #ff5261;
 }
 
+/*
 .shj-syn-section,
 .shj-syn-kwd {
 	color: #ff7cc6;
@@ -170,7 +174,7 @@ body {
 .shj-syn-oper {
 	color: #80c6ff;
 }
-
+*/
 .shj-syn-str {
 	color: #4dacfa;
 }
