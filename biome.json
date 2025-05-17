@@ -14,7 +14,13 @@
 		"indentStyle": "tab",
 		"lineEnding": "lf"
 	},
-	"assist": { "actions": { "source": { "organizeImports": "on" } } },
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
+	},
 	"css": {
 		"formatter": {
 			"indentStyle": "tab",
