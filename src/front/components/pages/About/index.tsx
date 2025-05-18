@@ -4,18 +4,14 @@ import "mdui/components/avatar";
 import "mdui/components/segmented-button-group";
 import "mdui/components/segmented-button";
 
+import colors from "../../../colors.module.css";
 import Hyperate from "../../Hyperate";
 import Lanyard from "../../Lanyard";
-
 import styles from "./index.module.css";
-import colors from "../../../colors.module.css";
-
 
 export default () => {
 	return (
-		<div
-			class={styles.container}
-		>
+		<div class={styles.container}>
 			<mdui-card
 				// @ts-expect-error; variant is not in the types for some reason?
 				variant="filled"
@@ -38,9 +34,7 @@ export default () => {
 				</p>
 			</mdui-card>
 
-			<br
-				class={styles.lanyard}
-			/>
+			<br class={styles.lanyard} />
 
 			<mdui-card
 				// @ts-expect-error; variant is not in the types for some reason?
@@ -50,9 +44,7 @@ export default () => {
 				<Lanyard />
 			</mdui-card>
 
-			<br
-				class={styles.hyperate}
-			/>
+			<br class={styles.hyperate} />
 
 			<mdui-card
 				// @ts-expect-error; variant is not in the types for some reason?

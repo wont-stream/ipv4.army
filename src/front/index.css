@@ -31,8 +31,7 @@ body {
 	max-width: min(100%, 100vw);
 	margin: 10px 0;
 	padding: 30px 20px;
-	font:
-		18px / 24px monospace;
+	font: 18px / 24px monospace;
 	box-shadow: 0 0 5px #0001;
 
 	:before {
@@ -58,7 +57,6 @@ body {
 .shj-syn-var {
 	color: #ff5261;
 }
-
 
 .shj-syn-str {
 	color: #4dacfa;
