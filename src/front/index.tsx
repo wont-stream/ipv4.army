@@ -4,6 +4,10 @@ import "./utilities/clicker";
 
 import App from "./App";
 
+import colors from "./colors.module.css";
+
+document.documentElement.className = colors.offline || "";
+
 document.body.appendChild(<App />);
 
 // You're garbage, let me collect you.

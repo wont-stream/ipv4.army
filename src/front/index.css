@@ -2,7 +2,6 @@
 @import "../../node_modules/@fontsource/roboto-mono/latin-400.css";
 */
 @import "../../node_modules/mdui/mdui.css";
-@import "./colors.css";
 
 :not(:defined) {
 	visibility: hidden;

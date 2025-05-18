@@ -2,6 +2,8 @@ import { highlightElement } from "@speed-highlight/core";
 import { createRef } from "tsx-dom";
 import socket from "../../utilities/socket";
 
+import colors from "../../colors.module.css";
+
 const activityTypes: Record<number, string> = {
 	0: "Playing",
 	1: "Streaming",
@@ -19,9 +21,9 @@ export default () => {
 
 		const streamingActivity = lanyard.activities.find((act) => act.type === 1);
 		if (streamingActivity) {
-			document.documentElement.className = "streaming";
+			document.documentElement.className = colors.streaming || "";
 		} else {
-			document.documentElement.className = lanyard.discord_status;
+			document.documentElement.className = colors[lanyard.discord_status] || "";
 		}
 
 		if (lanyard.activities.length === 0) {

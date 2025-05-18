@@ -7,39 +7,23 @@ import "mdui/components/segmented-button";
 import Hyperate from "../../Hyperate";
 import Lanyard from "../../Lanyard";
 
+import styles from "./index.module.css";
+import colors from "../../../colors.module.css";
+
+
 export default () => {
 	return (
 		<div
-			style={{
-				display: "flex",
-				justifyContent: "center",
-				alignItems: "center",
-				flexDirection: "column",
-				height: "100%",
-			}}
+			class={styles.container}
 		>
 			<mdui-card
 				// @ts-expect-error; variant is not in the types for some reason?
 				variant="filled"
-				style={{
-					width: "90%",
-					padding: ".5rem",
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-					flexDirection: "column",
-
-					textAlign: "center",
-				}}
+				class={`${styles.card} ${styles.center}`}
 			>
 				<mdui-avatar
-					style={{
-						width: "5rem",
-						height: "inherit",
-						border: "2px solid rgb(var(--mdui-color-primary))",
-					}}
 					src="/public/Abyssinian/default.png"
-					class="pfp"
+					class={`${styles.avatar} ${colors.pfp}`}
 				/>
 				<p>
 					Seth, the <strong>dedicated</strong> backend developer, with many{" "}
@@ -55,47 +39,25 @@ export default () => {
 			</mdui-card>
 
 			<br
-				style={{
-					display: "var(--lanyard-display)",
-				}}
+				class={styles.lanyard}
 			/>
 
 			<mdui-card
 				// @ts-expect-error; variant is not in the types for some reason?
 				variant="filled"
-				style={{
-					width: "90%",
-					padding: ".5rem",
-					// center the contents
-					display: "var(--lanyard-display, flex)",
-					justifyContent: "center",
-					alignItems: "center",
-					flexDirection: "column",
-				}}
+				class={`${styles.card} ${styles.lanyard}`}
 			>
 				<Lanyard />
 			</mdui-card>
 
 			<br
-				style={{
-					display: "var(--hyperate-display)",
-				}}
+				class={styles.hyperate}
 			/>
 
 			<mdui-card
 				// @ts-expect-error; variant is not in the types for some reason?
 				variant="filled"
-				style={{
-					width: "90%",
-					padding: ".5rem",
-					// center the contents
-					display: "var(--hyperate-display, flex)",
-					justifyContent: "center",
-					alignItems: "center",
-					flexDirection: "column",
-
-					textAlign: "center",
-				}}
+				class={`${styles.card} ${styles.center} ${styles.hyperate}`}
 			>
 				<Hyperate />
 			</mdui-card>
