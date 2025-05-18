@@ -28,7 +28,6 @@ body {
 	background: var(--mdui-color-secondary-container);
 	text-shadow: none;
 	box-sizing: border-box;
-	background: #dedede;
 	border-radius: 10px;
 	max-width: min(100%, 100vw);
 	margin: 10px 0;
@@ -53,22 +52,10 @@ body {
 	display: inline-block;
 }
 
-
-.shj-syn-insert,
 .shj-syn-str {
 	color: #7d8;
 }
 
-
-.shj-syn-deleted,
-.shj-syn-var {
-	color: #f44;
-}
-
-
-
-.shj-syn-deleted,
-.shj-syn-err,
 .shj-syn-var {
 	color: #ff5261;
 }
