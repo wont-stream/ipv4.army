@@ -2,7 +2,6 @@ import { highlightElement } from "@speed-highlight/core";
 import { createRef } from "tsx-dom";
 import socket from "../../utilities/socket";
 
-
 const activityTypes: Record<number, string> = {
 	0: "Playing",
 	1: "Streaming",
