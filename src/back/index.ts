@@ -7,7 +7,7 @@ const build = async () => {
 	return await Bun.build({
 		entrypoints: ["./src/front/index.html"],
 		outdir: "./dist",
-		minify: !development,
+		minify: true,
 		sourcemap: development ? "inline" : "none",
 		splitting: true,
 		publicPath: "/assets/",
