@@ -6,6 +6,7 @@
       "dependencies": {
         "@fontsource/roboto": "^5.2.5",
         "@fontsource/roboto-mono": "^5.2.5",
+        "@material/material-color-utilities": "^0.3.0",
         "@mdui/icons": "^1.0.3",
         "@speed-highlight/core": "latest",
         "mdui": "^2.1.4",

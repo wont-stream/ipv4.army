@@ -22,6 +22,10 @@ class Socket extends EventTarget {
 					this.emitHyperate(data.hr);
 					break;
 				}
+				case "color": {
+					this.emitColor(data);
+					break;
+				}
 				case "echo": {
 					//console.log("Echo: ", data);
 					break;
@@ -52,6 +56,9 @@ class Socket extends EventTarget {
 	}
 	emitHyperate(heartRate: number) {
 		this.dispatchEvent(new CustomEvent("hyperate", { detail: heartRate }));
+	}
+	emitColor(styleSheet: string) {
+		this.dispatchEvent(new CustomEvent("color", { detail: styleSheet }));
 	}
 }
 

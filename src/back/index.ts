@@ -1,5 +1,5 @@
-import Hyperate from "./Sockets/Hyperate";
-import Lanyard from "./Sockets/Lanyard";
+import Hyperate from "./utilities/sockets/Hyperate";
+import Lanyard from "./utilities/sockets/Lanyard";
 
 const development = process.env.NODE_ENV === "development";
 

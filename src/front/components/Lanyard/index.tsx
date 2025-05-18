@@ -1,15 +1,7 @@
 import { highlightElement } from "@speed-highlight/core";
 import { createRef } from "tsx-dom";
-import { artist } from "../../utilities/artist";
 import socket from "../../utilities/socket";
 
-const colorMap = {
-	online: "#00ff00",
-	idle: "#ffff00",
-	dnd: "#ff0000",
-	offline: "",
-	streaming: "#ff00ff",
-};
 
 const activityTypes: Record<number, string> = {
 	0: "Playing",
@@ -28,9 +20,9 @@ export default () => {
 
 		const streamingActivity = lanyard.activities.find((act) => act.type === 1);
 		if (streamingActivity) {
-			artist(colorMap.streaming);
+			document.documentElement.className = "streaming";
 		} else {
-			artist(colorMap[lanyard.discord_status]);
+			document.documentElement.className = lanyard.discord_status;
 		}
 
 		if (lanyard.activities.length === 0) {

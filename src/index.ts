@@ -84,9 +84,10 @@ const server = serve({
 				true,
 			);
 		},
-		message: (ws, msg) => {
+		message: (ws, msg: string) => {
 			if (msg === "ping") ws.send("pong", true);
 			if (msg === "pong") ws.send("ping", true);
+
 			return;
 		},
 	},

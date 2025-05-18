@@ -2,6 +2,7 @@
 @import "../../node_modules/@fontsource/roboto-mono/latin-400.css";
 
 @import "../../node_modules/mdui/mdui.css";
+@import "./colors.css";
 
 :not(:defined) {
 	visibility: hidden;
@@ -16,6 +17,9 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: "Roboto", sans-serif;
+
+	color: rgb(var(--mdui-color-on-background));
+	background-color: rgb(var(--mdui-color-background));
 }
 
 [class*="shj-lang-"] {

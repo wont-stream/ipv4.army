@@ -4,23 +4,8 @@ import "mdui/components/avatar";
 import "mdui/components/segmented-button-group";
 import "mdui/components/segmented-button";
 
-import { getColorFromImage } from "mdui/functions/getColorFromImage";
-import { artist } from "../../../utilities/artist";
 import Hyperate from "../../Hyperate";
 import Lanyard from "../../Lanyard";
-
-const Abyssinian = new Image();
-Abyssinian.src = "/public/Abyssinian/default.png";
-Abyssinian.onload = async () => {
-	const profilePicture = document.getElementById(
-		"profilePicture",
-	) as HTMLElement;
-
-	artist(await getColorFromImage(Abyssinian), profilePicture);
-
-	profilePicture.setAttribute("src", Abyssinian.src);
-	profilePicture.innerText = "";
-};
 
 export default () => {
 	return (
@@ -34,11 +19,11 @@ export default () => {
 			}}
 		>
 			<mdui-card
+				// @ts-expect-error; variant is not in the types for some reason?
 				variant="filled"
 				style={{
 					width: "90%",
 					padding: ".5rem",
-					// center the contents
 					display: "flex",
 					justifyContent: "center",
 					alignItems: "center",
@@ -51,21 +36,18 @@ export default () => {
 					style={{
 						width: "5rem",
 						height: "inherit",
-						border: "2px solid rgb(var(--status-color))",
+						border: "2px solid rgb(var(--mdui-color-primary))",
 					}}
-					id="profilePicture"
-				>
-					S
-				</mdui-avatar>
-				<h1>Seth</h1>
-				{/* make important text bold */}
+					src="/public/Abyssinian/default.png"
+					class="pfp"
+				/>
 				<p>
-					A <strong>Dedicated</strong> Backend Developer, with many{" "}
+					Seth, the <strong>dedicated</strong> backend developer, with many{" "}
 					<strong>passions</strong>.
 					<br />
 					<br />
 					<mdui-segmented-button-group full-width>
-						<mdui-segmented-button>high-fidelity audio</mdui-segmented-button>
+						<mdui-segmented-button>hi-fi audio</mdui-segmented-button>
 						<mdui-segmented-button>gaming</mdui-segmented-button>
 						<mdui-segmented-button>development</mdui-segmented-button>
 					</mdui-segmented-button-group>
@@ -79,6 +61,7 @@ export default () => {
 			/>
 
 			<mdui-card
+				// @ts-expect-error; variant is not in the types for some reason?
 				variant="filled"
 				style={{
 					width: "90%",
@@ -88,8 +71,6 @@ export default () => {
 					justifyContent: "center",
 					alignItems: "center",
 					flexDirection: "column",
-
-					//textAlign: "center",
 				}}
 			>
 				<Lanyard />
@@ -102,6 +83,7 @@ export default () => {
 			/>
 
 			<mdui-card
+				// @ts-expect-error; variant is not in the types for some reason?
 				variant="filled"
 				style={{
 					width: "90%",
@@ -112,7 +94,7 @@ export default () => {
 					alignItems: "center",
 					flexDirection: "column",
 
-					//textAlign: "center",
+					textAlign: "center",
 				}}
 			>
 				<Hyperate />
