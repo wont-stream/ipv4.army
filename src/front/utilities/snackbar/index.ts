@@ -16,12 +16,12 @@ interface Options {
 	 * * `bottom-end`: Aligned to the bottom, right
 	 */
 	placement?:
-		| "top"
-		| "top-start"
-		| "top-end"
-		| "bottom"
-		| "bottom-start"
-		| "bottom-end";
+	| "top"
+	| "top-start"
+	| "top-end"
+	| "bottom"
+	| "bottom-start"
+	| "bottom-end";
 	/**
 	 * The text for the action button.
 	 */

@@ -7,7 +7,10 @@
 	},
 	"files": {
 		"ignoreUnknown": true,
-		"includes": ["**", "!**/dist/**"]
+		"includes": [
+			"**",
+			"!**/dist/**"
+		]
 	},
 	"formatter": {
 		"enabled": true,
