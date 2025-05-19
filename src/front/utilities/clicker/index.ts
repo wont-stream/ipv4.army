@@ -2,7 +2,7 @@ const effectTick = new Audio("https://no.ipv4.army/u/Effect_Tick.ogg");
 
 effectTick.volume = 0.1;
 
-const whitelistedTags = ["button", "icon", "item"];
+const whitelistedTags = ["button", "icon", "item", "tooltip", "avatar"];
 
 document.onclick = (event: MouseEvent) => {
 	const target = event.target as HTMLElement;
@@ -11,8 +11,6 @@ document.onclick = (event: MouseEvent) => {
 
 	const tagName = target.tagName.toLowerCase();
 	const isWhitelisted = whitelistedTags.some((tag) => tagName.includes(tag));
-
-	console.log(tagName, isWhitelisted);
 
 	if (!isWhitelisted) return;
 

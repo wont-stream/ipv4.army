@@ -1,9 +1,27 @@
 type LanyardActivity = {
-	type: number;
+	id: string;
 	name: string;
-	details?: string;
+	type: number;
 	state?: string;
-	[key: string]: unknown;
+	session_id: string;
+	details?: string;
+	application_id: string;
+
+	timestamps?: {
+		start?: number;
+		end?: number;
+	};
+
+	assets?: {
+		large_image?: string;
+		large_text?: string;
+		small_image?: string;
+		small_text?: string;
+	};
+
+	created_at?: number;
+
+	buttons?: string[];
 };
 
 type LanyardData = {

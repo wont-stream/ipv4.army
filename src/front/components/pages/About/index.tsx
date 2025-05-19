@@ -1,26 +1,41 @@
 import "mdui/components/card";
 import "mdui/components/avatar";
-
 import "mdui/components/segmented-button-group";
 import "mdui/components/segmented-button";
+import "mdui/components/tooltip.js";
 
-import colors from "../../../utilities/colors.module.css";
+import type { Tooltip } from "mdui/components/tooltip.js";
+import { createRef } from "tsx-dom";
+import socket from "../../../utilities/socket";
 import Hyperate from "../../Hyperate";
 import Lanyard from "../../Lanyard";
 import styles from "./index.module.css";
 
 export default () => {
+	const tooltip = createRef<Tooltip>();
+
+	socket.addEventListener("lanyard", (event: Event) => {
+		const lanyard = (event as CustomEvent<LanyardData>).detail;
+
+		const customStatus = lanyard.activities.find((act) => act.type === 4);
+
+		if (tooltip.current) {
+			if (customStatus?.state) {
+				tooltip.current.setAttribute("content", customStatus.state);
+			} else {
+				tooltip.current.removeAttribute("content");
+			}
+		}
+	});
 	return (
 		<div class={styles.container}>
-			<mdui-card
-				// @ts-expect-error; variant is not in the types for some reason?
-				variant="filled"
-				class={`${styles.card} ${styles.center}`}
-			>
-				<mdui-avatar
-					src="/public/Abyssinian/default.png"
-					class={`${styles.avatar} ${colors.pfp}`}
-				/>
+			<mdui-card class={`${styles.card} ${styles.center}`}>
+				<mdui-tooltip ref={tooltip}>
+					<mdui-avatar
+						src="/public/Abyssinian/default.png"
+						class={styles.avatar}
+					/>
+				</mdui-tooltip>
 				<p>
 					Seth, the <strong>dedicated</strong> backend developer, with many{" "}
 					<strong>passions</strong>.
@@ -34,16 +49,6 @@ export default () => {
 				</p>
 			</mdui-card>
 
-			<br class={styles.lanyard} />
-
-			<mdui-card
-				// @ts-expect-error; variant is not in the types for some reason?
-				variant="filled"
-				class={`${styles.card} ${styles.lanyard}`}
-			>
-				<Lanyard />
-			</mdui-card>
-
 			<br class={styles.hyperate} />
 
 			<mdui-card
@@ -53,6 +58,12 @@ export default () => {
 			>
 				<Hyperate />
 			</mdui-card>
+
+			<br class={styles.lanyard} />
+
+			<div class={`${styles.card} ${styles.lanyard}`}>
+				<Lanyard />
+			</div>
 		</div>
 	);
 };
