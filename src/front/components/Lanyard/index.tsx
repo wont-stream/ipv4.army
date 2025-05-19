@@ -23,7 +23,10 @@ const getImageUrl = (activity: LanyardActivity, size: "large" | "small") => {
 	if (!image) return null;
 
 	if (image.startsWith("mp:external")) {
-		return `https://wsrv.nl/?w=${size === "large" ? 120 : 40}&url=https://${image.split("/").slice(3).join("/")}`.replace("1280x1280", "160x160"); // last bit assumes tidal.
+		return `https://wsrv.nl/?w=${size === "large" ? 120 : 40}&url=https://${image.split("/").slice(3).join("/")}`.replace(
+			"1280x1280",
+			"160x160",
+		); // last bit assumes tidal.
 	}
 
 	if (image.startsWith("mp:")) {
