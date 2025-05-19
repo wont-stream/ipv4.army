@@ -11,7 +11,6 @@ document.body.appendChild(<App />);
 let clicks = 0;
 let resetCount = "";
 
-
 document.onclick = () => {
 	"vibrate" in navigator && navigator.vibrate(1);
 	new Audio("https://no.ipv4.army/raw/Effect_Tick.ogg").play();
