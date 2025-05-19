@@ -15,7 +15,7 @@ let resetCount = "";
 document.onclick = () => {
     clicks++;
 
-    if (clicks % 5 == 0) {
+    if (clicks % 5 === 0) {
         snacker({
             message: `Please stop.${resetCount}`,
         });
