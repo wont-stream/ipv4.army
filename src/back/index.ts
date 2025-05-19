@@ -8,7 +8,7 @@ const build = async () => {
 		entrypoints: ["./src/front/index.html"],
 		outdir: "./dist",
 		minify: true,
-		sourcemap: development ? "inline" : "none",
+		sourcemap: "linked",
 		splitting: true,
 		publicPath: "/assets/",
 	});

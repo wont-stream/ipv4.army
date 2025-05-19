@@ -33,14 +33,6 @@ body {
 	padding: 30px 20px;
 	font: 18px / 24px monospace;
 	box-shadow: 0 0 5px #0001;
-
-	:before {
-		color: #6f9aff;
-	}
-
-	::selection {
-		background: #bdf5;
-	}
 }
 
 .shj-inline {
