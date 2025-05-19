@@ -5,7 +5,6 @@ import "mdui/components/button-icon";
 import "@mdui/icons/person--outlined";
 import "@mdui/icons/person--rounded";
 
-import "@mdui/icons/more-vert--rounded";
 
 export default () => {
 	return (

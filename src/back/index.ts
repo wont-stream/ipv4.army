@@ -11,6 +11,7 @@ const build = async () => {
 		sourcemap: "linked",
 		splitting: true,
 		publicPath: "/assets/",
+		drop: (development ? [] : ["console", "debugger"]),
 	});
 };
 
