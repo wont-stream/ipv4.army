@@ -1,7 +1,6 @@
+import { PurgeCSS } from "purgecss";
 import Hyperate from "./utilities/sockets/Hyperate";
 import Lanyard from "./utilities/sockets/Lanyard";
-
-import { PurgeCSS } from "purgecss";
 
 const development = process.env.NODE_ENV === "development";
 
