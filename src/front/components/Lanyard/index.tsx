@@ -69,7 +69,6 @@ export default () => {
 								<div class={style.content}>
 									{largeImage && (
 										<div class={style.bigImage}>
-											{/* @ts-expect-error; placement is not in the types for some reason? */}
 											<mdui-tooltip
 												content={activity.assets?.large_text}
 												placement="top-right"
@@ -78,7 +77,6 @@ export default () => {
 											</mdui-tooltip>
 											{smallImage && (
 												<div class={style.smallImage}>
-													{/* @ts-expect-error; placement is not in the types for some reason? */}
 													<mdui-tooltip
 														content={activity.assets?.small_text}
 														placement="top-right"
