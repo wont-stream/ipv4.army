@@ -9,7 +9,7 @@ let lanyard: LanyardData = {
 	activities: [],
 };
 
-await fs.rm("./dist", { recursive: true, force: true }).catch(() => { });
+await fs.rm("./dist", { recursive: true, force: true }).catch(() => {});
 
 if (!Backend.development) {
 	await Backend.build();
