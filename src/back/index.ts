@@ -1,18 +1,29 @@
 import Hyperate from "./utilities/sockets/Hyperate";
 import Lanyard from "./utilities/sockets/Lanyard";
 
+import { PurgeCSS } from "purgecss";
+
 const development = process.env.NODE_ENV === "development";
 
 const build = async () => {
-	return await Bun.build({
+	await Bun.build({
 		entrypoints: ["./src/front/index.html"],
 		outdir: "./dist",
-		minify: true,
-		sourcemap: "linked",
 		splitting: true,
+		env: "inline",
+		sourcemap: "linked",
+		minify: true,
 		publicPath: "/assets/",
-		drop: (development ? [] : ["console", "debugger"]),
 	});
+
+	const result = await new PurgeCSS().purge({
+		content: ["dist/*.html", "dist/*.js"],
+		css: ["dist/*.css"],
+	});
+
+	for (const file of result) {
+		await Bun.write(file.file || "", file.css);
+	}
 };
 
 const respOptions = {

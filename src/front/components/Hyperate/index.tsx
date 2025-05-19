@@ -2,6 +2,8 @@ import { createRef } from "tsx-dom";
 
 import socket from "../../utilities/socket";
 
+import style from "./index.module.css";
+
 export default () => {
 	const paragraph = createRef<HTMLParagraphElement>();
 
@@ -22,7 +24,7 @@ export default () => {
 	});
 	return (
 		<div>
-			<p class="heartbeat" ref={paragraph}>
+			<p class={style.heartbeat} ref={paragraph}>
 				❤️ 0 BPM
 			</p>
 		</div>

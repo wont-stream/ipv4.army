@@ -3,10 +3,6 @@ import { file, gc, serve } from "bun";
 import pkg from "../package.json";
 import Backend from "./back";
 
-if (!Backend.development) {
-	process.env.NODE_ENV = "PRODUCTION";
-}
-
 let heartrate = 0;
 let lanyard: LanyardData = {
 	discord_status: "online",

@@ -5,7 +5,6 @@ import "mdui/components/button-icon";
 import "@mdui/icons/person--outlined";
 import "@mdui/icons/person--rounded";
 
-
 export default () => {
 	return (
 		<mdui-navigation-bar value="about">
