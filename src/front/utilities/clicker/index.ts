@@ -1,6 +1,4 @@
-const effectTick = new Audio("https://no.ipv4.army/u/Effect_Tick.ogg");
-
-effectTick.volume = 0.1;
+const effectTick = new Audio("https://no.ipv4.army/raw/Effect_Tick.ogg");
 
 const whitelistedTags = ["button", "icon", "item", "tooltip", "avatar"];
 

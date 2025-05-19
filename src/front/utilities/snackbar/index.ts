@@ -89,9 +89,7 @@ interface Options {
 	onClosed?: (snackbar: Snackbar) => void;
 }
 
-const popcorn = new Audio("https://no.ipv4.army/u/Popcorn.ogg");
-
-popcorn.volume = 0.1;
+const popcorn = new Audio("https://no.ipv4.army/raw/Popcorn.ogg");
 
 export const snacker = (opts: Options) => {
 	snackbar({
