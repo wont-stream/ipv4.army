@@ -1,6 +1,6 @@
 import { highlightElement } from "@speed-highlight/core";
 import { createRef } from "tsx-dom";
-import colors from "../../colors.module.css";
+import colors from "../../utilities/colors.module.css";
 import socket from "../../utilities/socket";
 
 const activityTypes: Record<number, string> = {

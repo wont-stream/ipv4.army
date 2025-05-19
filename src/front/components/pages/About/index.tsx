@@ -4,7 +4,7 @@ import "mdui/components/avatar";
 import "mdui/components/segmented-button-group";
 import "mdui/components/segmented-button";
 
-import colors from "../../../colors.module.css";
+import colors from "../../../utilities/colors.module.css";
 import Hyperate from "../../Hyperate";
 import Lanyard from "../../Lanyard";
 import styles from "./index.module.css";

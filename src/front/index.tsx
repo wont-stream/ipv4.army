@@ -4,7 +4,7 @@ import "./utilities/clicker";
 
 import App from "./App";
 
-import colors from "./colors.module.css";
+import colors from "./utilities/colors.module.css";
 
 document.documentElement.className = colors.offline || "";
 
