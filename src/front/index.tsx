@@ -13,14 +13,14 @@ document.body.appendChild(<App />);
 let clicks = 0;
 let resetCount = "";
 document.onclick = () => {
-	clicks++;
+    clicks++;
 
-	if (clicks > 5) {
-		snacker({
-			message: `Please stop.${resetCount}`,
-		});
-		resetCount += ".";
-	}
+    if (clicks % 5 == 0) {
+        snacker({
+            message: `Please stop.${resetCount}`,
+        });
+        resetCount += ".";
+    }
 };
 
 // You're garbage, let me collect you.
