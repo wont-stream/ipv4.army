@@ -44,10 +44,14 @@ const Responses = {
 		return new Response(Bun.gzipSync(JSON.stringify(data)), respOptions);
 	},
 	file: async (file: Bun.BunFile) => {
+		const isHTML = file.type === "text/html";
+
 		return new Response(Bun.gzipSync(await file.arrayBuffer()), {
 			headers: {
 				"Content-Type": file.type,
-				"Cache-Control": "public, max-age=31536000",
+				...(isHTML
+					? { "Cache-Control": "no-cache" }
+					: { "Cache-Control": "public, max-age=31536000" }),
 				"Content-Encoding": "gzip",
 			},
 		});
