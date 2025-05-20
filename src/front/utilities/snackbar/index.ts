@@ -89,16 +89,13 @@ interface Options {
 	onClosed?: (snackbar: Snackbar) => void;
 }
 
-const popcorn = new Audio("https://no.ipv4.army/raw/Popcorn.ogg");
-
 export const snacker = (opts: Options) => {
 	snackbar({
 		closeable: true,
 		messageLine: 2,
 		queue: "snacker",
 		onOpen: () => {
-			popcorn.currentTime = 0;
-			popcorn.play();
+			new Audio("https://no.ipv4.army/raw/Popcorn.ogg").play();
 		},
 
 		...opts,
