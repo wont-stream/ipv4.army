@@ -16,12 +16,12 @@ interface Options {
 	 * * `bottom-end`: Aligned to the bottom, right
 	 */
 	placement?:
-		| "top"
-		| "top-start"
-		| "top-end"
-		| "bottom"
-		| "bottom-start"
-		| "bottom-end";
+	| "top"
+	| "top-start"
+	| "top-end"
+	| "bottom"
+	| "bottom-start"
+	| "bottom-end";
 	/**
 	 * The text for the action button.
 	 */
@@ -94,6 +94,7 @@ export const snacker = (opts: Options) => {
 		closeable: true,
 		messageLine: 2,
 		queue: "snacker",
+		autoCloseDelay: 1600,
 		onOpen: () => {
 			new Audio("https://no.ipv4.army/raw/Popcorn.ogg").play();
 		},
