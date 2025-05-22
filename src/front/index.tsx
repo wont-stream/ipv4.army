@@ -1,7 +1,5 @@
 import "tsx-dom";
 
-import "beercss";
-
 import App from "./App";
 import colors from "./utilities/colors.module.css";
 
