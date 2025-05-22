@@ -1,28 +1,19 @@
 import "tsx-dom";
 
+import "beercss";
+
 import App from "./App";
 import colors from "./utilities/colors.module.css";
-import { snacker } from "./utilities/snackbar";
 
 document.documentElement.className = colors.offline || "";
 
 document.body.appendChild(<App />);
 
-let clicks = 0;
-let resetCount = "";
-
+const effectTick = new Audio("https://no.ipv4.army/raw/Effect_Tick.ogg");
 document.onclick = () => {
 	"vibrate" in navigator && navigator.vibrate(1);
-	new Audio("https://no.ipv4.army/raw/Effect_Tick.ogg").play();
-
-	clicks++;
-
-	if (clicks % 10 === 0) {
-		snacker({
-			message: `Please stop.${resetCount}`,
-		});
-		resetCount += ".";
-	}
+	effectTick.currentTime = 0;
+	effectTick.play()
 };
 
 // You're garbage, let me collect you.

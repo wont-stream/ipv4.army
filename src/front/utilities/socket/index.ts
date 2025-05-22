@@ -37,15 +37,6 @@ class Socket extends EventTarget {
 			}
 		};
 
-		this._socket.onclose = () => {
-			const willRefresh = confirm(
-				"Realtime Data Connection closed\nWould you like to reconnect?",
-			);
-			if (willRefresh) {
-				location.reload();
-			}
-		};
-
 		setInterval(() => {
 			this._socket.send("ping");
 		}, 10 * 1000);
