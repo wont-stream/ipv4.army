@@ -31,7 +31,7 @@ export default class {
 						JSON.stringify({
 							op: 2,
 							d: {
-								subscribe_to_id: "1273447359417942128",
+								subscribe_to_id: process.env.DISCORD_ID,
 							},
 						}),
 					);

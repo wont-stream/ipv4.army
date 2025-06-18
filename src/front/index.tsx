@@ -11,7 +11,7 @@ const effectTick = new Audio("https://no.ipv4.army/raw/Effect_Tick.ogg");
 document.onclick = () => {
 	"vibrate" in navigator && navigator.vibrate(1);
 	effectTick.currentTime = 0;
-	effectTick.play()
+	effectTick.play();
 };
 
 // You're garbage, let me collect you.

@@ -25,7 +25,6 @@
 		"mdui": "^2.1.4",
 		"purgecss": "^7.0.2",
 		"reconnecting-websocket": "latest",
-		"terser": "^5.39.2",
 		"tsx-dom": "latest"
 	}
 }

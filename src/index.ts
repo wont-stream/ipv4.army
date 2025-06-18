@@ -111,7 +111,10 @@ new Backend.Sockets.Hyperate((data) => {
 });
 
 new Backend.Sockets.Lanyard((data) => {
-	lanyard = data;
+	lanyard = {
+		discord_status: data.discord_status,
+		activities: data.activities,
+	};
 	server.publish(
 		"lanyard",
 		JSON.stringify({ type: "lanyard", data: lanyard }),

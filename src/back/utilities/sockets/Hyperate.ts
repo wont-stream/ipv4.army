@@ -21,7 +21,7 @@ export default class {
 
 			this._socket.send(
 				JSON.stringify({
-					topic: "hr:84aa0f",
+					topic: `hr:${process.env.HYPERATE_ID}`,
 					event: "phx_join",
 					payload: {},
 					ref: 0,
