@@ -18,7 +18,8 @@ const activityTypes: Record<number, string> = {
 const getImageUrl = (activity: LanyardActivity, size: "large" | "small") => {
 	const width = size === "large" ? 120 : 40;
 	if (!activity.assets || !activity.assets.large_image) {
-		if (size === "large") return `https://dcdn.dstn.to/app-icons/${activity.application_id}?size=128`;
+		if (size === "large")
+			return `https://dcdn.dstn.to/app-icons/${activity.application_id}?size=128`;
 	}
 
 	if (!activity.assets) return null;
@@ -28,7 +29,7 @@ const getImageUrl = (activity: LanyardActivity, size: "large" | "small") => {
 	if (!image) return null;
 
 	if (image.startsWith("mp:external")) {
-		return `https://wsrv.nl/?w=${width}&url=https://media.discordapp.net/${image.slice(3)}`
+		return `https://media.discordapp.net/${image.slice(3)}?size=${width}`;
 	}
 
 	if (image.startsWith("mp:app-assets")) {
@@ -74,7 +75,10 @@ export default () => {
 						<mdui-card variant="filled" class={style.card}>
 							{" "}
 							<div class={style.activityCard}>
-								<div class={style.status}>{activityTypes[activity.type]}{!largeImage && ` ${activity.name}`}</div>
+								<div class={style.status}>
+									{activityTypes[activity.type]}
+									{!largeImage && ` ${activity.name}`}
+								</div>
 								<div class={style.content}>
 									{largeImage && (
 										<div class={style.bigImage}>
