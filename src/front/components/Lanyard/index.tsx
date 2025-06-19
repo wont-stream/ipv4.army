@@ -19,7 +19,7 @@ const getImageUrl = (activity: LanyardActivity, size: "large" | "small") => {
 	const width = size === "large" ? 120 : 40;
 	if (!activity.assets || !activity.assets.large_image) {
 		if (size === "large")
-			return `https://dcdn.dstn.to/app-icons/${activity.application_id}?size=${width}`;
+			return `https://dcdn.dstn.to/app-icons/${activity.application_id}?size=128`;
 	}
 
 	if (!activity.assets) return null;
