@@ -21,7 +21,7 @@ const server = serve({
 	development: Backend.development,
 
 	routes: {
-		"/": async (req, server) => {
+		"/": async (_req, _server) => {
 			//await Backend.postAnalytics(req, server);
 			if (Backend.development) await Backend.build();
 			return Backend.Responses.file(file("./dist/index.html"));
@@ -67,7 +67,7 @@ const server = serve({
 		"/api/headers": (req) => Backend.Responses.json(req.headers.toJSON()),
 	},
 
-	fetch: async (req, server) => {
+	fetch: async (_req, _server) => {
 		//await Backend.postAnalytics(req, server);
 		return Response.redirect("/");
 	},
