@@ -8,7 +8,7 @@ export default class {
 
 	constructor(callback: (data: number) => void) {
 		this._socket = new ReconnectingWebSocket(
-			"wss://app.hyperate.io/socket/websocket?token=wv39nM6iyrNJulvpmMQrimYPIXy2dVrYRjkuHpbRapKT2VSh65ngDGHdCdCtmEN9",
+			`wss://app.hyperate.io/socket/websocket?token=${process.env.HYPERATE_TOKEN}`,
 		);
 		this._keepAlive = null;
 		this._interval = null;
