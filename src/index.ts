@@ -22,7 +22,7 @@ const server = serve({
 
 	routes: {
 		"/": async (req, server) => {
-			await Backend.postAnalytics(req, server);
+			//await Backend.postAnalytics(req, server);
 			if (Backend.development) await Backend.build();
 			return Backend.Responses.file(file("./dist/index.html"));
 		},
@@ -54,7 +54,7 @@ const server = serve({
 
 		"/api/ws": async (req, server) => {
 			if (!server.upgrade(req)) {
-				await Backend.postAnalytics(req, server);
+				//await Backend.postAnalytics(req, server);
 				return Response.redirect("/");
 			}
 		},
@@ -68,7 +68,7 @@ const server = serve({
 	},
 
 	fetch: async (req, server) => {
-		await Backend.postAnalytics(req, server);
+		//await Backend.postAnalytics(req, server);
 		return Response.redirect("/");
 	},
 
