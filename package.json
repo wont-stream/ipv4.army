@@ -5,9 +5,9 @@
 	"private": true,
 	"scripts": {
 		"start": "bun run index.ts",
-		"format": "bunx biome format --write",
-		"lint": "bunx biome lint --write",
-		"check": "bunx biome check --write",
+		"format": "bunx biome format --unsafe --write",
+		"lint": "bunx biome lint --unsafe --write",
+		"check": "bunx biome check --unsafe --write",
 		"runBiome": "bun run lint && bun run format && bun run check"
 	},
 	"devDependencies": {
