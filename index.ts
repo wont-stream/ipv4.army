@@ -81,7 +81,8 @@ const server = Bun.serve({
     },
 
     websocket: {
-        idleTimeout: 60,
+        idleTimeout: 120,
+        perMessageDeflate: true,
         open: (ws) => {
             ws.subscribe("hyperate");
             ws.subscribe("lanyard");
@@ -96,7 +97,7 @@ const server = Bun.serve({
                 case "ping":
                     ws.send("pong", true);
                     break;
-                    
+
                 case "pong":
                     ws.send("ping", true);
                     break;
