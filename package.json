@@ -1,23 +1,23 @@
 {
-  "name": "newv4",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "start": "bun run index.ts",
-    "format": "bunx biome format --write",
-    "lint": "bunx biome lint --write",
-    "check": "bunx biome check --write",
-    "runBiome": "bun run lint && bun run format && bun run check"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.1.1",
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "dependencies": {
-    "reconnecting-websocket": "^4.4.0"
-  }
+	"name": "newv4",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"start": "bun run index.ts",
+		"format": "bunx biome format --write",
+		"lint": "bunx biome lint --write",
+		"check": "bunx biome check --write",
+		"runBiome": "bun run lint && bun run format && bun run check"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.1.1",
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"reconnecting-websocket": "^4.4.0"
+	}
 }
