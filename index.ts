@@ -8,10 +8,12 @@ let lanyard: LanyardData = {
 	activities: [],
 };
 
+// biome-ignore lint/suspicious/noExplicitAny: any is required for dynamic object access
 function getPathValue(path: string, context: Record<string, any>): any {
 	const keys = path.replace(/^\$\./, "").split(".");
 	const root = keys.shift();
 
+	// biome-ignore lint/style/noNonNullAssertion: root is guaranteed to exist from keys.shift()
 	const rootObj = context[root!];
 	if (rootObj === undefined) return "";
 
@@ -20,6 +22,7 @@ function getPathValue(path: string, context: Record<string, any>): any {
 
 function renderTemplate(
 	template: string,
+	// biome-ignore lint/suspicious/noExplicitAny: needed for dynamic template context
 	context: Record<string, any>,
 ): string {
 	return template.replace(/{{(.*?)}}/g, (_, rawPath) => {
