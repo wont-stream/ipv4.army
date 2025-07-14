@@ -28,7 +28,6 @@ function renderTemplate(template: string, context: Record<string, any>): string 
 }
 
 const server = Bun.serve({
-    port: process.env.PORT || 3000,
     hostname: process.env.HOSTNAME || "localhost",
 
     routes: {
