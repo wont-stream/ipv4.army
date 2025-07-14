@@ -1,4 +1,4 @@
-# ipv4.army
+# newv4
 
 To install dependencies:
 
@@ -12,4 +12,4 @@ To run:
 bun run index.ts
 ```
 
-This project was created using `bun init` in bun v1.2.11. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+This project was created using `bun init` in bun v1.2.17. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
