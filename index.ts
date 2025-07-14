@@ -96,6 +96,7 @@ const server = Bun.serve({
                 case "ping":
                     ws.send("pong", true);
                     break;
+                    
                 case "pong":
                     ws.send("ping", true);
                     break;
@@ -105,6 +106,10 @@ const server = Bun.serve({
 
             return;
         },
+        close: (ws) => {
+            ws.unsubscribe("hyperate");
+            ws.unsubscribe("lanyard");
+        }
     },
 });
 
