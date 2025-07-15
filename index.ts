@@ -16,7 +16,7 @@ import { htmlMinifier } from "./src/plugins/html";
 await fs.rm("./dist", { recursive: true, force: true }).catch(() => {});
 
 // Build
-await Bun.build({
+const build = await Bun.build({
 	entrypoints: [
 		"./src/frontend/head.handlebars",
 		"./src/frontend/index.handlebars",
@@ -32,6 +32,7 @@ await Bun.build({
 		".handlebars": "html",
 	},
 });
+console.log(build.success ? "Build successful!" : "Build failed!", build.logs);
 await fs.cp("./src/frontend/robots.txt", "./dist/robots.txt", { force: true });
 
 // Variables
