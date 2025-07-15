@@ -1,35 +1,60 @@
+// Natives
+import fs from "node:fs/promises";
+
+// Externals
+import Handlebars from "handlebars";
+
+// Internals
 import Hyperate from "./src/backend/sockets/hyperate";
 import Lanyard from "./src/backend/sockets/lanyard";
 import * as response from "./src/backend/utilities/resp";
 
+// Bun build plugins
+import { htmlMinifier } from "./src/plugins/html";
+
+// Clean up dist folder
+await fs.rm("./dist", { recursive: true, force: true }).catch(() => { });
+
+// Build
+await Bun.build({
+	entrypoints: ["./src/frontend/head.handlebars", "./src/frontend/index.handlebars", "./src/frontend/404.handlebars", "./src/frontend/index.css"],
+	outdir: "./dist",
+
+	plugins: [htmlMinifier],
+
+	minify: true,
+	loader: {
+		".handlebars": "html",
+	}
+})
+await fs.cp("./src/frontend/robots.txt", "./dist/robots.txt", { force: true });
+
+// Variables
 let heartrate = 0;
 let lanyard: LanyardData = {
 	discord_status: "online",
 	activities: [],
 };
+const css = await Bun.file("./dist/index.css").text();
 
-// biome-ignore lint/suspicious/noExplicitAny: any is required for dynamic object access
-function getPathValue(path: string, context: Record<string, any>): any {
-	const keys = path.replace(/^\$\./, "").split(".");
-	const root = keys.shift();
+// Files
+import head from "./dist/head";
+import index from "./dist/index";
+import notfound from "./dist/404";
 
-	// biome-ignore lint/style/noNonNullAssertion: root is guaranteed to exist from keys.shift()
-	const rootObj = context[root!];
-	if (rootObj === undefined) return "";
+// Templates
+const template = {
+	head: Handlebars.compile(head),
+	index: Handlebars.compile(index),
+	notfound: Handlebars.compile(notfound),
+};
 
-	return keys.reduce((acc, key) => acc?.[key], rootObj);
-}
-
-function renderTemplate(
-	template: string,
-	// biome-ignore lint/suspicious/noExplicitAny: needed for dynamic template context
-	context: Record<string, any>,
-): string {
-	return template.replace(/{{(.*?)}}/g, (_, rawPath) => {
-		const path = rawPath.trim();
-		const value = getPathValue(path, context);
-		return value !== undefined ? String(value) : "";
-	});
+// Partials
+const updatePartials = () => {
+	Handlebars.registerPartial("head", template.head({
+		lanyard,
+		css
+	}));
 }
 
 const server = Bun.serve({
@@ -37,57 +62,27 @@ const server = Bun.serve({
 
 	routes: {
 		"/": async (_req, _server) => {
-			const file = Bun.file("./src/frontend/index.html");
-			const content = await file.text();
+			updatePartials();
 
-			const objects = {
+			return await response.text(template.index({
 				lanyard,
-				heartrate:
-					heartrate === 0
-						? 'Heartrate: <span class="offline">Unknown</span>'
-						: `Heartrate: <span>${heartrate} BPM</span>`,
-				css: `<style>${(await Bun.file("./src/frontend/index.css").text()).replaceAll(/(?:\r\n|\r|\n)/g, "").replaceAll(/\s+/g, "")}</style>`,
-			};
-
-			const rendered = renderTemplate(content, objects)
-				.replaceAll(/(?:\r\n|\r|\n)/g, "")
-				.replaceAll(/ +/g, " ");
-			return await response.text(rendered, "text/html", 200, true);
+				heartrate
+			}), "text/html", 200, true);
 		},
 
 		"/api/ws": async (req, server) => {
 			if (!server.upgrade(req)) {
-				const file = Bun.file("./src/frontend/404.html");
-				const content = await file.text();
-
-				const objects = {
-					lanyard,
-					css: `<style>${(await Bun.file("./src/frontend/index.css").text()).replaceAll(/(?:\r\n|\r|\n)/g, "").replaceAll(/\s+/g, "")}</style>`,
-				};
-
-				const rendered = renderTemplate(content, objects)
-					.replaceAll(/(?:\r\n|\r|\n)/g, "")
-					.replaceAll(/ +/g, " ");
-				return await response.text(rendered, "text/html", 404, true);
+				return Response.redirect("/404", 301)
 			}
 		},
 
 		"/*": async (req, _server) => {
-			const file = Bun.file(`./src/frontend${new URL(req.url).pathname}`);
+			const file = Bun.file(`./dist${new URL(req.url).pathname}`);
 
 			if (!(await file.exists())) {
-				const file = Bun.file("./src/frontend/404.html");
-				const content = await file.text();
+			updatePartials();
 
-				const objects = {
-					lanyard,
-					css: `<style>${(await Bun.file("./src/frontend/index.css").text()).replaceAll(/(?:\r\n|\r|\n)/g, "").replaceAll(/\s+/g, "")}</style>`,
-				};
-
-				const rendered = renderTemplate(content, objects)
-					.replaceAll(/(?:\r\n|\r|\n)/g, "")
-					.replaceAll(/ +/g, " ");
-				return await response.text(rendered, "text/html", 404, true);
+			return await response.text(template.notfound({}), "text/html", 404, true);
 			}
 
 			return await response.file(file);
@@ -128,6 +123,7 @@ const server = Bun.serve({
 	},
 });
 
+// Sockets
 new Hyperate((data) => {
 	heartrate = data;
 	server.publish(

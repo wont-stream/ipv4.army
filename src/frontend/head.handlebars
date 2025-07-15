@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="https://cdn.discordapp.com/avatars/{{$.lanyard.discord_user.id}}/{{$.lanyard.discord_user.avatar}}.webp?size=32">
-    <title>Not Found</title>
+    <link rel="icon" href="https://cdn.discordapp.com/avatars/{{lanyard.discord_user.id}}/{{lanyard.discord_user.avatar}}.webp?size=32">
+    <title>{{lanyard.discord_user.global_name}}</title>
     <meta name="description"
         content="A Dedicated Backend Developer, with a passion for high-fidelity audio, gaming, and development.">
 
@@ -16,19 +13,7 @@
     <meta name="theme-color" content="#000000">
     <meta name="color-scheme" content="dark">
 
-    <meta http-equiv="refresh" content="5; url=/" />
-
-    {{$.css}}    
+    <style>
+        {{css}}
+    </style>
 </head>
-
-<body>
-    <h1><span class="idle">Something</span> went <span class="dnd">wrong</span>.</h1>
-    <h2>This page was <span class="dnd">not</span> found.</h2>
-    <p>Redirecting in five seconds...</p>
-    <p class="offline">Or return back <a href="/">home</a> now.</p>
-
-    <script defer data-domain="ipv4.army" data-api="https://an.ipv4-army.workers.dev/api"
-        src="https://an.ipv4-army.workers.dev/main.js"></script>
-</body>
-
-</html>
