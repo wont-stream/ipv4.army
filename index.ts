@@ -42,10 +42,10 @@ let lanyard: LanyardData = {
 };
 const css = await Bun.file("./dist/index.css").text();
 
-import notfound from "./dist/404";
 // Files
-import head from "./dist/head";
-import index from "./dist/index";
+import notfound from "./dist/404.js";
+import head from "./dist/head.js";
+import index from "./dist/index.js";
 
 // Templates
 const template = {
