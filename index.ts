@@ -13,11 +13,16 @@ import * as response from "./src/backend/utilities/resp";
 import { htmlMinifier } from "./src/plugins/html";
 
 // Clean up dist folder
-await fs.rm("./dist", { recursive: true, force: true }).catch(() => { });
+await fs.rm("./dist", { recursive: true, force: true }).catch(() => {});
 
 // Build
 await Bun.build({
-	entrypoints: ["./src/frontend/head.handlebars", "./src/frontend/index.handlebars", "./src/frontend/404.handlebars", "./src/frontend/index.css"],
+	entrypoints: [
+		"./src/frontend/head.handlebars",
+		"./src/frontend/index.handlebars",
+		"./src/frontend/404.handlebars",
+		"./src/frontend/index.css",
+	],
 	outdir: "./dist",
 
 	plugins: [htmlMinifier],
@@ -25,8 +30,8 @@ await Bun.build({
 	minify: true,
 	loader: {
 		".handlebars": "html",
-	}
-})
+	},
+});
 await fs.cp("./src/frontend/robots.txt", "./dist/robots.txt", { force: true });
 
 // Variables
@@ -37,10 +42,10 @@ let lanyard: LanyardData = {
 };
 const css = await Bun.file("./dist/index.css").text();
 
+import notfound from "./dist/404";
 // Files
 import head from "./dist/head";
 import index from "./dist/index";
-import notfound from "./dist/404";
 
 // Templates
 const template = {
@@ -51,11 +56,14 @@ const template = {
 
 // Partials
 const updatePartials = () => {
-	Handlebars.registerPartial("head", template.head({
-		lanyard,
-		css
-	}));
-}
+	Handlebars.registerPartial(
+		"head",
+		template.head({
+			lanyard,
+			css,
+		}),
+	);
+};
 
 const server = Bun.serve({
 	hostname: process.env.HOSTNAME || "localhost",
@@ -64,15 +72,20 @@ const server = Bun.serve({
 		"/": async (_req, _server) => {
 			updatePartials();
 
-			return await response.text(template.index({
-				lanyard,
-				heartrate
-			}), "text/html", 200, true);
+			return await response.text(
+				template.index({
+					lanyard,
+					heartrate,
+				}),
+				"text/html",
+				200,
+				true,
+			);
 		},
 
 		"/api/ws": async (req, server) => {
 			if (!server.upgrade(req)) {
-				return Response.redirect("/404", 301)
+				return Response.redirect("/404", 301);
 			}
 		},
 
@@ -80,9 +93,14 @@ const server = Bun.serve({
 			const file = Bun.file(`./dist${new URL(req.url).pathname}`);
 
 			if (!(await file.exists())) {
-			updatePartials();
+				updatePartials();
 
-			return await response.text(template.notfound({}), "text/html", 404, true);
+				return await response.text(
+					template.notfound({}),
+					"text/html",
+					404,
+					true,
+				);
 			}
 
 			return await response.file(file);

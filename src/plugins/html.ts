@@ -1,33 +1,36 @@
-const { minify } = require('html-minifier-terser');
+const { minify } = require("html-minifier-terser");
 
 export const htmlMinifier: Bun.BunPlugin = {
-    name: "html minifier",
-    async setup(build) {
-        build.onLoad({ filter: /\.handlebars$/, namespace: "file" }, async args => {
-            return {
-                contents: await minify(await Bun.file(args.path).text(), {
-                    collapseBooleanAttributes: true,
+	name: "html minifier",
+	async setup(build) {
+		build.onLoad(
+			{ filter: /\.handlebars$/, namespace: "file" },
+			async (args) => {
+				return {
+					contents: await minify(await Bun.file(args.path).text(), {
+						collapseBooleanAttributes: true,
 
-                    collapseInlineTagWhitespace: true,
-                    collapseWhitespace: true,
+						collapseInlineTagWhitespace: true,
+						collapseWhitespace: true,
 
-                    decodeEntities: true,
+						decodeEntities: true,
 
-                    noNewlinesBeforeTagClose: true,
+						noNewlinesBeforeTagClose: true,
 
-                    removeAttributeQuotes: true,
-                    removeEmptyAttributes: true,
-                    removeRedundantAttributes: true,
-                    removeScriptTypeAttributes: true,
-                    removeStyleLinkTypeAttributes: true,
+						removeAttributeQuotes: true,
+						removeEmptyAttributes: true,
+						removeRedundantAttributes: true,
+						removeScriptTypeAttributes: true,
+						removeStyleLinkTypeAttributes: true,
 
-                    sortAttributes: true,
-                    sortClassName: true,
+						sortAttributes: true,
+						sortClassName: true,
 
-                    useShortDoctype: true,
-                }),
-                loader: "text",
-            }
-        });
-    },
-}
+						useShortDoctype: true,
+					}),
+					loader: "text",
+				};
+			},
+		);
+	},
+};
