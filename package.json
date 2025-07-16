@@ -5,7 +5,7 @@
 	"private": true,
 	"scripts": {
 		"start": "bun run .",
-		"dev": "bun --watch .",
+		"dev": "bun --inspect --watch .",
 		"format": "bunx biome format --write",
 		"lint": "bunx biome lint --unsafe --write",
 		"check": "bunx biome check --unsafe --write",
