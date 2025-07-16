@@ -27,7 +27,7 @@ const build = await Bun.build({
 
 	plugins: [htmlMinifier],
 
-	minify: true
+	minify: true,
 });
 console.log(build.success ? "Build successful!" : "Build failed!", build.logs);
 await fs.cp("./src/frontend/robots.txt", "./dist/robots.txt", { force: true });
