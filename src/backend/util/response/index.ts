@@ -4,4 +4,4 @@ export const respOptions = {
 	},
 };
 
-export * from "./util"
+export * from "./util";

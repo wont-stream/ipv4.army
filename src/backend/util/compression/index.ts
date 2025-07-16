@@ -1,4 +1,4 @@
-import { determineAlgorithm } from "./util"
+import { determineAlgorithm } from "./util";
 
 export const compress = async (
 	data: Buffer | string | ArrayBuffer,

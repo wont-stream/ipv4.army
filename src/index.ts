@@ -1,5 +1,5 @@
 // Prefetch
-import "./backend/util/prefetch"
+import "./backend/util/prefetch";
 
 // Natives
 import fs from "node:fs/promises";
