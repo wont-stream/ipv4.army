@@ -9,7 +9,7 @@
 		"format": "bunx biome format --write",
 		"lint": "bunx biome lint --unsafe --write",
 		"check": "bunx biome check --unsafe --write",
-		"biome": "bun run lint && bun run format && bun run check"
+		"biome": "bun run lint && bun run format && bun run check && git add . && git commit -m 'chore: format and lint'"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.1.1",
