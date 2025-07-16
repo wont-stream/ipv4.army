@@ -6,6 +6,12 @@ const respOptions = {
 	},
 };
 
+const defaultTextOptions = {
+	contentType: "text/plain",
+	status: 200,
+	cache: true,
+} as { contentType?: string; status?: number; cache?: boolean };
+
 export const ok = async (req: Request) => {
 	const acceptEncoding = req.headers.get("Accept-Encoding") || "";
 
@@ -57,11 +63,6 @@ export const file = async (req: Request, data: Bun.BunFile) => {
 	});
 };
 
-const defaultTextOptions = {
-	contentType: "text/plain",
-	status: 200,
-	cache: true,
-} as { contentType?: string; status?: number; cache?: boolean };
 export const text = async (
 	req: Request,
 	data: string,
