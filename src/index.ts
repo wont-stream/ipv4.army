@@ -5,12 +5,12 @@ import fs from "node:fs/promises";
 import Handlebars from "handlebars";
 
 // Internals
-import Hyperate from "./src/backend/sockets/hyperate";
-import Lanyard from "./src/backend/sockets/lanyard";
-import * as response from "./src/backend/utilities/resp";
+import Hyperate from "./backend/sockets/hyperate.js";
+import Lanyard from "./backend/sockets/lanyard.js";
+import * as response from "./backend/utilities/resp.js";
 
 // Bun build plugins
-import { htmlMinifier } from "./src/plugins/html";
+import { htmlMinifier } from "./plugins/html.js";
 
 // Clean up dist folder
 await fs.rm("./dist", { recursive: true }).catch(() => {});
@@ -41,9 +41,9 @@ let lanyard: LanyardData = {
 const css = await Bun.file("./dist/index.css").text();
 
 // Files
-const notfound = (await import("./dist/404.js")).default;
-const head = (await import("./dist/head.js")).default;
-const index = (await import("./dist/index.js")).default;
+const notfound = (await import("../dist/404.js")).default;
+const head = (await import("../dist/head.js")).default;
+const index = (await import("../dist/index.js")).default;
 
 // Templates
 const template = {
@@ -67,7 +67,7 @@ const server = Bun.serve({
 	hostname: process.env.HOSTNAME || "localhost",
 
 	routes: {
-		"/": async (req, _server) => {
+		"/": async (req: Bun.BunRequest<"/">, _server: Bun.Server) => {
 			updatePartials();
 
 			return await response.text(

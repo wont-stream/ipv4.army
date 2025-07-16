@@ -1,11 +1,11 @@
 {
-	"name": "newv4",
-	"module": "index.ts",
+	"name": "ipv4.army",
+	"module": "src/index.ts",
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"start": "bun run index.ts",
-		"dev": "bun --watch index.ts",
+		"start": "bun run .",
+		"dev": "bun --watch .",
 		"format": "bunx biome format --write",
 		"lint": "bunx biome lint --unsafe --write",
 		"check": "bunx biome check --unsafe --write",
