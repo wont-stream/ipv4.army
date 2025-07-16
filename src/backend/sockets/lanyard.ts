@@ -47,16 +47,16 @@ export default class {
 			}
 		};
 
-		this._socket.onerror = () => {
-			console.error("Lanyard socket error");
+		this._socket.onerror = (e) => {
+			console.error("Lanyard socket error", e.message);
 			if (this._keepAlive) {
 				clearInterval(this._keepAlive);
 				this._keepAlive = null;
 			}
 		};
 
-		this._socket.onclose = (_e) => {
-			console.log("Lanyard socket closed");
+		this._socket.onclose = (e) => {
+			console.log("Lanyard socket closed", e.reason);
 			if (this._keepAlive) {
 				clearInterval(this._keepAlive);
 				this._keepAlive = null;

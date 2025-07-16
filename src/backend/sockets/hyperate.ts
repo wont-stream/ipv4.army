@@ -52,8 +52,8 @@ export default class {
 			}
 		};
 
-		this._socket.onerror = () => {
-			console.error("Hyperate socket error");
+		this._socket.onerror = (e) => {
+			console.error("Hyperate socket error", e.message);
 			if (this._keepAlive) {
 				clearInterval(this._keepAlive);
 				this._keepAlive = null;
@@ -64,8 +64,8 @@ export default class {
 			}
 		};
 
-		this._socket.onclose = () => {
-			console.log("Hyperate socket closed");
+		this._socket.onclose = (e) => {
+			console.log("Hyperate socket closed", e.reason);
 			if (this._keepAlive) {
 				clearInterval(this._keepAlive);
 				this._keepAlive = null;
