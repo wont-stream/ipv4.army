@@ -1,6 +1,6 @@
 import ReconnectingWebSocket from "reconnecting-websocket";
 
-export default class {
+export class Lanyard {
 	private _socket: ReconnectingWebSocket;
 	private _keepAlive: NodeJS.Timeout | null;
 	private _callback: (data: LanyardData) => void;

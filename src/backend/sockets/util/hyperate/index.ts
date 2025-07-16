@@ -1,6 +1,6 @@
 import ReconnectingWebSocket from "reconnecting-websocket";
 
-export default class {
+export class Hyperate {
 	private _socket: ReconnectingWebSocket;
 	private _keepAlive: NodeJS.Timeout | null;
 	private _interval: NodeJS.Timeout | null;

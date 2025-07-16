@@ -8,8 +8,7 @@ import fs from "node:fs/promises";
 import Handlebars from "handlebars";
 
 // Internals
-import Hyperate from "./backend/sockets/hyperate";
-import Lanyard from "./backend/sockets/lanyard";
+import * as Socket from "./backend/sockets";
 import * as response from "./backend/util";
 
 // Bun build plugins
@@ -142,7 +141,7 @@ const server = Bun.serve({
 });
 
 // Sockets
-new Hyperate((data) => {
+new Socket.Hyperate((data) => {
 	heartrate = data;
 	server.publish(
 		"hyperate",
@@ -151,7 +150,7 @@ new Hyperate((data) => {
 	);
 });
 
-new Lanyard((data) => {
+new Socket.Lanyard((data) => {
 	lanyard = data;
 	server.publish("lanyard", JSON.stringify({ type: "lanyard", data }), true);
 });
