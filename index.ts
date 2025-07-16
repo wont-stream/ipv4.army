@@ -73,14 +73,15 @@ const server = Bun.serve({
 		"/": async (req, _server) => {
 			updatePartials();
 
-			return await response.text(req,
+			return await response.text(
+				req,
 				template.index({
 					lanyard,
 					heartrate,
 				}),
 				{
-					contentType: "text/html"
-				}
+					contentType: "text/html",
+				},
 			);
 		},
 
@@ -96,13 +97,10 @@ const server = Bun.serve({
 			if (!(await file.exists())) {
 				updatePartials();
 
-				return await response.text(req,
-					template.notfound({}),
-					{
-						contentType: "text/html",
-						status: 404
-					}
-				);
+				return await response.text(req, template.notfound({}), {
+					contentType: "text/html",
+					status: 404,
+				});
 			}
 
 			return await response.file(req, file);
