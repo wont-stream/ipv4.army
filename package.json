@@ -5,6 +5,7 @@
 	"private": true,
 	"scripts": {
 		"start": "bun run index.ts",
+		"dev": "bun --watch index.ts",
 		"format": "bunx biome format --write",
 		"lint": "bunx biome lint --unsafe --write",
 		"check": "bunx biome check --unsafe --write",
