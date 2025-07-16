@@ -1,3 +1,6 @@
+// Prefetch
+import "./backend/util/prefetch"
+
 // Natives
 import fs from "node:fs/promises";
 
@@ -5,9 +8,9 @@ import fs from "node:fs/promises";
 import Handlebars from "handlebars";
 
 // Internals
-import Hyperate from "./backend/sockets/hyperate.js";
-import Lanyard from "./backend/sockets/lanyard.js";
-import * as response from "./backend/utilities/resp.js";
+import Hyperate from "./backend/sockets/hyperate";
+import Lanyard from "./backend/sockets/lanyard";
+import * as response from "./backend/util";
 
 // Bun build plugins
 import { htmlMinifier } from "./plugins/html.js";
