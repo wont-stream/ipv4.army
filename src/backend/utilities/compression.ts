@@ -26,7 +26,7 @@ export const compress = async (
 		case "zstd":
 			return {
 				header: contentEncoding,
-				body: await Bun.zstdCompress(data, { level: 23 }),
+				body: await Bun.zstdCompress(data, { level: 22 }),
 			};
 		case "gzip":
 			return {
