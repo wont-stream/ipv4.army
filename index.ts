@@ -13,7 +13,7 @@ import * as response from "./src/backend/utilities/resp";
 import { htmlMinifier } from "./src/plugins/html";
 
 // Clean up dist folder
-await fs.rm("./dist", { recursive: true, force: true }).catch(() => {});
+await fs.rm("./dist", { recursive: true }).catch(() => {});
 
 // Build
 const build = await Bun.build({
@@ -27,10 +27,7 @@ const build = await Bun.build({
 
 	plugins: [htmlMinifier],
 
-	minify: true,
-	loader: {
-		".handlebars": "html",
-	},
+	minify: true
 });
 console.log(build.success ? "Build successful!" : "Build failed!", build.logs);
 await fs.cp("./src/frontend/robots.txt", "./dist/robots.txt", { force: true });
@@ -44,9 +41,9 @@ let lanyard: LanyardData = {
 const css = await Bun.file("./dist/index.css").text();
 
 // Files
-import notfound from "./dist/404.js";
-import head from "./dist/head.js";
-import index from "./dist/index.js";
+const notfound = (await import("./dist/404.js")).default;
+const head = (await import("./dist/head.js")).default;
+const index = (await import("./dist/index.js")).default;
 
 // Templates
 const template = {
