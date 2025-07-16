@@ -1,40 +1,71 @@
+import { compress } from "./compression";
+
 const respOptions = {
 	headers: {
-		"Content-Type": "application/json",
 		"Cache-Control": "no-cache",
-		"Content-Encoding": "gzip",
 	},
 };
 
-export const ok = () =>
-	new Response(Bun.gzipSync(JSON.stringify({ data: "ok" })), respOptions);
+export const ok = async (req: Request) => {
+	const acceptEncoding = req.headers.get("Accept-Encoding") || "";
 
-export const json = (data: { [key: string]: string }) =>
-	new Response(Bun.gzipSync(JSON.stringify(data)), respOptions);
+	const { header, body } = await compress("OK", acceptEncoding)
 
-export const file = async (file: Bun.BunFile) => {
-	const isHTML = file.type === "text/html";
-
-	return new Response(Bun.gzipSync(await file.arrayBuffer()), {
+	return new Response(body, {
+		status: 200,
 		headers: {
-			"Content-Type": file.type,
-			...(isHTML ? {} : { "Cache-Control": "public, max-age=31536000" }),
-			"Content-Encoding": "gzip",
+			...respOptions.headers,
+			...header,
+			"Content-Type": "text/plain",
+		},
+	});
+}
+
+export const json = async (req: Request, data: { [key: string]: string }) => {
+	const acceptEncoding = req.headers.get("Accept-Encoding") || "";
+
+	const { header, body } = await compress(JSON.stringify(data), acceptEncoding)
+
+	return new Response(body, {
+		status: 200,
+		headers: {
+			...respOptions.headers,
+			...header,
+			"Content-Type": "application/json",
 		},
 	});
 };
-export const text = async (
-	text: string,
-	contentType: string,
-	status = 200,
-	noCache = false,
-) => {
-	return new Response(Bun.gzipSync(text), {
-		status,
+
+export const file = async (req: Request, data: Bun.BunFile) => {
+	const isHTML = data.type === "text/html";
+
+	const acceptEncoding = req.headers.get("Accept-Encoding") || "";
+
+	const { header, body } = await compress(await data.arrayBuffer(), acceptEncoding)
+
+	return new Response(body, {
 		headers: {
-			"Content-Type": contentType,
-			...(noCache ? {} : { "Cache-Control": "public, max-age=31536000" }),
-			"Content-Encoding": "gzip",
+			...(isHTML ? respOptions.headers : { "Cache-Control": "public, max-age=31536000" }),
+			...header,
+			"Content-Type": data.type,
 		},
 	});
 };
+
+const defaultTextOptions = { contentType: "text/plain", status: 200, cache: true } as { contentType?: string; status?: number; cache?: boolean };
+export const text = async (req: Request, data: string, opts = defaultTextOptions) => {
+	if (opts.contentType === "text/html") opts.cache = false;
+
+	const acceptEncoding = req.headers.get("Accept-Encoding") || "";
+
+	const { header, body } = await compress(data, acceptEncoding)
+
+	return new Response(body, {
+		status: opts.status,
+		headers: {
+			...(opts.cache ? { "Cache-Control": "public, max-age=31536000" } : respOptions.headers),
+			...header,
+			"Content-Type": opts.contentType,
+		},
+	});
+}
