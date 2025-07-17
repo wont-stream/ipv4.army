@@ -70,7 +70,7 @@ const server = Bun.serve({
 
 	routes: {
 		"/": async (req: Bun.BunRequest<"/">, _server: Bun.Server) => {
-			console.log(response.getIP(req));
+			console.log(req.headers.get("x-real-ip"));
 			updatePartials();
 
 			return await response.text(
