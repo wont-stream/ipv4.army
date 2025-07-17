@@ -18,6 +18,8 @@ export const track = async (req: Bun.BunRequest) => {
 			"No IP address found in request headers.",
 			req.headers.toJSON(),
 		);
+	} else {
+		console.log("Tracking pageview from IP:", ip);
 	}
 
 	const referer = req.headers.get("referer");
