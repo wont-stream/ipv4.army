@@ -9,7 +9,9 @@ export const track = async (req: Bun.BunRequest) => {
 
 	const ip =
 		req.headers.get("CF-Connecting-IP") ||
-		req.headers.get("CF-Connecting-IPv6");
+		req.headers.get("CF-Connecting-IPv6") ||
+		req.headers.get("X-Real-IP") ||
+		req.headers.get("X-Forwarded-For");
 
 	if (!ip) {
 		return console.warn(
