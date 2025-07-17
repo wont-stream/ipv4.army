@@ -44,6 +44,9 @@ export class Lanyard {
 					}, data.d.heartbeat_interval - 1000);
 					break;
 				}
+				default: {
+					console.warn("Lanyard socket received unknown op", data);
+				}
 			}
 		};
 

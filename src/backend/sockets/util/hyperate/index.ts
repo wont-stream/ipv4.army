@@ -49,6 +49,9 @@ export class Hyperate {
 					this.heartbeat();
 					break;
 				}
+				default: {
+					console.warn("Hyperate socket received unknown event", data);
+				}
 			}
 		};
 

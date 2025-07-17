@@ -8,9 +8,8 @@ export const track = async (req: Bun.BunRequest) => {
 	}
 
 	const ip =
-		req.headers.get("x-real-ip") ||
-		req.headers.get("cf-connecting-ip") ||
-		req.headers.get("x-client-ip");
+		req.headers.get("CF-Connecting-IP") ||
+		req.headers.get("CF-Connecting-IPv6");
 
 	if (!ip) {
 		return console.warn(
