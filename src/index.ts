@@ -70,7 +70,8 @@ const server = Bun.serve({
 
 	routes: {
 		"/": async (req: Bun.BunRequest<"/">, _server: Bun.Server) => {
-			console.log(req.headers.get("x-real-ip"));
+			await response.track(req);
+
 			updatePartials();
 
 			return await response.text(
@@ -92,6 +93,8 @@ const server = Bun.serve({
 		},
 
 		"/404": async (req, _server) => {
+			await response.track(req);
+
 			updatePartials();
 
 			return await response.text(req, template.notfound({}), {
