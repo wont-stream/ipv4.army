@@ -49,6 +49,12 @@ export class Hyperate {
 					this.heartbeat();
 					break;
 				}
+				case "phx_reply": {
+					if (data.payload.status !== "ok") {
+						console.error("phx_reply failed", data);
+					}
+					break;
+				}
 				default: {
 					console.warn("Hyperate socket received unknown event", data);
 				}
