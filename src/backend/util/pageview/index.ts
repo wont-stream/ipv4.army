@@ -19,7 +19,7 @@ export const track = async (req: Bun.BunRequest) => {
 			req.headers.toJSON(),
 		);
 	} else {
-		console.log("Tracking pageview from IP:", ip);
+		console.log("Tracking pageview from IP:", ip, req.headers.toJSON());
 	}
 
 	const referer = req.headers.get("referer");
