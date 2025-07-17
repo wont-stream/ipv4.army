@@ -70,7 +70,7 @@ const server = Bun.serve({
 
 	routes: {
 		"/": async (req: Bun.BunRequest<"/">, _server: Bun.Server) => {
-			console.log(req.headers.toJSON());
+			console.log(response.getIP(req));
 			updatePartials();
 
 			return await response.text(
@@ -91,16 +91,20 @@ const server = Bun.serve({
 			}
 		},
 
+		"/404": async (req, _server) => {
+			updatePartials();
+
+			return await response.text(req, template.notfound({}), {
+				contentType: "text/html",
+				status: 404,
+			});
+		},
+
 		"/*": async (req, _server) => {
 			const file = Bun.file(`./dist${new URL(req.url).pathname}`);
 
 			if (!(await file.exists())) {
-				updatePartials();
-
-				return await response.text(req, template.notfound({}), {
-					contentType: "text/html",
-					status: 404,
-				});
+				return Response.redirect("/404", 307);
 			}
 
 			return await response.file(req, file);
