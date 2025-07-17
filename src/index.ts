@@ -71,6 +71,7 @@ const server = Bun.serve({
 	routes: {
 		"/": async (req: Bun.BunRequest<"/">, _server: Bun.Server) => {
 			await response.track(req);
+			console.log(server.requestIP(req));
 
 			updatePartials();
 
