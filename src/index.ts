@@ -69,7 +69,8 @@ const server = Bun.serve({
 	hostname: process.env.HOSTNAME || "localhost",
 
 	routes: {
-		"/": async (req: Bun.BunRequest<"/">, _server: Bun.Server) => {
+		"/": async (req: Bun.BunRequest<"/">, server: Bun.Server) => {
+			console.log(server.requestIP(req)?.address);
 			updatePartials();
 
 			return await response.text(
