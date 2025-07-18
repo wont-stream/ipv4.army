@@ -1,11 +1,14 @@
+await Bun.$`bun docs:build`;
+console.log("\n");
+
 import { Glob } from "bun";
 import { getBlogSidebar } from "./.vitepress/config";
 
 import { Hyperate } from "./src-back/hyperate";
 import { Lanyard } from "./src-back/lanyard";
 
-let heartrate = 0;
-let lanyard = {};
+let _heartrate = 0;
+let _lanyard = {};
 
 const blogItems = await getBlogSidebar();
 const getNewestBlogPost = async () => {
@@ -80,7 +83,7 @@ const server = Bun.serve({
 
 // Sockets
 new Hyperate((data) => {
-	heartrate = data;
+	_heartrate = data;
 	server.publish(
 		"data",
 		JSON.stringify({ type: "hyperate", data: { hr: data } }),
@@ -89,6 +92,6 @@ new Hyperate((data) => {
 });
 
 new Lanyard((data) => {
-	lanyard = data;
+	_lanyard = data;
 	server.publish("data", JSON.stringify({ type: "lanyard", data }), true);
 });
