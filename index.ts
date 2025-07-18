@@ -7,8 +7,8 @@ import { getBlogSidebar } from "./.vitepress/config";
 import { Hyperate } from "./src-back/hyperate";
 import { Lanyard } from "./src-back/lanyard";
 
-let _heartrate = 0;
-let _lanyard = {};
+let heartrate = 0;
+let lanyard = {};
 
 const blogItems = await getBlogSidebar();
 const getNewestBlogPost = async () => {
@@ -58,6 +58,20 @@ const server = Bun.serve({
 			const data = ws.data as { type: "websocket" | "hot-reload" | null };
 
 			if (data.type === "websocket") {
+				ws.send(
+					JSON.stringify({
+						type: "heartrate",
+						data: { hr: heartrate },
+					}),
+					true,
+				);
+				ws.send(
+					JSON.stringify({
+						type: "lanyard",
+						data: lanyard,
+					}),
+					true,
+				);
 				return ws.subscribe("data");
 			}
 
@@ -83,7 +97,7 @@ const server = Bun.serve({
 
 // Sockets
 new Hyperate((data) => {
-	_heartrate = data;
+	heartrate = data;
 	server.publish(
 		"data",
 		JSON.stringify({ type: "hyperate", data: { hr: data } }),
@@ -92,6 +106,6 @@ new Hyperate((data) => {
 });
 
 new Lanyard((data) => {
-	_lanyard = data;
+	lanyard = data;
 	server.publish("data", JSON.stringify({ type: "lanyard", data }), true);
 });

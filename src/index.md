@@ -14,6 +14,7 @@ hero:
     - theme: alt
       text: Blog
       link: /blog
+      target: _parent
 
 features:
   - title: ipv4.army
