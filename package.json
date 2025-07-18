@@ -1,27 +1,28 @@
 {
 	"name": "ipv4.army",
-	"module": "src/index.ts",
+	"module": "index.ts",
 	"type": "module",
 	"private": true,
-	"scripts": {
-		"start": "bun run .",
-		"dev": "bun --inspect --watch .",
-		"format": "bunx biome format --write",
-		"lint": "bunx biome lint --unsafe --write",
-		"check": "bunx biome check --unsafe --write",
-		"biome": "bun run lint && bun run format && bun run check && git add . && git commit -m 'chore: format and lint'"
-	},
 	"devDependencies": {
-		"@biomejs/biome": "2.1.1",
-		"@types/bun": "latest"
+		"@biomejs/biome": "2.1.2",
+		"@types/bun": "latest",
+		"vitepress": "^1.6.3",
+		"vue": "^3.5.17"
 	},
 	"peerDependencies": {
-		"typescript": "^5.8.3"
+		"typescript": "^5"
+	},
+	"scripts": {
+		"docs:dev": "bunx --bun vitepress dev",
+		"docs:build": "bunx --bun vitepress build",
+		"docs:preview": "bunx --bun vitepress preview",
+		"-": "",
+		"format": "bunx --bun biome format --write",
+		"lint": "bunx --bun biome lint --unsafe --write",
+		"check": "bunx --bun biome check --unsafe --write",
+		"biome": "bun run lint && bun run format && bun run check && git add . && git commit -m 'chore: format and lint'"
 	},
 	"dependencies": {
-		"handlebars": "^4.7.8",
-		"html-minifier-terser": "^7.2.0",
-		"mmdb-lib": "^3.0.1",
 		"reconnecting-websocket": "^4.4.0"
 	}
 }
