@@ -1,5 +1,5 @@
 ---
-title: Blogging Like a Hacker
+title: New Website
 ---
 
 The long awaited, exept not really since I've remade this site like five times in the last month or something, but I have finally made a new site, including a blog, which I will probably not use, but I'll try to use it as much as I can.
