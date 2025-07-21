@@ -29,4 +29,8 @@ features:
     details: An adblock list for Discord client mods
     link: https://heliopolis.live/seth/client-mod-blocklist
     linkText: View Source
+  - title: Silentcloud
+    details: A very simple and bare-minimum SoundCloud downloader
+    link: https://heliopolis.live/seth/silentcloud
+    linkText: View Source
 ---
