@@ -17,10 +17,8 @@
 		"docs:build": "bunx --bun vitepress build",
 		"docs:preview": "bunx --bun vitepress preview",
 		"-": "",
-		"format": "bunx --bun biome format --write",
-		"lint": "bunx --bun biome lint --unsafe --write",
 		"check": "bunx --bun biome check --unsafe --write",
-		"biome": "bun run lint && bun run format && bun run check && git add . && git commit -m 'chore: format and lint'"
+		"biome": "bun run check && git add . && git commit -m 'chore: format and lint'"
 	},
 	"dependencies": {
 		"reconnecting-websocket": "^4.4.0"
