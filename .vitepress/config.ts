@@ -21,8 +21,6 @@ export const getBlogSidebar = async () => {
 				`${file.parentPath.replaceAll("\\", "/").replace("src/blog/", "")}/${file.name.replace(".md", "")}`,
 		);
 
-	console.log(files);
-
 	const items: Item[] = [];
 
 	for (const post of files) {
