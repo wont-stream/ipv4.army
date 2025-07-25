@@ -41,7 +41,7 @@ export class Lanyard {
 								op: 3,
 							}),
 						);
-					}, data.d.heartbeat_interval - 1000);
+					}, data.d.heartbeat_interval);
 					break;
 				}
 				default: {
