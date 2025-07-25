@@ -5,10 +5,9 @@ import type { Types } from "@prequist/lanyard";
 
 import { Glob } from "bun";
 import { getBlogSidebar } from "./.vitepress/config";
-
+import { badger } from "./src-back/badgeEndpoint";
 import { Hyperate } from "./src-back/hyperate";
 import { Lanyard } from "./src-back/lanyard";
-import { badger } from "./src-back/badgeEndpoint";
 
 let heartrate = 0;
 let lanyard: Types.Presence = {

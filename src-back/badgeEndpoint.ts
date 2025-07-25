@@ -1,5 +1,5 @@
-import { makeBadge } from "badge-maker";
 import type { Types } from "@prequist/lanyard";
+import { makeBadge } from "badge-maker";
 
 const statusMessage = {
 	online: "Online",

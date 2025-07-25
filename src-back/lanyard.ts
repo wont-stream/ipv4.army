@@ -1,5 +1,5 @@
-import ReconnectingWebSocket from "reconnecting-websocket";
 import type { Types } from "@prequist/lanyard";
+import ReconnectingWebSocket from "reconnecting-websocket";
 
 export class Lanyard {
 	private _socket: ReconnectingWebSocket;
