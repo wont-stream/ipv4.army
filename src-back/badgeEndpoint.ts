@@ -98,7 +98,7 @@ export const badger = async (
 		};
 
 		return makeBadge({
-			label: "Wasted",
+			label: "Spent",
 			message: `${data.message} ${friendlyKey}`,
 			color: data.color,
 		});
