@@ -21,6 +21,8 @@ export const getBlogSidebar = async () => {
 				`${file.parentPath.replaceAll("\\", "/").replace("src/blog/", "")}/${file.name.replace(".md", "")}`,
 		);
 
+	console.log(files);
+
 	const items: Item[] = [];
 
 	for (const post of files) {
@@ -48,7 +50,7 @@ export const getBlogSidebar = async () => {
 		if (monthItem.items) {
 			let dayItem = monthItem.items.find((item) => item.text === day);
 			if (!dayItem) {
-				dayItem = { text: day, items: [] };
+				dayItem = { text: day.slice(1), items: [] };
 				monthItem.items.push(dayItem);
 			}
 
