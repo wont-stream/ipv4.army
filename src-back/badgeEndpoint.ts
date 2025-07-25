@@ -30,7 +30,7 @@ export const badger = async (
 		case "heartrate": {
 			return makeBadge({
 				label: "Heartrate",
-				message: heartrate.toString(),
+				message: `${heartrate} BPM`,
 				color: "crimson",
 			});
 		}
