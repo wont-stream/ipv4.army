@@ -1,11 +1,12 @@
 import ReconnectingWebSocket from "reconnecting-websocket";
+import type { Types } from "@prequist/lanyard";
 
 export class Lanyard {
 	private _socket: ReconnectingWebSocket;
 	private _keepAlive: NodeJS.Timeout | null;
-	private _callback: (data: LanyardData) => void;
+	private _callback: (data: Types.Presence) => void;
 
-	constructor(callback: (data: LanyardData) => void) {
+	constructor(callback: (data: Types.Presence) => void) {
 		this._socket = new ReconnectingWebSocket(
 			"wss://lanyard.atums.world/socket",
 		);

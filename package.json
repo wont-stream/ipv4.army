@@ -21,6 +21,8 @@
 		"biome": "bun run check && git add . && git commit -m 'chore: format and lint'"
 	},
 	"dependencies": {
+		"@prequist/lanyard": "^1.1.0",
+		"badge-maker": "^5.0.2",
 		"reconnecting-websocket": "^4.4.0"
 	}
 }

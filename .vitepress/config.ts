@@ -115,6 +115,11 @@ export default defineConfig({
 			{ text: "Blog", link: "/blog" },
 		],
 
+		footer: {
+			message:
+				"<img src='https://img.shields.io/endpoint?url=https://wakapi.atums.world/api/compat/shields/v1/seth/interval:today&label=Today%27s%20Coding%20Time' alt='Today's Coding Time' />",
+		},
+
 		logo: {
 			src: "/favicon.svg",
 			alt: "logo",

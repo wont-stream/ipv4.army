@@ -1,14 +1,45 @@
 await Bun.$`bun docs:build`;
 console.log("\n");
 
+import type { Types } from "@prequist/lanyard";
+
 import { Glob } from "bun";
 import { getBlogSidebar } from "./.vitepress/config";
 
 import { Hyperate } from "./src-back/hyperate";
 import { Lanyard } from "./src-back/lanyard";
+import { badger } from "./src-back/badgeEndpoint";
 
 let heartrate = 0;
-let lanyard = {};
+let lanyard: Types.Presence = {
+	spotify: null,
+	kv: {},
+	listening_to_spotify: false,
+	discord_user: {
+		username: "",
+		public_flags: 0,
+		id: "0",
+		display_name: "",
+		global_name: "",
+		discriminator: "0",
+		bot: false,
+		avatar_decoration_data: null,
+		avatar: null,
+		primary_guild: {
+			tag: "",
+			identity_guild_id: "0",
+			badge: "",
+			identity_enabled: false,
+		},
+		collectibles: null,
+	},
+	discord_status: "offline",
+	activities: [],
+	active_on_discord_web: false,
+	active_on_discord_mobile: false,
+	active_on_discord_desktop: false,
+	active_on_discord_embedded: false,
+};
 
 const blogItems = await getBlogSidebar();
 const getNewestBlogPost = async () => {
@@ -48,6 +79,20 @@ const server = Bun.serve({
 			if (!server.upgrade(req, { data: { type: "websocket" } })) {
 				return new Response("WebSocket upgrade failed", { status: 400 });
 			}
+		},
+
+		"/badge/:type": async (req) => {
+			return new Response(
+				await badger(req.params.type, { heartrate, lanyard }),
+				{
+					headers: {
+						"Content-Type": "image/svg+xml",
+						"Cache-Control": "no-cache, no-store, must-revalidate",
+						Pragma: "no-cache",
+						Expires: "0",
+					},
+				},
+			);
 		},
 
 		"/*": Response.redirect("/404", 307),
