@@ -64,6 +64,24 @@ export const getBlogSidebar = async () => {
 };
 const blogItems = await getBlogSidebar();
 
+const badges = [
+	{ name: "Discord Status", path: "status" },
+	{ name: "Listening To", path: "listening" },
+	{ name: "Heartrate", path: "heartrate" },
+	{ name: "Coding Time Weekly", path: "waka_week" },
+	{ name: "Coding Time Monthly", path: "waka_month" },
+];
+
+const getBadges = () => {
+	let html = "";
+
+	for (const badge of badges) {
+		html += `<img src="/badge/${badge.path}" alt="${badge.name}" />`;
+	}
+
+	return html;
+};
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
 	title: "S€TH",
@@ -116,8 +134,7 @@ export default defineConfig({
 		],
 
 		footer: {
-			message:
-				"<img src='https://img.shields.io/endpoint?url=https://wakapi.atums.world/api/compat/shields/v1/seth/interval:today&label=Today%27s%20Coding%20Time' alt='Today's Coding Time' />",
+			message: getBadges(),
 		},
 
 		logo: {
