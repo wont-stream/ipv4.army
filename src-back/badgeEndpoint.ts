@@ -65,22 +65,22 @@ export const badger = async (
 	if (type.startsWith("waka_")) {
 		const key = type.replace("waka_", "");
 		const friendlyKey = key
-			.replace("today", "Today Coding")
-			.replace("yesterday", "Yesterday Coding")
-			.replace("week", "This Week Coding")
-			.replace("7_days", "This Week Coding")
-			.replace("last_7_days", "This Week Coding")
-			.replace("month", "This Month Coding")
-			.replace("30_days", "This Month Coding")
-			.replace("last_30_days", "This Month Coding")
-			.replace("6_months", "6 Months Coding")
-			.replace("last_6_months", "6 Months Coding")
-			.replace("year", "This Year Coding")
-			.replace("12_months", "This Year Coding")
-			.replace("last_12_months", "This Year Coding")
-			.replace("last_year", "This Year Coding")
-			.replace("any", "Of My Life Coding")
-			.replace("all_time", "Of My Life Coding");
+			.replace("today", "Today")
+			.replace("yesterday", "Yesterday")
+			.replace("week", "This Week")
+			.replace("7_days", "This Week")
+			.replace("last_7_days", "This Week")
+			.replace("month", "This Month")
+			.replace("30_days", "This Month")
+			.replace("last_30_days", "This Month")
+			.replace("6_months", "6 Months")
+			.replace("last_6_months", "6 Months")
+			.replace("year", "This Year")
+			.replace("12_months", "This Year")
+			.replace("last_12_months", "This Year")
+			.replace("last_year", "This Year")
+			.replace("any", "Of My Life")
+			.replace("all_time", "Of My Life");
 
 		const req = await fetch(
 			`https://wakapi.atums.world/api/compat/shields/v1/seth/interval:${key}`,
@@ -98,7 +98,7 @@ export const badger = async (
 		};
 
 		return makeBadge({
-			label: "Spent",
+			label: "Coded",
 			message: `${data.message} ${friendlyKey}`,
 			color: data.color,
 		});
