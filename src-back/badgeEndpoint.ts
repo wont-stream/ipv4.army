@@ -8,10 +8,10 @@ const statusMessage = {
 	offline: "Offline",
 };
 const statusColor = {
-	online: "green",
-	idle: "yellow",
-	dnd: "red",
-	offline: "gray",
+	online: "#008000",
+	idle: "#DAA520",
+	dnd: "#B22222",
+	offline: "#778899",
 };
 
 const unknownType = makeBadge({
