@@ -7,10 +7,10 @@
 		"@biomejs/biome": "2.1.2",
 		"@types/bun": "latest",
 		"vitepress": "^1.6.3",
-		"vue": "^3.5.17"
+		"vue": "^3.5.18"
 	},
 	"peerDependencies": {
-		"typescript": "^5"
+		"typescript": "^5.8.3"
 	},
 	"scripts": {
 		"docs:dev": "bunx --bun vitepress dev",

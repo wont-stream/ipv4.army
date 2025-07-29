@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <style>
+        html, body {
+            background-color: transparent;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: system-ui;
+    text-align: center;
+        }
+
+.heart {
+  height: 250px; /* adjust to control the size */
+  aspect-ratio: 1;
+  --_m: radial-gradient(#000 69%,#0000 70%) 84.5%/50%;
+  -webkit-mask-box-image: var(--_m);
+             mask-border: var(--_m);
+  clip-path: polygon(-41% 0,50% 91%, 141% 0);
+  background: #db1616;
+}
+
+
+
+:root {
+  --bpm: 0;
+}
+
+.heart {
+  --pulse-duration: calc(60s / var(--bpm));
+  width: 100px;
+  height: 100px;
+  animation: pulse var(--pulse-duration) infinite ease-in-out;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #DEDEDE;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 1.5rem;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+}
+    </style>
+    <div class="heart">0</div>
+    <script>
+        const socket = new WebSocket(`wss://ipv4.army/api/ws`);
+
+        	socket.onmessage = (event) => {
+		if (event.data === "ping") return;
+		if (event.data === "pong") return;
+
+		const { type, data } = JSON.parse(event.data);
+
+		switch (type) {
+			case "hyperate": {
+                document.querySelector(".heart").style.setProperty("--bpm", data.hr);
+                document.querySelector(".heart").textContent = data.hr;
+                hr(data.hr !== 0);
+				break;
+			}
+			default: {
+				break;
+			}
+		}
+	};
+
+	setInterval(() => {
+		socket.send("ping");
+	}, 10 * 1000);
+
+	socket.onopen = () => {
+		console.log("Connected to the WebSocket server.");
+	};
+
+    const hr = (show) => {
+        if (show) {
+            document.querySelector(".heart").style.display = "";
+        } else {
+            document.querySelector(".heart").style.display = "none";
+        }
+    }
+
+    hr(0);
+    </script>
+</body>
+</html>
