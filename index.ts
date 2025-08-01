@@ -94,6 +94,8 @@ const server = Bun.serve({
 			);
 		},
 
+		"/watch": Response.redirect("https://stream.atums.world/watch/seth", 301),
+
 		"/*": Response.redirect("/404", 307),
 	},
 
