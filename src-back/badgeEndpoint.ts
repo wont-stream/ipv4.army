@@ -55,9 +55,10 @@ export const badger = async (
 			}
 
 			return makeBadge({
-				label: activity.details || "...",
-				message: activity.state || "...",
+				label: activity.state || "...",
+				message: activity.details || "...",
 				color: "blue",
+				links: [activity.details_url || "", activity.state_url || ""],
 			});
 		}
 	}
