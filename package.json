@@ -12,6 +12,9 @@
 	"peerDependencies": {
 		"typescript": "^5.8.3"
 	},
+	"overrides": {
+		"vite": "npm:rolldown-vite@latest"
+	},
 	"scripts": {
 		"docs:dev": "bunx --bun vitepress dev",
 		"docs:build": "bunx --bun vitepress build",
