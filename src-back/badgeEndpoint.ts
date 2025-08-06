@@ -30,7 +30,7 @@ export const badger = async (
 		case "heartrate": {
 			return makeBadge({
 				label: "Heartrate",
-				message: `${heartrate} BPM`,
+				message: `${heartrate !== 0 || lanyard.discord_status !== "offline" ? `${heartrate} BPM` : "Unavailable"}`,
 				color: "crimson",
 			});
 		}
