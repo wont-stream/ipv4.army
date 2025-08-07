@@ -65,9 +65,10 @@ export const getBlogSidebar = async () => {
 const blogItems = await getBlogSidebar();
 
 const badges = [
-	{ name: "Discord Status", path: "status" },
-	{ name: "Listening To", path: "listening" },
 	{ name: "Heartrate", path: "heartrate" },
+	{ name: "Listening To", path: "listening" },
+	{ name: "Discord Status", path: "status" },
+	{ name: "Livestream", path: "stream" },
 	{ name: "Coding Time Weekly", path: "waka_week" },
 	{ name: "Coding Time Monthly", path: "waka_month" },
 ];
@@ -160,6 +161,7 @@ export default defineConfig({
 				icon: "discord",
 				link: "https://discord.com/users/1383584342105919559",
 			},
+			{ icon: "twitch", link: "https://ipv4.army/watch" },
 		],
 	},
 });
