@@ -8,13 +8,13 @@ const fetchError = makeBadge({
 });
 
 const currentlyOffline = makeBadge({
-	label: "Currently",
+	label: "Stream",
 	message: `Offline`,
 	color: "red",
 });
 
 const currentlyLive = makeBadge({
-	label: "Currently",
+	label: "Stream",
 	message: `Live`,
 	color: "green",
 });
