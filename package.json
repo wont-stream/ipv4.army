@@ -20,8 +20,7 @@
 		"docs:build": "bunx --bun vitepress build",
 		"docs:preview": "bunx --bun vitepress preview",
 		"-": "",
-		"check": "bunx --bun biome check --unsafe --write",
-		"biome": "bun run check && git add . && git commit -m 'chore: format and lint'"
+		"biome": "bunx --bun biome check --unsafe --write"
 	},
 	"dependencies": {
 		"@prequist/lanyard": "latest",
