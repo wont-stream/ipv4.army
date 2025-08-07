@@ -21,7 +21,9 @@ export default async (opts: {
 
 	return makeBadge({
 		label: "Status",
-		message: capitalize(lanyard.discord_status),
+		message: capitalize(
+			lanyard.discord_status.replace("dnd", "do not disturb"),
+		),
 		color: statusColor[lanyard.discord_status as keyof typeof statusColor],
 	});
 };
