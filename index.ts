@@ -5,7 +5,7 @@ import type { Types } from "@prequist/lanyard";
 
 import { Glob } from "bun";
 import { getBlogSidebar } from "./.vitepress/config";
-import { badger } from "./src-back/badgeEndpoint";
+import { badger } from "./src-back/badges";
 import { Hyperate } from "./src-back/hyperate";
 import { Lanyard } from "./src-back/lanyard";
 
@@ -82,7 +82,7 @@ const server = Bun.serve({
 
 		"/badge/:type": async (req) => {
 			return new Response(
-				await badger(req.params.type, { heartrate, lanyard }),
+				await badger({ type: req.params.type, heartrate, lanyard }),
 				{
 					headers: {
 						"Content-Type": "image/svg+xml",
