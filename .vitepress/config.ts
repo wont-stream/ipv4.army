@@ -3,6 +3,9 @@ import { defineConfig } from "vitepress";
 
 import { months } from "./util";
 
+const atumsIconFile = Bun.file(".vitepress/icons/atums.svg");
+const atumsIcon = await atumsIconFile.text();
+
 type Item = {
 	text: string;
 	items: { text: string; link?: string; items?: Item[] }[];
@@ -161,7 +164,12 @@ export default defineConfig({
 				icon: "discord",
 				link: "https://discord.com/users/1383584342105919559",
 			},
-			{ icon: "twitch", link: "https://ipv4.army/watch" },
+			{
+				icon: {
+					svg: atumsIcon,
+				},
+				link: "https://ipv4.army/watch",
+			},
 		],
 	},
 });
