@@ -132,19 +132,16 @@ export default defineConfig({
 
 	themeConfig: {
 		// https://vitepress.dev/reference/default-theme-config
-		nav: [
-			{ text: "Home", link: "/" },
-			{ text: "Blog", link: "/blog" },
-		],
-
-		footer: {
-			message: getBadges(),
-		},
 
 		logo: {
 			src: "/favicon.svg",
 			alt: "logo",
 		},
+
+		nav: [
+			{ text: "Home", link: "/" },
+			{ text: "Blog", link: "/blog" },
+		],
 
 		sidebar: [
 			{
@@ -156,6 +153,10 @@ export default defineConfig({
 				items: blogItems,
 			},
 		],
+
+		footer: {
+			message: getBadges(),
+		},
 
 		editLink: {
 			pattern: "https://heliopolis.live/seth/ipv4.army/-/edit/main/src/:path",
@@ -172,6 +173,8 @@ export default defineConfig({
 				hour12: false,
 			},
 		},
+
+		externalLinkIcon: true,
 
 		socialLinks: [
 			{ icon: "gitlab", link: "https://heliopolis.live/seth" },
