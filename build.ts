@@ -1,6 +1,6 @@
 await Bun.$`bun docs:build`;
 
-Bun.build({
+await Bun.build({
 	entrypoints: ["index.ts"],
 	outdir: "dist",
 	target: "bun",
