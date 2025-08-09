@@ -157,6 +157,11 @@ export default defineConfig({
 			},
 		],
 
+		editLink: {
+			pattern: "https://heliopolis.live/seth/ipv4.army/-/edit/main/src/:path",
+			text: "Edit this page on Heliopolis",
+		},
+
 		lastUpdated: {
 			formatOptions: {
 				day: "2-digit",
