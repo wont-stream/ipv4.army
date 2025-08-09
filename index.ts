@@ -41,7 +41,7 @@ const server = Bun.serve({
 	routes: {
 		...routes,
 
-		"/blog": async (req) => {
+		"/blog": async () => {
 			if (newestBlogPostLink) {
 				return Response.redirect(newestBlogPostLink, 302);
 			}
