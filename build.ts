@@ -7,3 +7,7 @@ await Bun.build({
 	env: "inline",
 	minify: true,
 });
+
+Bun.gc(true);
+
+await import("./dist/index.js");
