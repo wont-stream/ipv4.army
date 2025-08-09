@@ -35,6 +35,8 @@ for await (const file of glob.scan("./.vitepress/dist")) {
 	routes[
 		`/${file.replaceAll("\\", "/").replace("index.html", "").replace(".html", "")}`
 	] = () => {
+		Bun.gc(true);
+
 		return new Response(Bun.file(`./.vitepress/dist/${file}`));
 	};
 }
@@ -46,12 +48,16 @@ const server = Bun.serve({
 		"/blog": Response.redirect(newestBlogPostLink, 302),
 
 		"/api/ws": (req, server) => {
+			Bun.gc(true);
+
 			if (!server.upgrade(req, { data: { type: "websocket" } })) {
 				return new Response("WebSocket upgrade failed", { status: 400 });
 			}
 		},
 
 		"/badge/:type": async (req) => {
+			Bun.gc(true);
+
 			return new Response(
 				await badger({ type: req.params.type, heartrate, lanyard }),
 				{
@@ -93,10 +99,14 @@ const server = Bun.serve({
 			}
 
 			ws.close(1011, "Invalid WebSocket type");
+
+			Bun.gc(true);
 		},
 
 		message(ws) {
 			ws.ping("ping");
+
+			Bun.gc(true);
 		},
 
 		close(ws) {
@@ -105,6 +115,8 @@ const server = Bun.serve({
 			if (data.type === "websocket") {
 				return ws.unsubscribe("data");
 			}
+
+			Bun.gc(true);
 		},
 
 		idleTimeout: 960,
