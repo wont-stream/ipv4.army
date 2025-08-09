@@ -8,6 +8,8 @@ await Bun.build({
 	minify: true,
 });
 
+console.clear();
+
 Bun.gc(true);
 
 await import("./dist/index.js");
