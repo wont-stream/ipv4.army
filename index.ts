@@ -21,14 +21,13 @@ const getNewestBlogPost = async () => {
 	return posts[posts.length - 1];
 };
 
-const newestBlogPost = await getNewestBlogPost();
-const newestBlogPostLink = newestBlogPost?.link || `/404`;
+let newestBlogPostLink: string;
 
 const glob = new Glob("**/**");
 
 const routes: Record<string, () => Response> = {};
 
-for await (const file of glob.scan("./.vitepress/dist")) {
+for (const file of glob.scanSync("./.vitepress/dist")) {
 	routes[
 		`/${file.replaceAll("\\", "/").replace("index.html", "").replace(".html", "")}`
 	] = () => {
@@ -42,7 +41,16 @@ const server = Bun.serve({
 	routes: {
 		...routes,
 
-		"/blog": Response.redirect(newestBlogPostLink, 302),
+		"/blog": async (req) => {
+			if (newestBlogPostLink) {
+				return Response.redirect(newestBlogPostLink, 302);
+			}
+
+			const newestBlogPost = await getNewestBlogPost();
+			newestBlogPostLink = newestBlogPost?.link || `/404`;
+
+			return Response.redirect(newestBlogPostLink, 302);
+		},
 
 		"/api/ws": (req, server) => {
 			Bun.gc(true);

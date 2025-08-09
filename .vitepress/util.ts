@@ -1,4 +1,4 @@
-import { readdir } from "node:fs/promises";
+import { readdirSync } from "node:fs";
 
 const months = [
 	"",
@@ -16,16 +16,13 @@ const months = [
 	"December",
 ];
 
-const atumsIconFile = Bun.file(".vitepress/icons/atums.svg");
-export const atumsIcon = await atumsIconFile.text();
-
 type Item = {
 	text: string;
 	items: { text: string; link?: string; items?: Item[] }[];
 };
 
-const getBlogSidebar = async () => {
-	const filesAndDirs = await readdir("./src/blog", {
+const getBlogSidebar = () => {
+	const filesAndDirs = readdirSync("./src/blog", {
 		withFileTypes: true,
 		recursive: true,
 	});
@@ -78,7 +75,7 @@ const getBlogSidebar = async () => {
 
 	return items;
 };
-export const blogItems = await getBlogSidebar();
+export const blogItems = getBlogSidebar();
 
 const badges = [
 	{ name: "Heartrate", path: "heartrate" },
