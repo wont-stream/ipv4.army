@@ -43,8 +43,6 @@ const server = Bun.serve({
 	routes: {
 		...routes,
 
-		"/": new Response(Bun.file("./.vitepress/dist/index.html")),
-
 		"/blog": Response.redirect(newestBlogPostLink, 302),
 
 		"/api/ws": (req, server) => {
