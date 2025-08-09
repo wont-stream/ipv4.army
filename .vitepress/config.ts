@@ -157,6 +157,17 @@ export default defineConfig({
 			},
 		],
 
+		lastUpdated: {
+			formatOptions: {
+				day: "2-digit",
+				month: "2-digit",
+				year: "2-digit",
+				hour: "2-digit",
+				minute: "2-digit",
+				hour12: false,
+			},
+		},
+
 		socialLinks: [
 			{ icon: "gitlab", link: "https://heliopolis.live/seth" },
 			{ icon: "bluesky", link: "https://bsky.app/profile/seth.ipv4.army" },
