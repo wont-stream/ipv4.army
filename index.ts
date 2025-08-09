@@ -9,36 +9,8 @@ import { badger } from "./src-back/badges";
 import { Hyperate } from "./src-back/hyperate";
 import { Lanyard } from "./src-back/lanyard";
 
-let heartrate = 0;
-let lanyard: Types.Presence = {
-	spotify: null,
-	kv: {},
-	listening_to_spotify: false,
-	discord_user: {
-		username: "",
-		public_flags: 0,
-		id: "0",
-		display_name: "",
-		global_name: "",
-		discriminator: "0",
-		bot: false,
-		avatar_decoration_data: null,
-		avatar: null,
-		primary_guild: {
-			tag: "",
-			identity_guild_id: "0",
-			badge: "",
-			identity_enabled: false,
-		},
-		collectibles: null,
-	},
-	discord_status: "offline",
-	activities: [],
-	active_on_discord_web: false,
-	active_on_discord_mobile: false,
-	active_on_discord_desktop: false,
-	active_on_discord_embedded: false,
-};
+let heartrate: number;
+let lanyard: Types.Presence;
 
 const getNewestBlogPost = async () => {
 	const posts = blogItems.flatMap((year) =>
@@ -57,12 +29,14 @@ const newestBlogPostLink = newestBlogPost?.link || `/404`;
 
 const glob = new Glob("**/**");
 
-const routes: Record<string, Response> = {};
+const routes: Record<string, () => Response> = {};
 
 for await (const file of glob.scan("./.vitepress/dist")) {
 	routes[
 		`/${file.replaceAll("\\", "/").replace("index.html", "").replace(".html", "")}`
-	] = new Response(Bun.file(`./.vitepress/dist/${file}`));
+	] = () => {
+		return new Response(Bun.file(`./.vitepress/dist/${file}`));
+	};
 }
 
 const server = Bun.serve({
