@@ -4,11 +4,10 @@ console.log("\n");
 import type { Types } from "@prequist/lanyard";
 
 import { Glob } from "bun";
-import {} from "./.vitepress/config";
+import { blogItems } from "./.vitepress/util";
 import { badger } from "./src-back/badges";
 import { Hyperate } from "./src-back/hyperate";
 import { Lanyard } from "./src-back/lanyard";
-import { blogItems } from "./.vitepress/util";
 
 let heartrate = 0;
 let lanyard: Types.Presence = {
