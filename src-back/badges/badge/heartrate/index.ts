@@ -10,7 +10,7 @@ export default async (opts: {
 
 	return makeBadge({
 		label: "Heartrate",
-		message: `${heartrate !== 0 || lanyard.discord_status !== "offline" ? `${heartrate} BPM` : "Unavailable"}`,
+		message: `${heartrate !== 0 && lanyard.discord_status !== "offline" ? `${heartrate} BPM` : "Unavailable"}`,
 		color: "crimson",
 	});
 };

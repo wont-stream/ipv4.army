@@ -1,6 +1,3 @@
-await Bun.$`bun docs:build`;
-console.log("\n");
-
 import type { Types } from "@prequist/lanyard";
 
 import { Glob } from "bun";
@@ -9,7 +6,7 @@ import { badger } from "./src-back/badges";
 import { Hyperate } from "./src-back/hyperate";
 import { Lanyard } from "./src-back/lanyard";
 
-let heartrate: number;
+let heartrate = 0;
 let lanyard: Types.Presence;
 
 const getNewestBlogPost = async () => {
