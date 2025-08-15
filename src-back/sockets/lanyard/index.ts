@@ -1,5 +1,6 @@
 import type { Types } from "@prequist/lanyard";
 import ReconnectingWebSocket from "reconnecting-websocket";
+import { websocketOptions } from "../utils";
 
 export class Lanyard {
 	private _socket: ReconnectingWebSocket;
@@ -9,6 +10,8 @@ export class Lanyard {
 	constructor(callback: (data: Types.Presence) => void) {
 		this._socket = new ReconnectingWebSocket(
 			"wss://lanyard.atums.world/socket",
+			[],
+			websocketOptions,
 		);
 		this._keepAlive = null;
 		this._callback = callback;

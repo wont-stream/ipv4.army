@@ -1,4 +1,5 @@
 import ReconnectingWebSocket from "reconnecting-websocket";
+import { websocketOptions } from "../utils";
 
 export class Hyperate {
 	private _socket: ReconnectingWebSocket;
@@ -9,6 +10,8 @@ export class Hyperate {
 	constructor(callback: (data: number) => void) {
 		this._socket = new ReconnectingWebSocket(
 			`wss://app.hyperate.io/socket/websocket?token=${process.env.HYPERATE_TOKEN}`,
+			[],
+			websocketOptions,
 		);
 		this._keepAlive = null;
 		this._interval = null;
