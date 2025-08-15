@@ -131,7 +131,12 @@ const server = Bun.serve({
 
 // Sockets
 new Hyperate((data) => {
-	heartrate = data;
+	if (lanyard?.discord_status === "offline") {
+		heartrate = data;
+	} else {
+		heartrate = 0;
+	}
+
 	server.publish(
 		"data",
 		JSON.stringify({ type: "hyperate", data: { hr: data } }),

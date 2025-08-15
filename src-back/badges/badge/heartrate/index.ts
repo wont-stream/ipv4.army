@@ -6,11 +6,11 @@ export default async (opts: {
 	heartrate: number;
 	lanyard: Types.Presence;
 }) => {
-	const { heartrate, lanyard } = opts;
+	const { heartrate } = opts;
 
 	return makeBadge({
 		label: "Heartrate",
-		message: `${heartrate !== 0 && lanyard.discord_status !== "offline" ? `${heartrate} BPM` : "Unavailable"}`,
+		message: `${heartrate !== 0 ? `${heartrate} BPM` : "Unavailable"}`,
 		color: "crimson",
 	});
 };
