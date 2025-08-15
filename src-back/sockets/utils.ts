@@ -1,7 +1,6 @@
 import type { Options } from "reconnecting-websocket";
 
 export const websocketOptions: Options = {
-	WebSocket: WebSocket,
 	minReconnectionDelay: 1000,
 	reconnectionDelayGrowFactor: 0,
 	connectionTimeout: 5000,
