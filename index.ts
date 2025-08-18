@@ -8,7 +8,28 @@ import { Hyperate } from "./src-back/sockets/hyperate";
 //import { Lanyard } from "./src-back/sockets/lanyard";
 
 let heartrate = 0;
-let lanyard: Types.Presence;
+let lanyard: Types.Presence = {
+	spotify: null,
+	kv: {},
+	listening_to_spotify: false,
+	discord_user: {
+		username: "",
+		public_flags: 0,
+		id: "0",
+		display_name: null,
+		global_name: null,
+		discriminator: "",
+		bot: false,
+		avatar_decoration_data: null,
+		avatar: null,
+	},
+	discord_status: "offline",
+	activities: [],
+	active_on_discord_web: false,
+	active_on_discord_mobile: false,
+	active_on_discord_desktop: false,
+	active_on_discord_embedded: false,
+};
 
 const getNewestBlogPost = async () => {
 	const posts = blogItems.flatMap((year) =>
