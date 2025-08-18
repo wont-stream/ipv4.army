@@ -1,13 +1,13 @@
-import type { Types } from "@prequist/lanyard";
+//import type { Types } from "@prequist/lanyard";
 
 import { Glob } from "bun";
 import { blogItems } from "./.vitepress/util";
 import { badger } from "./src-back/badges";
 import { Hyperate } from "./src-back/sockets/hyperate";
-import { Lanyard } from "./src-back/sockets/lanyard";
+//import { Lanyard } from "./src-back/sockets/lanyard";
 
 let heartrate = 0;
-let lanyard: Types.Presence;
+//let lanyard: Types.Presence;
 
 const getNewestBlogPost = async () => {
 	const posts = blogItems.flatMap((year) =>
@@ -64,7 +64,7 @@ const server = Bun.serve({
 			Bun.gc(true);
 
 			return new Response(
-				await badger({ type: req.params.type, heartrate, lanyard }),
+				await badger({ type: req.params.type, heartrate /*lanyard*/ }),
 				{
 					headers: {
 						"Content-Type": "image/svg+xml",
@@ -93,13 +93,13 @@ const server = Bun.serve({
 					}),
 					true,
 				);
-				ws.send(
+				/*ws.send(
 					JSON.stringify({
 						type: "lanyard",
 						data: lanyard,
 					}),
 					true,
-				);
+				);*/
 				return ws.subscribe("data");
 			}
 
@@ -131,11 +131,13 @@ const server = Bun.serve({
 
 // Sockets
 new Hyperate((data) => {
-	if (lanyard?.discord_status === "offline") {
+	/*if (lanyard?.discord_status === "offline") {
 		heartrate = data;
 	} else {
 		heartrate = 0;
-	}
+	}*/
+
+	heartrate = data;
 
 	server.publish(
 		"data",
@@ -144,7 +146,9 @@ new Hyperate((data) => {
 	);
 });
 
+/*
 new Lanyard((data) => {
 	lanyard = data;
 	server.publish("data", JSON.stringify({ type: "lanyard", data }), true);
 });
+*/

@@ -1,10 +1,10 @@
-import type { Types } from "@prequist/lanyard";
+//import type { Types } from "@prequist/lanyard";
 import { makeBadge } from "badge-maker";
 
 import heartrate from "./badge/heartrate";
-import listening from "./badge/listening";
-import status from "./badge/status";
-import stream from "./badge/stream";
+//import listening from "./badge/listening";
+//import status from "./badge/status";
+//import stream from "./badge/stream";
 import wakapi from "./badge/wakapi";
 
 const unknownBadge = makeBadge({
@@ -16,12 +16,12 @@ const unknownBadge = makeBadge({
 export const badger = async (opts: {
 	type: string;
 	heartrate: number;
-	lanyard: Types.Presence;
+	/*lanyard: Types.Presence;*/
 }) => {
 	switch (opts.type) {
 		case "heartrate": {
 			return await heartrate(opts);
-		}
+		} /*
 		case "listening": {
 			return await listening(opts);
 		}
@@ -30,7 +30,7 @@ export const badger = async (opts: {
 		}
 		case "stream": {
 			return await stream(opts);
-		}
+		}*/
 	}
 
 	if (opts.type.startsWith("waka_")) {

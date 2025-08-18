@@ -1,10 +1,10 @@
-import type { Types } from "@prequist/lanyard";
+//import type { Types } from "@prequist/lanyard";
 import { makeBadge } from "badge-maker";
 
 export default async (opts: {
 	type: string;
 	heartrate: number;
-	lanyard: Types.Presence;
+	/*lanyard: Types.Presence;*/
 }) => {
 	const { lanyard } = opts;
 
