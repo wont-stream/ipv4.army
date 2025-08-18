@@ -8,7 +8,7 @@ import { Hyperate } from "./src-back/sockets/hyperate";
 //import { Lanyard } from "./src-back/sockets/lanyard";
 
 let heartrate = 0;
-let lanyard: Types.Presence = {
+const lanyard: Types.Presence = {
 	spotify: null,
 	kv: {},
 	listening_to_spotify: false,
