@@ -114,13 +114,13 @@ const server = Bun.serve({
 					}),
 					true,
 				);
-				/*ws.send(
+				ws.send(
 					JSON.stringify({
 						type: "lanyard",
 						data: lanyard,
 					}),
 					true,
-				);*/
+				);
 				return ws.subscribe("data");
 			}
 
@@ -152,11 +152,11 @@ const server = Bun.serve({
 
 // Sockets
 new Hyperate((data) => {
-	/*if (lanyard?.discord_status === "offline") {
+	if (lanyard?.discord_status === "offline") {
 		heartrate = data;
 	} else {
 		heartrate = 0;
-	}*/
+	}
 
 	heartrate = data;
 
