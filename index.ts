@@ -4,11 +4,10 @@ import { Glob } from "bun";
 import { blogItems } from "./.vitepress/util";
 import { badger } from "./src-back/badges";
 import { Hyperate } from "./src-back/sockets/hyperate";
-
-//import { Lanyard } from "./src-back/sockets/lanyard";
+import { Lanyard } from "./src-back/sockets/lanyard";
 
 let heartrate = 0;
-const lanyard: Types.Presence = {
+let lanyard: Types.Presence = {
 	spotify: null,
 	kv: {},
 	listening_to_spotify: false,
@@ -168,9 +167,11 @@ new Hyperate((data) => {
 	);
 });
 
-/*
 new Lanyard((data) => {
 	lanyard = data;
+
+	lanyard.discord_user.id = "0";
+	lanyard.discord_user.username = "";
+	lanyard.discord_user.avatar = "";
 	server.publish("data", JSON.stringify({ type: "lanyard", data }), true);
 });
-*/
