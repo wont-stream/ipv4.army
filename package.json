@@ -1,0 +1,31 @@
+{
+	"name": "ipv4.army",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"devDependencies": {
+		"@biomejs/biome": "2.1.2",
+		"@types/bun": "latest",
+		"oxc-minify": "latest",
+		"vitepress": "next",
+		"vue": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "latest"
+	},
+	"overrides": {
+		"vite": "npm:rolldown-vite@latest"
+	},
+	"scripts": {
+		"docs:dev": "bunx vitepress dev",
+		"docs:build": "bunx vitepress build",
+		"docs:preview": "bunx vitepress preview",
+		"-": "",
+		"biome": "bunx biome check --unsafe --write"
+	},
+	"dependencies": {
+		"@prequist/lanyard": "latest",
+		"badge-maker": "latest",
+		"reconnecting-websocket": "latest"
+	}
+}
