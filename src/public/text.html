@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ＴΞＸＴ ＣＯＮＶΞＲＴΞＲ</title>
+    <meta name="description" content="Ｓ€ＴＨ＇Ｓ ＴΞＸＴ ＣＯＮＶΞＲＴΞＲ">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@latest/modern-normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/oxalorg/sakura@master/css/sakura-vader.css">
+
+    <style>
+        body {
+            text-align: center;
+        }
+
+        textarea {
+            resize: none;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Text Converter</h1>
+    <label for="input">Input:</label>
+    <textarea id="input"></textarea>
+    <label for="output">Output:</label>
+    <textarea id="output" disabled></textarea>
+
+    <script>
+        const input = document.getElementById('input');
+        input.style.height = "auto";
+        input.style.height = input.scrollHeight + "px";
+
+        const output = document.getElementById('output');
+        output.style.height = "auto";
+        output.style.height = output.scrollHeight + "px";
+
+        input.addEventListener('input', () => {
+            input.style.height = "auto";
+            input.style.height = input.scrollHeight + "px";
+            let value = input.value.toUpperCase()
+
+            // replace all E with Ξ
+            value = value.replace(/E/g, 'Ξ');
+            //replace all A with X
+            value = value.replace(/A/g, 'X');
+
+            value = value.replace(/[\x21-\x7E]/g, c => String.fromCharCode(c.charCodeAt(0) + 0xFEE0));
+
+            output.value = value;
+            output.style.height = "auto";
+            output.style.height = output.scrollHeight + "px";
+        });
+    </script>
+</body>
+
+</html>
