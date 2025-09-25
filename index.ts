@@ -81,6 +81,10 @@ const server = Bun.serve({
 			}
 		},
 
+		"/api/ping": () => {
+			return new Response("I'm a teapot", {status: 418})
+		},
+
 		"/badge/:type": async (req) => {
 			Bun.gc(true);
 
