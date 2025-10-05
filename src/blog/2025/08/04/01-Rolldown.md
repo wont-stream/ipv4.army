@@ -21,3 +21,7 @@ And then I ran `bun install` to make sure it was installed, and then I ran `bun 
 `1.37s` on my computer, and `4.45s` on my VPS.
 
 May not seem like a lot, but when I restart my container to update my site, that's still a good chunk of downtime saved.
+
+Edit: I moved the public folder so vitepress doesnt copy it every build, and now my build times are: 
+
+`1.13s` on my computer, and `1.39s` on my VPS.
