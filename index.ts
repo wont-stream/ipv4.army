@@ -78,7 +78,7 @@ const server = Bun.serve({
 		},
 
 		"/api/ws": (req, server) => {
-			if (!server.upgrade(req, { data: { type: "websocket" } })) {
+			if (!server.upgrade(req)) {
 				return new Response("WebSocket upgrade failed", { status: 400 });
 			}
 		},
@@ -102,27 +102,21 @@ const server = Bun.serve({
 
 	websocket: {
 		open(ws) {
-			const data = ws.data as { type: "websocket" | "hot-reload" | null };
-
-			if (data.type === "websocket") {
-				ws.send(
-					JSON.stringify({
-						type: "heartrate",
-						data: { hr: heartrate },
-					}),
-					true,
-				);
-				ws.send(
-					JSON.stringify({
-						type: "lanyard",
-						data: lanyard,
-					}),
-					true,
-				);
-				return ws.subscribe("data");
-			}
-
-			ws.close(1011, "Invalid WebSocket type");
+			ws.send(
+				JSON.stringify({
+					type: "heartrate",
+					data: { hr: heartrate },
+				}),
+				true,
+			);
+			ws.send(
+				JSON.stringify({
+					type: "lanyard",
+					data: lanyard,
+				}),
+				true,
+			);
+			return ws.subscribe("data");
 		},
 
 		message(ws) {
@@ -130,11 +124,7 @@ const server = Bun.serve({
 		},
 
 		close(ws) {
-			const data = ws.data as { type: "websocket" | "hot-reload" | null };
-
-			if (data.type === "websocket") {
-				return ws.unsubscribe("data");
-			}
+			return ws.unsubscribe("data");
 		},
 		idleTimeout: 960,
 		perMessageDeflate: true,
