@@ -82,7 +82,7 @@ const server = Bun.serve({
 		},
 
 		"/api/ping": () => {
-			return new Response("I'm a teapot", {status: 418})
+			return new Response("I'm a teapot", { status: 418 });
 		},
 
 		"/badge/:type": async (req) => {
@@ -100,8 +100,6 @@ const server = Bun.serve({
 				},
 			);
 		},
-
-		"/watch": Response.redirect("https://stream.atums.world/watch/seth", 301),
 
 		"/*": Response.redirect("/404", 307),
 	},
