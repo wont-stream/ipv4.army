@@ -21,7 +21,7 @@ export default defineConfig({
 				sizes: "96x96",
 			},
 		],
-		["link", { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
+		["link", { rel: "icon", href: "/favicon.svg" }],
 		["link", { rel: "shortcut icon", href: "/favicon.ico" }],
 		[
 			"link",
