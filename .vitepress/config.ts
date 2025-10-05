@@ -46,7 +46,7 @@ export default defineConfig({
 
 		nav: [
 			{ text: "Home", link: "/" },
-			{ text: "Blog", link: "/blog" },
+			{ text: "Blog", link: "/blog", target: "_parent" },
 		],
 
 		sidebar: [
@@ -57,7 +57,6 @@ export default defineConfig({
 			{
 				text: "Blog",
 				items: blogItems,
-				target: "_parent",
 			},
 		],
 
