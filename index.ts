@@ -3,6 +3,7 @@ import type { Types } from "@prequist/lanyard";
 import { Glob } from "bun";
 import { blogItems } from "./.vitepress/util";
 import { badger } from "./src-back/badges";
+import { heliopolis } from "./src-back/heliopolis";
 import { Hyperate } from "./src-back/sockets/hyperate";
 import { Lanyard } from "./src-back/sockets/lanyard";
 
@@ -97,6 +98,15 @@ const server = Bun.serve({
 			);
 		},
 
+		"/heliopolis/:repo/:branch/*": async (req) => {
+			const { repo, branch } = req.params;
+
+			const url = new URL(req.url);
+			const path = url.pathname.replace("/heliopolis", "").replace(`/${repo}`, "").replace(`/${branch}`, "");
+
+			return await heliopolis(repo, branch, path);
+		},
+
 		"/*": Response.redirect("/404", 307),
 	},
 
@@ -131,7 +141,7 @@ const server = Bun.serve({
 	},
 });
 
-// Sockets
+/* Sockets
 new Hyperate((data) => {
 	if (lanyard?.discord_status === "offline") {
 		heartrate = data;
@@ -156,3 +166,4 @@ new Lanyard((data) => {
 	lanyard.discord_user.avatar = "";
 	server.publish("data", JSON.stringify({ type: "lanyard", data }), true);
 });
+*/

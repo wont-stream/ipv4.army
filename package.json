@@ -26,6 +26,7 @@
 	"dependencies": {
 		"@prequist/lanyard": "latest",
 		"badge-maker": "latest",
+		"mime": "^4.1.0",
 		"reconnecting-websocket": "latest"
 	}
 }
