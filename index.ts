@@ -4,11 +4,9 @@ import { Glob } from "bun";
 import { blogItems } from "./.vitepress/util";
 import { badger } from "./src-back/badges";
 import { heliopolis } from "./src-back/heliopolis";
-import { Hyperate } from "./src-back/sockets/hyperate";
-import { Lanyard } from "./src-back/sockets/lanyard";
 
-let heartrate = 0;
-let lanyard: Types.Presence = {
+const heartrate = 0;
+const lanyard: Types.Presence = {
 	spotify: null,
 	kv: {},
 	listening_to_spotify: false,
@@ -63,7 +61,7 @@ for (const file of glob.scanSync("./public")) {
 	};
 }
 
-const server = Bun.serve({
+const _server = Bun.serve({
 	routes: {
 		...routes,
 
@@ -102,7 +100,10 @@ const server = Bun.serve({
 			const { repo, branch } = req.params;
 
 			const url = new URL(req.url);
-			const path = url.pathname.replace("/heliopolis", "").replace(`/${repo}`, "").replace(`/${branch}`, "");
+			const path = url.pathname
+				.replace("/heliopolis", "")
+				.replace(`/${repo}`, "")
+				.replace(`/${branch}`, "");
 
 			return await heliopolis(repo, branch, path);
 		},
