@@ -57,6 +57,7 @@ export default defineConfig({
 			{
 				text: "Blog",
 				items: blogItems,
+				target: "_parent",
 			},
 		],
 
