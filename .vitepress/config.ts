@@ -13,16 +13,6 @@ export default defineConfig({
 	appearance: "force-dark",
 	head: [
 		[
-			"script",
-			{
-				async: "",
-				defer: "",
-				src: "https://an.ipv4-army.workers.dev/main.js",
-				"data-domain": "ipv4.army",
-				"data-api": "https://an.ipv4-army.workers.dev/api",
-			},
-		],
-		[
 			"link",
 			{
 				rel: "icon",
