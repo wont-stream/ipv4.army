@@ -144,27 +144,31 @@ const server = Bun.serve({
 	},
 });
 
-new Hyperate((data) => {
-	if (lanyard?.discord_status === "offline") {
+if (process.env.HYPERATE_TOKEN && process.env.HYPERATE_ID) {
+	new Hyperate((data) => {
+		if (lanyard?.discord_status === "offline") {
+			heartrate = data;
+		} else {
+			heartrate = 0;
+		}
+
 		heartrate = data;
-	} else {
-		heartrate = 0;
-	}
 
-	heartrate = data;
+		server.publish(
+			"data",
+			JSON.stringify({ type: "hyperate", data: { hr: data } }),
+			true,
+		);
+	});
+}
 
-	server.publish(
-		"data",
-		JSON.stringify({ type: "hyperate", data: { hr: data } }),
-		true,
-	);
-});
+if (process.env.DISCORD_ID) {
+	new Lanyard((data) => {
+		lanyard = data;
 
-new Lanyard((data) => {
-	lanyard = data;
-
-	lanyard.discord_user.id = "0";
-	lanyard.discord_user.username = "";
-	lanyard.discord_user.avatar = "";
-	server.publish("data", JSON.stringify({ type: "lanyard", data }), true);
-});
+		lanyard.discord_user.id = "0";
+		lanyard.discord_user.username = "";
+		lanyard.discord_user.avatar = "";
+		server.publish("data", JSON.stringify({ type: "lanyard", data }), true);
+	});
+}
