@@ -1,6 +1,12 @@
 import type { Types } from "@prequist/lanyard";
 import { makeBadge } from "badge-maker";
 
+const notListening = makeBadge({
+	label: "Not",
+	message: "Listening",
+	color: "gray",
+});
+
 export default async (opts: {
 	type: string;
 	heartrate: number;
@@ -12,11 +18,7 @@ export default async (opts: {
 		(act) => act.application_id === "1130698654987067493",
 	);
 	if (!activity) {
-		return makeBadge({
-			label: "Not",
-			message: "Listening",
-			color: "gray",
-		});
+		return notListening;
 	}
 
 	return makeBadge({

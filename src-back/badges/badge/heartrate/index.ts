@@ -1,6 +1,12 @@
 import type { Types } from "@prequist/lanyard";
 import { makeBadge } from "badge-maker";
 
+const heartrateUnavailable = makeBadge({
+	label: "Heartrate",
+	message: "Unavailable",
+	color: "crimson",
+});
+
 export default async (opts: {
 	type: string;
 	heartrate: number;
@@ -8,9 +14,13 @@ export default async (opts: {
 }) => {
 	const { heartrate } = opts;
 
-	return makeBadge({
-		label: "Heartrate",
-		message: `${heartrate !== 0 ? `${heartrate} BPM` : "Unavailable"}`,
-		color: "crimson",
-	});
+	if (heartrate !== 0) {
+		return makeBadge({
+			label: "Heartrate",
+			message: `${heartrate} BPM`,
+			color: "crimson",
+		});
+	}
+
+	return heartrateUnavailable;
 };

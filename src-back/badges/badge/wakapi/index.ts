@@ -1,6 +1,12 @@
 //import type { Types } from "@prequist/lanyard";
 import { makeBadge } from "badge-maker";
 
+const notOk = makeBadge({
+	label: "Wakapi",
+	message: "Interval Not Valid",
+	color: "red",
+});
+
 export default async (opts: {
 	type: string;
 	heartrate: number;
@@ -30,11 +36,7 @@ export default async (opts: {
 		`https://wakapi.atums.world/api/compat/shields/v1/seth/interval:${key}`,
 	);
 	if (!req.ok) {
-		return makeBadge({
-			label: "Wakapi",
-			message: "Interval Not Valid",
-			color: "red",
-		});
+		return notOk;
 	}
 	const data = (await req.json()) as {
 		message: string;
