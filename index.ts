@@ -4,9 +4,11 @@ import { Glob } from "bun";
 import { blogItems } from "./.vitepress/util";
 import { badger } from "./src-back/badges";
 import { heliopolis } from "./src-back/heliopolis";
+import { Hyperate } from "./src-back/sockets/hyperate";
+import { Lanyard } from "./src-back/sockets/lanyard";
 
-const heartrate = 0;
-const lanyard: Types.Presence = {
+let heartrate = 0;
+let lanyard: Types.Presence = {
 	spotify: null,
 	kv: {},
 	listening_to_spotify: false,
@@ -61,7 +63,7 @@ for (const file of glob.scanSync("./public")) {
 	};
 }
 
-const _server = Bun.serve({
+const server = Bun.serve({
 	routes: {
 		...routes,
 
@@ -142,7 +144,6 @@ const _server = Bun.serve({
 	},
 });
 
-/* Sockets
 new Hyperate((data) => {
 	if (lanyard?.discord_status === "offline") {
 		heartrate = data;
@@ -167,4 +168,3 @@ new Lanyard((data) => {
 	lanyard.discord_user.avatar = "";
 	server.publish("data", JSON.stringify({ type: "lanyard", data }), true);
 });
-*/
