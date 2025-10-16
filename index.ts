@@ -163,7 +163,7 @@ if (process.env.HYPERATE_TOKEN && process.env.HYPERATE_ID) {
 
 		server.publish(
 			"data",
-			JSON.stringify({ type: "hyperate", data: { hr: data } }),
+			JSON.stringify({ type: "heartrate", data: { hr: data } }),
 			true,
 		);
 	});
