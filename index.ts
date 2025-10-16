@@ -132,8 +132,15 @@ const server = Bun.serve({
 			return ws.subscribe("data");
 		},
 
-		message(ws) {
-			ws.ping("ping");
+		message(ws, data) {
+			try {
+				const msg = JSON.parse(data.toString())
+				if (msg.type === "ping") {
+					ws.send(JSON.stringify({ type: "pong" }));
+				}
+			} catch {
+				// Ignore JSON parse errors
+			}
 		},
 
 		close(ws) {
