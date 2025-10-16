@@ -134,7 +134,7 @@ const server = Bun.serve({
 
 		message(ws, data) {
 			try {
-				const msg = JSON.parse(data.toString())
+				const msg = JSON.parse(data.toString());
 				if (msg.type === "ping") {
 					ws.send(JSON.stringify({ type: "pong" }));
 				}
