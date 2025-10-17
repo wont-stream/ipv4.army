@@ -96,6 +96,6 @@ export class Hyperate {
 		}
 		this._interval = setTimeout(() => {
 			this._callback(0);
-		}, 6000);
+		}, 60_000);
 	}
 }
