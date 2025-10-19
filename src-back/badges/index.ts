@@ -8,34 +8,34 @@ import stream from "./badge/stream";
 import wakapi from "./badge/wakapi";
 
 const unknownBadge = makeBadge({
-	label: "Unknown",
-	message: `Badge`,
-	color: "red",
+  label: "Unknown",
+  message: `Badge`,
+  color: "red",
 });
 
 export const badger = async (opts: {
-	type: string;
-	heartrate: number;
-	lanyard: Types.Presence;
+  type: string;
+  heartrate: number;
+  lanyard: Types.Presence;
 }) => {
-	switch (opts.type) {
-		case "heartrate": {
-			return await heartrate(opts);
-		}
-		case "listening": {
-			return await listening(opts);
-		}
-		case "status": {
-			return await status(opts);
-		}
-		case "stream": {
+  switch (opts.type) {
+    case "heartrate": {
+      return await heartrate(opts);
+    }
+    case "listening": {
+      return await listening(opts);
+    }
+    case "status": {
+      return await status(opts);
+    }
+    /*case "stream": {
 			return await stream(opts);
-		}
-	}
+			}*/
+  }
 
-	if (opts.type.startsWith("waka_")) {
-		return await wakapi(opts);
-	}
+  if (opts.type.startsWith("waka_")) {
+    return await wakapi(opts);
+  }
 
-	return unknownBadge;
+  return unknownBadge;
 };
