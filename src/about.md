@@ -24,10 +24,10 @@ I currently use a pre-built, but I do plan on building my own PC in the future.
 PC Specs:
 ::: details
 ```
-13th Gen Intel(R) Core(TM) i7-13700F
-GeForce RTX 4070
+AMD Ryzen 5 7600X3D
+GeForce RTX 5070
 32GB DDR5 RAM
-1TB NVMe SSD
+2TB NVMe SSD
 ```
 :::
 
