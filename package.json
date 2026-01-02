@@ -1,32 +1,24 @@
 {
-	"name": "ipv4.army",
-	"module": "index.ts",
-	"type": "module",
-	"private": true,
-	"devDependencies": {
-		"@biomejs/biome": "2.1.2",
-		"@types/bun": "latest",
-		"oxc-minify": "latest",
-		"vitepress": "next",
-		"vue": "latest"
-	},
-	"peerDependencies": {
-		"typescript": "latest"
-	},
-	"overrides": {
-		"vite": "npm:rolldown-vite@latest"
-	},
-	"scripts": {
-		"docs:dev": "bunx vitepress dev",
-		"docs:build": "bunx vitepress build",
-		"docs:preview": "bunx vitepress preview",
-		"-": "",
-		"biome": "bunx biome check --unsafe --write"
-	},
-	"dependencies": {
-		"@prequist/lanyard": "latest",
-		"badge-maker": "latest",
-		"mime": "^4.1.0",
-		"reconnecting-websocket": "latest"
-	}
+  "name": "ipv4.army",
+  "module": "src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "bun run src/build.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@preact/signals": "^2.5.1",
+    "@prequist/lanyard": "^1.1.0",
+    "modern-normalize": "^3.0.1",
+    "preact": "^10.28.1",
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat",
+    "sakura.css": "^1.5.1"
+  }
 }

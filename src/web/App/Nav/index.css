@@ -1,0 +1,58 @@
+nav {
+    padding: 15px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+
+    position: fixed; /* overlays the page, doesn't take up space */
+    top: 0;
+    left: 0;
+
+    background-color: rgb(25, 0, 0, 0.5);
+
+    /* blur the content behind it */
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px); /* Safari */
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    z-index: 1000;
+
+    > div {
+        flex: 1;
+    }
+
+    .left {
+        text-align: left;
+        font-weight: bolder;
+        display: flex;
+        align-items: center; /* vertical */
+
+        img {
+            margin: auto;
+        }
+    }
+
+    .center {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .right {
+        text-align: right;
+        font-weight: bolder;
+    }
+
+    button {
+        background-color: transparent;
+        color: currentColor;
+        border: none;
+
+        &:hover {
+            background-color: #5c0000;
+            color: #dedede;
+        }
+    }
+}
