@@ -1,15 +1,20 @@
 import "./index.css";
 
-import Citation from "./Citation";
-import Activities from "./DiscordActivities";
-import Greeting from "./Greeting";
+import { Activities } from "./DiscordActivities";
+import { Greeting } from "./Greeting";
+import { Quote } from "./Quote";
+import { Time } from "./Time";
 
-const Container = () => {
+export const Container = () => {
 	return (
 		<main class="container">
 			<p>
-				<Greeting /> <b>Seth</b>.
-				<Citation />
+				<span class="greeting-line">
+					{" "}
+					<Greeting />
+					<Time />
+				</span>
+				<Quote />
 			</p>
 			<ul>
 				<li>I'm an avid backend developer</li>
@@ -25,5 +30,3 @@ const Container = () => {
 		</main>
 	);
 };
-
-export default Container;

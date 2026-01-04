@@ -2,7 +2,7 @@ import "./index.css";
 
 import { lanyard } from "src/web/util/realtime";
 
-const Nav = () => {
+export const Nav = () => {
 	return (
 		<nav>
 			<div class="left">S€TH</div>
@@ -12,5 +12,3 @@ const Nav = () => {
 		</nav>
 	);
 };
-
-export default Nav;

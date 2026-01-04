@@ -1,8 +1,8 @@
 import { useRealtime } from "../util/realtime";
-import Container from "./Container";
-import Nav from "./Nav";
+import { Container } from "./Container";
+import { Nav } from "./Nav";
 
-const App = () => {
+export const App = () => {
 	useRealtime();
 
 	return (
@@ -12,5 +12,3 @@ const App = () => {
 		</>
 	);
 };
-
-export default App;

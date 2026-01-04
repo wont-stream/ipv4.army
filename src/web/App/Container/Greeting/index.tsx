@@ -5,7 +5,7 @@ const TYPING_SPEED = 150;
 const DELETING_SPEED = 80;
 const PAUSE_AFTER_TYPING = 1500;
 
-const Greeting = () => {
+export const Greeting = () => {
 	const [text, setText] = useState("");
 	const [index, setIndex] = useState(0);
 	const [isDeleting, setIsDeleting] = useState(false);
@@ -36,7 +36,9 @@ const Greeting = () => {
 		return () => clearTimeout(timeout);
 	}, [text, isDeleting, index]);
 
-	return <span>{text}</span>;
+	return (
+		<span>
+			{text} <b>Seth</b>.
+		</span>
+	);
 };
-
-export default Greeting;

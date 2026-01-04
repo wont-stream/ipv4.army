@@ -10,4 +10,15 @@
 	transform: translate(-50%, -50%);
 
 	background-color: #40363a10;
+
+	.greeting-line {
+		display: flex;
+		justify-content: space-between; /* pushes first span left and Clock right */
+		align-items: center;
+	}
+
+	.greeting-line .line {
+		display: inline-flex;
+		gap: 5px; /* optional spacing between Greeting and "Seth." */
+	}
 }

@@ -29,7 +29,7 @@ const getActivityImages = (activity: Types.Activity) => {
 	return { large, small };
 };
 
-const Activities = () => {
+export const Activities = () => {
 	return lanyard.value.activities.map((activity) => {
 		if (activity.type === 4) return null;
 
@@ -79,5 +79,3 @@ const Activities = () => {
 		);
 	});
 };
-
-export default Activities;
