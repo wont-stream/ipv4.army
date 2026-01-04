@@ -1,4 +1,5 @@
-.container {
+.container,
+.popover {
 	width: 90dvw;
 	margin: auto;
 	margin-top: 30px;
@@ -21,4 +22,15 @@
 		display: inline-flex;
 		gap: 5px; /* optional spacing between Greeting and "Seth." */
 	}
+
+	.center {
+		text-align: center;
+	}
+}
+
+.button-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 5px;
 }
