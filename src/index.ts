@@ -1,52 +1,109 @@
-import build from "./build";
 import { rm } from "node:fs/promises";
+import build from "./build";
+import { lanyardData } from "./socket/lanyard";
 
 await rm("./dist", { recursive: true, force: true });
 const built = await build();
 
-const javascript = built.outputs.filter((output) =>
-  output.path.endsWith(".js"),
-)[0];
-const css = built.outputs.filter((output) => output.path.endsWith(".css"))[0];
+const files = {
+	js: built.outputs.filter((output) => output.path.endsWith(".js"))[0],
+	css: built.outputs.filter((output) => output.path.endsWith(".css"))[0],
+};
 
-Bun.serve({
-  fetch: async (req) => {
-    const url = new URL(req.url);
-    const { pathname } = url;
+export const server = Bun.serve({
+	fetch: async (req, server) => {
+		const url = new URL(req.url);
+		const { pathname, searchParams } = url;
 
-    if (pathname === "/") {
-      return new Response(Bun.file("./dist/index.html"));
-    }
+		if (pathname === "/") {
+			return new Response(Bun.file("./dist/index.html"));
+		}
 
-    if (pathname.startsWith("/chunk")) {
-      const isMap = pathname.endsWith(".map");
-      const isJs = pathname.endsWith(".js");
-      const isCss = pathname.endsWith(".css");
+		switch (pathname) {
+			case "/": {
+				return new Response(Bun.file("./dist/index.html"));
+			}
+			case "/api/ws": {
+				server.upgrade(req, {
+					data: {
+						isAdmin: searchParams.get("key") === Bun.env.apiKey,
+					},
+				});
+				return new Response(null, { status: 101 });
+			}
+			default:
+				{
+				}
+				break;
+		}
 
-      let path = "";
-      if (isMap) {
-        path = `${javascript?.path}.map` || "";
-      }
-      if (isJs) {
-        path = javascript?.path || "";
-      }
-      if (isCss) {
-        path = css?.path || "";
-      }
+		if (pathname.startsWith("/chunk")) {
+			const type = pathname.split(".").pop();
+			const file = files[type as "js" | "css"];
 
-      return new Response(Bun.file(path), {
-        headers: {
-          "cache-control": "public, max-age=31536000, immutable",
-        },
-      });
-    }
+			if (!file) {
+				return new Response("Not Found", { status: 404 });
+			}
 
-    const publicFile = Bun.file(`./src/public${pathname}`);
+			const chunkFile = Bun.file(file.path);
+			let chunk = await chunkFile.text();
 
-    if (await publicFile.exists()) {
-      return new Response(publicFile);
-    }
+			chunk = chunk.replace('"lanyardData"', JSON.stringify(lanyardData));
 
-    return new Response("Not Found", { status: 404 });
-  },
+			return new Response(chunk, {
+				headers: {
+					"cache-control": "public, max-age=31536000, immutable",
+					"content-type": chunkFile.type,
+				},
+			});
+		} else {
+			const publicFile = Bun.file(`./src/public${pathname}`);
+
+			if (await publicFile.exists()) {
+				return new Response(publicFile);
+			}
+		}
+
+		return new Response("Not Found", { status: 404 });
+	},
+	websocket: {
+		data: {} as { isAdmin: boolean },
+		idleTimeout: 960,
+
+		open: async (ws) => {
+			ws.subscribe("lanyard");
+
+			ws.send(
+				JSON.stringify({
+					type: "lanyard",
+					data: lanyardData,
+				}),
+				true,
+			);
+		},
+
+		message: async (ws, message) => {
+			try {
+				const msg = JSON.parse(message as string) as {
+					type: string;
+					data: string;
+				};
+				const { type } = msg;
+
+				switch (type) {
+					case "ping":
+						{
+							ws.send(JSON.stringify({ type: "pong", data: "" }), true);
+						}
+						break;
+					default:
+						{
+						}
+						break;
+				}
+			} catch (_e) {
+				// ignore
+			}
+		},
+	},
 });

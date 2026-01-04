@@ -1,32 +1,32 @@
 .activity {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 
-    .image {
-        position: relative;
-        width: 75px;
-        height: 75px;
-        flex-shrink: 0;
+	.image {
+		position: relative;
+		width: 75px;
+		height: 75px;
+		flex-shrink: 0;
 
-        img {
-            display: block;
-        }
+		img {
+			display: block;
+		}
 
-        .large {
-            border-radius: 5%;
-        }
+		.large {
+			border-radius: 5%;
+		}
 
-        .small {
-            position: absolute;
-            border-radius: 50%;
-            right: 0;
-            bottom: 0;
-        }
-    }
+		.small {
+			position: absolute;
+			border-radius: 50%;
+			right: 0;
+			bottom: 0;
+		}
+	}
 
-    .text {
-        display: flex;
-        flex-direction: column;
-    }
+	.text {
+		display: flex;
+		flex-direction: column;
+	}
 }

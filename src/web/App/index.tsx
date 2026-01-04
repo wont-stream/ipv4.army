@@ -1,17 +1,16 @@
+import { useRealtime } from "../util/realtime";
 import Container from "./Container";
 import Nav from "./Nav";
 
-import { useLanyard } from "../util/lanyard";
-
 const App = () => {
-  useLanyard();
+	useRealtime();
 
-  return (
-    <>
-      <Nav />
-      <Container />
-    </>
-  );
+	return (
+		<>
+			<Nav />
+			<Container />
+		</>
+	);
 };
 
 export default App;
