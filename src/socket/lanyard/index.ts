@@ -32,8 +32,15 @@ export let lanyardData: LanyardData = {
 	spotify: null,
 };
 
-let socket = new WebSocket("wss://lanyard.atums.world/socket");
+const urls = [
+	"wss://lanyard.atums.world/socket",
+	"wss://api.lanyard.rest/socket",
+];
+let urlIndex = 0;
 
+const urlProvider = () => urls[urlIndex++ % urls.length] as string;
+
+let socket = new WebSocket(urlProvider());
 const subscribe_to_id = "1383584342105919559";
 
 let heartbeatInterval: NodeJS.Timeout | null = null;
@@ -92,7 +99,7 @@ const onClose = () => {
 	reconnectTimeout = setTimeout(() => {
 		reconnectTimeout = null;
 
-		socket = new WebSocket("wss://lanyard.atums.world/socket");
+		socket = new WebSocket(urlProvider());
 
 		socket.onopen = onOpen;
 		socket.onmessage = onMessage;
