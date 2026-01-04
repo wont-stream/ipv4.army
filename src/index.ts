@@ -1,8 +1,7 @@
-import { rm } from "node:fs/promises";
-import build from "./build";
+import { build } from "./build";
 import { lanyardData } from "./socket/lanyard";
+import { compress } from "./util/compress";
 
-await rm("./dist", { recursive: true, force: true });
 const built = await build();
 
 const files = {
@@ -11,31 +10,18 @@ const files = {
 };
 
 export const server = Bun.serve({
-	fetch: async (req, server) => {
+	routes: {
+		"/": async (req) => {
+			return await compress(req, Bun.file("./dist/index.html"), false);
+		},
+		"/api/ws": (req, server) => {
+			server.upgrade(req);
+			return new Response(null, { status: 101 });
+		},
+	},
+	fetch: async (req) => {
 		const url = new URL(req.url);
-		const { pathname, searchParams } = url;
-
-		if (pathname === "/") {
-			return new Response(Bun.file("./dist/index.html"));
-		}
-
-		switch (pathname) {
-			case "/": {
-				return new Response(Bun.file("./dist/index.html"));
-			}
-			case "/api/ws": {
-				server.upgrade(req, {
-					data: {
-						isAdmin: searchParams.get("key") === Bun.env.apiKey,
-					},
-				});
-				return new Response(null, { status: 101 });
-			}
-			default:
-				{
-				}
-				break;
-		}
+		const { pathname } = url;
 
 		if (pathname.startsWith("/chunk")) {
 			const type = pathname.split(".").pop();
@@ -45,25 +31,18 @@ export const server = Bun.serve({
 				return new Response("Not Found", { status: 404 });
 			}
 
-			const chunkFile = Bun.file(file.path);
-
-			return new Response(chunkFile, {
-				headers: {
-					"cache-control": "public, max-age=31536000, immutable",
-				},
-			});
+			return compress(req, Bun.file(file.path));
 		} else {
 			const publicFile = Bun.file(`./src/public${pathname}`);
 
 			if (await publicFile.exists()) {
-				return new Response(publicFile);
+				return compress(req, publicFile);
 			}
 		}
 
 		return new Response("Not Found", { status: 404 });
 	},
 	websocket: {
-		data: {} as { isAdmin: boolean },
 		idleTimeout: 960,
 
 		open: async (ws) => {
