@@ -2,7 +2,7 @@ import type { Types } from "@prequist/lanyard";
 import "./index.css";
 
 import { lanyard } from "src/web/util/realtime";
-import Image from "../../Components/Image";
+import { Image } from "../../Components/Image";
 import { ProgressBar } from "./ProgressBar";
 
 const typeMap = {

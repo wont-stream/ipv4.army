@@ -1,6 +1,6 @@
 import type { GenericEventHandler } from "preact";
 
-const Image = (props: {
+export const Image = (props: {
 	src?: string;
 	alt?: string;
 	title?: string;
@@ -23,5 +23,3 @@ const Image = (props: {
 		/>
 	);
 };
-
-export default Image;
