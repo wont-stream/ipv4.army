@@ -1,3 +1,5 @@
+import "./index.css";
+
 import { useEffect, useState } from "preact/hooks";
 
 export const ProgressBar = (props: { activity: LanyardActivity }) => {
