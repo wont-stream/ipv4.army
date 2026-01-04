@@ -3,6 +3,7 @@ import "./index.css";
 
 import { lanyard } from "src/web/util/realtime";
 import Image from "../../Components/Image";
+import { ProgressBar } from "./ProgressBar";
 
 const typeMap = {
 	0: "Playing",
@@ -75,6 +76,7 @@ export const Activities = () => {
 						<div>{activity.state || " "}</div>
 					</div>
 				</div>
+				<ProgressBar activity={activity} />
 			</blockquote>
 		);
 	});

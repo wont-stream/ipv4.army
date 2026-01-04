@@ -12,4 +12,5 @@ declare module "*.css" {
 
 declare global {
 	type LanyardData = Types.Presence;
+	type LanyardActivity = Types.Activity;
 }
