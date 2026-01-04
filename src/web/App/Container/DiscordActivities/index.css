@@ -13,10 +13,6 @@
 			display: block;
 		}
 
-		.large {
-			border-radius: 5%;
-		}
-
 		.small {
 			position: absolute;
 			border-radius: 50%;

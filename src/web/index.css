@@ -1,6 +1,12 @@
 @import "modern-normalize";
 @import "sakura.css/css/sakura-vader.css";
 
+*::before,
+*,
+*::after {
+	border-radius: 4px;
+}
+
 body {
 	width: 100dvw;
 	height: 100dvh;

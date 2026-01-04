@@ -45,7 +45,6 @@ export const Activities = () => {
 					<div class="image">
 						{large && (
 							<Image
-								class="large"
 								width={70}
 								height={70}
 								src={large}
