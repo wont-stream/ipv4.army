@@ -1,11 +1,11 @@
 import "./index.css";
 import { X } from "lucide-preact";
-import type { ReactNode } from "react";
+import type { ComponentChildren } from "preact";
 
 export const Popover = (props: {
 	id: string;
 	title: string;
-	body: ReactNode;
+	children: ComponentChildren;
 }) => {
 	const handleClose = () => {
 		const el = document.getElementById(props.id) as HTMLDivElement;
@@ -20,7 +20,7 @@ export const Popover = (props: {
 					<X />
 				</button>
 			</div>
-			<div class="body center">{props.body}</div>
+			<div class="body center">{props.children}</div>
 		</div>
 	);
 };

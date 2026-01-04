@@ -2,12 +2,7 @@ import { build } from "./build";
 import { lanyardData } from "./socket/lanyard";
 import { compress } from "./util/compress";
 
-const built = await build();
-
-const files = {
-	js: built.outputs.filter((output) => output.path.endsWith(".js"))[0],
-	css: built.outputs.filter((output) => output.path.endsWith(".css"))[0],
-};
+const { files } = await build();
 
 export const server = Bun.serve({
 	routes: {
