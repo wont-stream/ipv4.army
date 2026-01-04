@@ -46,14 +46,10 @@ export const server = Bun.serve({
 			}
 
 			const chunkFile = Bun.file(file.path);
-			let chunk = await chunkFile.text();
 
-			chunk = chunk.replace('"lanyardData"', JSON.stringify(lanyardData));
-
-			return new Response(chunk, {
+			return new Response(chunkFile, {
 				headers: {
 					"cache-control": "public, max-age=31536000, immutable",
-					"content-type": chunkFile.type,
 				},
 			});
 		} else {
