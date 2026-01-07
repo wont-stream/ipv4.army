@@ -93,7 +93,7 @@ export const Popups = () => {
 					DT 770 Pro Limited
 				</Link>{" "}
 				Headphones, a Blue{" "}
-				<Link href="https://www.logitechg.com/en-us/shop/p/yeti-nano-usb-microphone">
+				<Link href="https://logitechg.com/en-us/shop/p/yeti-nano-usb-microphone">
 					Yeti Nano
 				</Link>
 				, and a SteelSeries{" "}
@@ -107,15 +107,15 @@ export const Popups = () => {
 				<br />
 				I've invested in the{" "}
 				<Link href="https://csa-iot.org/all-solutions/matter">Matter</Link> over{" "}
-				<Link href="https://www.threadgroup.org/">Thread</Link> ecosystem, and
-				refuse to use pretty much anything else
+				<Link href="https://threadgroup.org">Thread</Link> ecosystem, and refuse
+				to use pretty much anything else
 				<br />I have quite a few smart plugs, lightbulbs, and sensors, all just
 				in my room.
 				<br />
 				While I do babble with{" "}
-				<Link href="https://www.home-assistant.io">Home Assistant</Link>, I
-				choose to use <Link href="https://home.google.com">Google Home</Link>{" "}
-				just to keep things simple.
+				<Link href="https://home-assistant.io">Home Assistant</Link>, I choose
+				to use <Link href="https://home.google.com">Google Home</Link> just to
+				keep things simple.
 				<br />
 				Unfortunately my lightbulb of choice, are the{" "}
 				<Link href="https://philips-hue.com">Philips Hue</Link> bulbs, even
