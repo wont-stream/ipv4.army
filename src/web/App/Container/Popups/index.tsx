@@ -106,7 +106,7 @@ export const Popups = () => {
 				I love having control over my stuff at the touch of a button
 				<br />
 				I've invested in the{" "}
-				<Link href="https://csa-iot.org/all-solutions/matter">Matter</Link> over
+				<Link href="https://csa-iot.org/all-solutions/matter">Matter</Link> over{" "}
 				<Link href="https://www.threadgroup.org/">Thread</Link> ecosystem, and
 				refuse to use pretty much anything else
 				<br />I have quite a few smart plugs, lightbulbs, and sensors, all just
