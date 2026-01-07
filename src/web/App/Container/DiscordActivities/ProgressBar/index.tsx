@@ -24,6 +24,7 @@ export const ProgressBar = (props: { activity: LanyardActivity }) => {
 
 	const start = props.activity.timestamps?.start ?? null;
 	const end = props.activity.timestamps?.end ?? null;
+	const createdAt = props.activity.created_at;
 
 	if (start && end) {
 		const progress =
@@ -34,9 +35,7 @@ export const ProgressBar = (props: { activity: LanyardActivity }) => {
 				<div class="progress-bar" style={`width:${progress}%`}></div>
 			</div>
 		);
-	}
-
-	if (start) {
+	} else if (start && !end) {
 		const elapsed = new Date(now - start);
 		const hours = elapsed.getUTCHours();
 		const minutes = elapsed.getUTCMinutes();
@@ -48,9 +47,7 @@ export const ProgressBar = (props: { activity: LanyardActivity }) => {
 				{minutes}:{seconds.toString().padStart(2, "0")}
 			</span>
 		);
-	}
-
-	if (end) {
+	} else if (end && !start) {
 		const left = new Date(end - now);
 		const hours = left.getUTCHours();
 		const minutes = left.getUTCMinutes();
@@ -60,6 +57,18 @@ export const ProgressBar = (props: { activity: LanyardActivity }) => {
 			<span>
 				{hours > 0 ? `${hours}:` : ""}
 				{minutes}:{seconds.toString().padStart(2, "0")} left
+			</span>
+		);
+	} else if (!start && !end && createdAt) {
+		const elapsed = new Date(now - createdAt);
+		const hours = elapsed.getUTCHours();
+		const minutes = elapsed.getUTCMinutes();
+		const seconds = elapsed.getUTCSeconds();
+
+		return (
+			<span>
+				Elapsed {hours > 0 ? `${hours}:` : ""}
+				{minutes}:{seconds.toString().padStart(2, "0")}
 			</span>
 		);
 	}
