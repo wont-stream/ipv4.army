@@ -7,13 +7,14 @@ export const Image = (props: {
 	class?: string;
 	width: number;
 	height: number;
+	fit?: "inside" | "outside" | "cover" | "fill" | "contain";
 	onError?: GenericEventHandler<HTMLImageElement>;
 }) => {
 	return (
 		<img
 			loading="lazy"
 			decoding="async"
-			src={`https://wsrv.nl?dpr=${window.devicePixelRatio}&output=webp&w=${props.width}&h=${props.height}&default=${location.host}/android-chrome-192x192.png&url=${props.src}`}
+			src={`https://wsrv.nl?w=${props.width}&h=${props.height}&dpr=${window.devicePixelRatio}&fit=${props.fit || "fill"}&default=${location.host}/android-chrome-192x192.png&output=webp&url=${props.src}`}
 			alt={props.alt}
 			title={props.title}
 			class={props.class}
