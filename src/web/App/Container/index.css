@@ -1,36 +1,36 @@
 .container,
 .popover {
-	width: 90dvw;
-	margin: auto;
-	margin-top: 30px;
-	padding: 13px;
+    width: 90dvw;
+    margin: auto;
+    margin-top: 30px;
+    padding: 13px;
 
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-	background-color: #40363a10;
+    background-color: #40363a10;
 
-	.greeting-line {
-		display: flex;
-		justify-content: space-between; /* pushes first span left and Clock right */
-		align-items: center;
-	}
+    .greeting-line {
+        display: flex;
+        justify-content: space-between; /* pushes first span left and Clock right */
+        align-items: center;
+    }
 
-	.greeting-line .line {
-		display: inline-flex;
-		gap: 5px; /* optional spacing between Greeting and "Seth." */
-	}
+    .greeting-line .line {
+        display: inline-flex;
+        gap: 5px; /* optional spacing between Greeting and "Seth." */
+    }
 
-	.center {
-		text-align: center;
-	}
+    .center {
+        text-align: center;
+    }
 }
 
 .button-grid {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
 }
