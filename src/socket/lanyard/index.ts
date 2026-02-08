@@ -28,6 +28,7 @@ export let lanyardData: LanyardData = {
 
 const urls = [
 	"wss://lanyard.atums.world/socket",
+	"wss://lanyard.vmohammad.dev/socket",
 	"wss://api.lanyard.rest/socket",
 ];
 let urlIndex = 0;
