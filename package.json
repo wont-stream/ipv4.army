@@ -19,6 +19,7 @@
 	"dependencies": {
 		"@atums/echo": "^2.0.3",
 		"@preact/signals": "^2.5.1",
+		"badge-maker": "^5.0.2",
 		"lucide-preact": "^0.562.0",
 		"modern-normalize": "^3.0.1",
 		"preact": "^10.28.1",
