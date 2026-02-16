@@ -3,26 +3,27 @@ import { useEffect, useState } from "preact/hooks";
 const timeZone = "America/New_York";
 
 export const Time = () => {
-	const [time, setTime] = useState(
-		new Date().toLocaleString(undefined, { timeZone }),
-	);
+  const [time, setTime] = useState(
+    new Date().toLocaleString(undefined, { timeZone }),
+  );
 
-	useEffect(() => {
-		const tick = () => {
-			setTime(new Date().toLocaleString(undefined, { timeZone }));
-		};
+  useEffect(() => {
+    const tick = () => {
+      setTime(new Date().toLocaleString(undefined, { timeZone }));
+    };
+    let interval: NodeJS.Timeout;
 
-		const now = new Date();
-		const delay = 1000 - now.getMilliseconds(); // align to next second
+    const delay = 1000 - new Date().getMilliseconds();
+    const timeout = setTimeout(() => {
+      tick();
+      interval = setInterval(tick, 1000);
+    }, delay);
 
-		const timeout = setTimeout(() => {
-			tick();
-			const interval = setInterval(tick, 1000);
-			return () => clearInterval(interval);
-		}, delay);
+    return () => {
+      clearTimeout(timeout);
+      if (interval) clearInterval(interval);
+    };
+  }, []);
 
-		return () => clearTimeout(timeout);
-	}, []);
-
-	return <code>{time}</code>;
+  return <code>{time}</code>;
 };
