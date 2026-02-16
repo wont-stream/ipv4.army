@@ -1,5 +1,4 @@
 import { echo } from "@atums/echo";
-
 import { server } from "src";
 
 export let lanyardData: LanyardData = {
@@ -26,89 +25,120 @@ export let lanyardData: LanyardData = {
 	spotify: null,
 };
 
-const urls = [
-	"wss://lanyard.atums.world/socket",
+const URLS = [
+	"wss://lanyard.creations.works/socket",
 	"wss://lanyard.vmohammad.dev/socket",
 	"wss://api.lanyard.rest/socket",
-];
-let urlIndex = 0;
+] as const;
 
-const urlProvider = () => urls[urlIndex++ % urls.length] as string;
+const SUBSCRIBE_TO_ID = "1383584342105919559";
+const RECONNECT_DELAY = 5000;
 
-let socket = new WebSocket(urlProvider());
-const subscribe_to_id = "1383584342105919559";
+class LanyardClient {
+	private socket: WebSocket | null = null;
+	private urlIndex = 0;
+	private heartbeatInterval: NodeJS.Timeout | null = null;
+	private reconnectTimeout: NodeJS.Timeout | null = null;
 
-let heartbeatInterval: NodeJS.Timeout | null = null;
-
-const sendHeartbeat = () => {
-	if (socket.readyState === WebSocket.OPEN) {
-		socket.send(JSON.stringify({ op: 3 }));
-	}
-};
-
-const onOpen = () => {
-	echo.info("[Lanyard]", "WebSocket Opened");
-};
-
-const onMessage = (event: MessageEvent) => {
-	const msg = JSON.parse(event.data);
-
-	// Hello (heartbeat interval)
-	if (msg.op === 1) {
-		heartbeatInterval = setInterval(sendHeartbeat, msg.d.heartbeat_interval);
-
-		socket.send(
-			JSON.stringify({
-				op: 2,
-				d: { subscribe_to_id },
-			}),
-		);
-		return;
+	constructor() {
+		this.connect();
 	}
 
-	// Presence update
-	if (msg.op === 0) {
-		lanyardData = msg.d;
-		server.publish(
-			"lanyard",
-			JSON.stringify({
-				type: "lanyard",
-				data: lanyardData,
-			}),
-			true,
-		);
-	}
-};
-
-let reconnectTimeout: NodeJS.Timeout | null = null;
-
-const onClose = () => {
-	echo.warn("[Lanyard]", "WebSocket Closed", "Attempting Reconnect...");
-	if (heartbeatInterval !== null) {
-		clearInterval(heartbeatInterval);
-		heartbeatInterval = null;
+	private getNextUrl(): string {
+		return URLS[this.urlIndex++ % URLS.length] as string;
 	}
 
-	if (reconnectTimeout !== null) return;
+	private connect() {
+		const url = this.getNextUrl();
+		echo.info("[Lanyard]", `Connecting to ${url}...`);
 
-	reconnectTimeout = setTimeout(() => {
-		reconnectTimeout = null;
+		this.socket = new WebSocket(url);
+		this.socket.onopen = () => this.onOpen();
+		this.socket.onmessage = (event) => this.onMessage(event);
+		this.socket.onclose = () => this.onClose();
+		this.socket.onerror = (event) => this.onError(event);
+	}
 
-		socket = new WebSocket(urlProvider());
+	private sendHeartbeat() {
+		if (this.socket?.readyState === WebSocket.OPEN) {
+			this.socket.send(JSON.stringify({ op: 3 }));
+		}
+	}
 
-		socket.onopen = onOpen;
-		socket.onmessage = onMessage;
-		socket.onclose = onClose;
-		socket.onerror = onError;
-	}, 5000);
-};
+	private onOpen() {
+		echo.info("[Lanyard]", "WebSocket connected");
+	}
 
-const onError = (event: Event) => {
-	echo.warn("[Lanyard]", "WebSocket Error", event);
-	return onClose();
-};
+	private onMessage(event: MessageEvent) {
+		const msg = JSON.parse(event.data);
 
-socket.onopen = onOpen;
-socket.onmessage = onMessage;
-socket.onclose = onClose;
-socket.onerror = onError;
+		if (msg.op === 1) {
+			if (this.heartbeatInterval) {
+				clearInterval(this.heartbeatInterval);
+			}
+			this.heartbeatInterval = setInterval(
+				() => this.sendHeartbeat(),
+				msg.d.heartbeat_interval,
+			);
+
+			this.socket?.send(
+				JSON.stringify({
+					op: 2,
+					d: { subscribe_to_id: SUBSCRIBE_TO_ID },
+				}),
+			);
+			return;
+		}
+
+		if (msg.op === 0) {
+			lanyardData = msg.d;
+			server.publish(
+				"lanyard",
+				JSON.stringify({
+					type: "lanyard",
+					data: lanyardData,
+				}),
+				true,
+			);
+		}
+	}
+
+	private onClose() {
+		echo.warn("[Lanyard]", "WebSocket closed. Reconnecting...");
+		this.cleanup();
+		this.scheduleReconnect();
+	}
+
+	private onError(event: Event) {
+		echo.error("[Lanyard]", "WebSocket error", event);
+	}
+
+	private cleanup() {
+		if (this.heartbeatInterval) {
+			clearInterval(this.heartbeatInterval);
+			this.heartbeatInterval = null;
+		}
+	}
+
+	private scheduleReconnect() {
+		if (this.reconnectTimeout) return;
+
+		echo.info("[Lanyard]", `Reconnecting in ${RECONNECT_DELAY}ms...`);
+
+		this.reconnectTimeout = setTimeout(() => {
+			this.reconnectTimeout = null;
+			this.connect();
+		}, RECONNECT_DELAY);
+	}
+
+	public disconnect() {
+		this.cleanup();
+		if (this.reconnectTimeout) {
+			clearTimeout(this.reconnectTimeout);
+			this.reconnectTimeout = null;
+		}
+		this.socket?.close();
+	}
+}
+
+export const lanyardClient = new LanyardClient();

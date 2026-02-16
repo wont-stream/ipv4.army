@@ -1,7 +1,7 @@
 import { makeBadge } from "badge-maker";
 import { defaultBadgeOptions } from "../defaults";
 
-const badge = () => {
+const badge = async () => {
 	return makeBadge({
 		...defaultBadgeOptions,
 		label: "Not",

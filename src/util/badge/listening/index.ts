@@ -13,7 +13,7 @@ const notListening: Types.Activity = {
 	state: "To Anything",
 };
 
-const badge = () => {
+const badge = async () => {
 	const activity =
 		lanyardData.activities.find((act) => {
 			return act.type === 2;

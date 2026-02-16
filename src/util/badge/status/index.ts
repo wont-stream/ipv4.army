@@ -16,7 +16,7 @@ const colorMap = {
 	offline: "gray",
 };
 
-const badge = () => {
+const badge = async () => {
 	const status = lanyardData.discord_status;
 	const message = statusMap[status];
 	const color = colorMap[status];

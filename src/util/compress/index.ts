@@ -10,12 +10,10 @@ export const compress = async (
 	let encoded: Buffer | Uint8Array<ArrayBuffer> | null = null;
 	let encodedWith: string | null = null;
 
-	if (encoders.includes("zstd") && encodedWith === null) {
+	if (encoders.includes("zstd")) {
 		encoded = await Bun.zstdCompress(data, { level: 22 });
 		encodedWith = "zstd";
-	}
-
-	if (encoders.includes("gzip") && encodedWith === null) {
+	} else if (encoders.includes("gzip")) {
 		encoded = Bun.gzipSync(data, { level: 9, memLevel: 9, windowBits: 31 });
 		encodedWith = "gzip";
 	}
