@@ -4,8 +4,9 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"build": "bun run src/build.ts",
-		"start": "bun run src/index.ts",
+		"dev": "bun --hot src/index.ts",
+		"build": "bun build ./src/web/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
+		"start": "NODE_ENV=production bun src/index.ts",
 		"lint": "bunx --bun biome check --write"
 	},
 	"devDependencies": {
@@ -18,11 +19,11 @@
 	},
 	"dependencies": {
 		"@atums/echo": "^2.0.3",
-		"@preact/signals": "^2.7.0",
+		"@preact/signals": "^2.9.0",
 		"badge-maker": "^5.0.2",
 		"lucide-preact": "^0.562.0",
 		"modern-normalize": "^3.0.1",
-		"preact": "^10.28.3",
+		"preact": "^10.29.1",
 		"react": "npm:@preact/compat",
 		"react-dom": "npm:@preact/compat",
 		"sakura.css": "^1.5.1"

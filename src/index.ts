@@ -1,15 +1,11 @@
-import { build } from "./build";
 import { lanyardData } from "./socket/lanyard";
 import { badge } from "./util/badge";
 import { compress } from "./util/compress";
-
-const { files } = await build();
+import App from "./web/index.html";
 
 export const server = Bun.serve({
 	routes: {
-		"/": async (req) => {
-			return await compress(req, Bun.file("./dist/index.html"), false);
-		},
+		"/": App,
 		"/api/ws": (req, server) => {
 			server.upgrade(req);
 			return new Response(null, { status: 101 });
@@ -21,26 +17,15 @@ export const server = Bun.serve({
 	fetch: async (req) => {
 		const url = new URL(req.url);
 		const { pathname } = url;
+		const publicFile = Bun.file(`./src/public${pathname}`);
 
-		if (pathname.startsWith("/chunk")) {
-			const type = pathname.split(".").pop();
-			const file = files[type as "js" | "css"];
-
-			if (!file) {
-				return new Response("Not Found", { status: 404 });
-			}
-
-			return compress(req, Bun.file(file.path));
-		} else {
-			const publicFile = Bun.file(`./src/public${pathname}`);
-
-			if (await publicFile.exists()) {
-				return compress(req, publicFile);
-			}
+		if (await publicFile.exists()) {
+			return compress(req, publicFile);
 		}
 
 		return new Response("Not Found", { status: 404 });
 	},
+
 	websocket: {
 		idleTimeout: 960,
 
@@ -79,5 +64,13 @@ export const server = Bun.serve({
 				// ignore
 			}
 		},
+	},
+
+	development: process.env.NODE_ENV !== "production" && {
+		// Enable browser hot reloading in development
+		hmr: true,
+
+		// Echo console logs from the browser to the server
+		console: true,
 	},
 });
