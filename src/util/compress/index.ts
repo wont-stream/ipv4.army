@@ -1,41 +1,64 @@
-export const compress = async (
-	req: Request,
-	file: Bun.BunFile,
-	cache = true,
-) => {
-	const encoders = req.headers.get("Accept-Encoding") || "";
+import type { BunFile } from "bun";
 
-	const data = await file.arrayBuffer();
+type CompressionFormat = "gzip" | "deflate" | /*"br" |*/ "zstd" | null;
 
-	let encoded: Buffer | Uint8Array<ArrayBuffer> | null = null;
-	let encodedWith: string | null = null;
+function detectCompression(headers: Headers): CompressionFormat {
+	const acceptEncoding = headers.get("accept-encoding") ?? "";
 
-	if (encoders.includes("zstd")) {
-		encoded = await Bun.zstdCompress(data, { level: 22 });
-		encodedWith = "zstd";
-	} else if (encoders.includes("gzip")) {
-		encoded = Bun.gzipSync(data, { level: 9, memLevel: 9, windowBits: 31 });
-		encodedWith = "gzip";
-	}
+	// Priority order: zstd > br > gzip > deflate
+	if (/\bzstd\b/i.test(acceptEncoding)) return "zstd";
+	//if (/\bbr\b/i.test(acceptEncoding)) return "br";
+	if (/\bgzip\b/i.test(acceptEncoding)) return "gzip";
+	if (/\bdeflate\b/i.test(acceptEncoding)) return "deflate";
 
-	if (encoded === null) {
-		// No encoding supported, return original file
-		return new Response(file, {
-			headers: {
-				...(cache
-					? { "Cache-Control": "public, max-age=31536000, immutable" }
-					: {}),
-			},
-		});
-	}
+	return null;
+}
 
-	return new Response(encoded as BodyInit, {
-		headers: {
-			"Content-Encoding": encodedWith as string,
-			"Content-Type": file.type,
-			...(cache
-				? { "Cache-Control": "public, max-age=31536000, immutable" }
-				: {}),
-		},
-	});
+const COMPRESSION_HEADERS: Record<NonNullable<CompressionFormat>, string> = {
+	zstd: "zstd",
+	//br: "br",
+	gzip: "gzip",
+	deflate: "deflate",
 };
+
+export async function compressResponse(
+	reqHeaders: Headers,
+	file: BunFile,
+): Promise<Response> {
+	const format = detectCompression(reqHeaders);
+
+	if (!format) {
+		// Client doesn't support any compression — stream the file as-is
+		return new Response(file);
+	}
+
+	const fileBuffer = await file.arrayBuffer();
+
+	const responseHeaders = new Headers({
+		"Content-Type": file.type || "application/octet-stream",
+	});
+
+	// Bun.gzipSync / deflateSync / etc. based on format
+	const data = new Uint8Array(fileBuffer);
+	let compressedData: Uint8Array;
+	switch (format) {
+		case "gzip":
+			compressedData = Bun.gzipSync(data);
+			break;
+		case "deflate":
+			compressedData = Bun.deflateSync(data);
+			break;
+		/*case "br":
+			compressedData = Bun.brotliCompressSync(new Uint8Array(fileBuffer));
+			break;*/
+		case "zstd":
+			compressedData = await Bun.zstdCompress(data);
+			break;
+	}
+
+	responseHeaders.set("Content-Encoding", COMPRESSION_HEADERS[format]);
+	responseHeaders.set("Content-Length", String(compressedData.byteLength));
+	responseHeaders.set("Vary", "Accept-Encoding");
+
+	return new Response(compressedData, { headers: responseHeaders });
+}

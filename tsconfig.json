@@ -1,12 +1,12 @@
 {
 	"compilerOptions": {
 		// Environment setup & latest features
-		"lib": ["ESNext", "DOM"],
+		"lib": ["ESNext"],
 		"target": "ESNext",
 		"module": "Preserve",
 		"moduleDetection": "force",
-		"jsx": "react-jsx",
 		"allowJs": true,
+		"types": ["bun"],
 
 		// Bundler mode
 		"moduleResolution": "bundler",
@@ -24,14 +24,6 @@
 		// Some stricter flags (disabled by default)
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
-		"noPropertyAccessFromIndexSignature": false,
-
-		"baseUrl": "./",
-		"paths": {
-			"react": ["./node_modules/preact/compat/"],
-			"react/jsx-runtime": ["./node_modules/preact/jsx-runtime"],
-			"react-dom": ["./node_modules/preact/compat/"],
-			"react-dom/*": ["./node_modules/preact/compat/*"]
-		}
+		"noPropertyAccessFromIndexSignature": false
 	}
 }

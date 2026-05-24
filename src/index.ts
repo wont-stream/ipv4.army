@@ -1,76 +1,40 @@
-import { lanyardData } from "./socket/lanyard";
-import { badge } from "./util/badge";
-import { compress } from "./util/compress";
-import App from "./web/index.html";
+import { type BunRequest, file, serve } from "bun";
+import { compressResponse } from "./util/compress";
+import index from "./web/index.html";
 
-export const server = Bun.serve({
+const serveIndex = async (req: BunRequest<"/">) => {
+	return await compressResponse(req.headers, file("./src/web/index.min.html"));
+};
+
+const server = serve({
 	routes: {
-		"/": App,
-		"/api/ws": (req, server) => {
-			server.upgrade(req);
-			return new Response(null, { status: 101 });
-		},
-		"/api/badge/:type": async (req) => {
-			return await badge(req);
-		},
-	},
-	fetch: async (req) => {
-		const url = new URL(req.url);
-		const { pathname } = url;
-		const publicFile = Bun.file(`./src/public${pathname}`);
+		"/": process.env.NODE_ENV !== "production" ? index : serveIndex,
 
-		if (await publicFile.exists()) {
-			return compress(req, publicFile);
-		}
+		"/favicon.ico": async (req) =>
+			await compressResponse(req.headers, file("./src/web/public/favicon.ico")),
+		"/robots.txt": async (req) =>
+			await compressResponse(req.headers, file("./src/web/public/robots.txt")),
+		"/public/*": async (req) => {
+			const { url } = req;
+			const { pathname } = new URL(url);
 
-		return new Response("Not Found", { status: 404 });
-	},
+			const res = Bun.file(`./src/web${pathname}`);
 
-	websocket: {
-		idleTimeout: 960,
-
-		open: async (ws) => {
-			ws.subscribe("lanyard");
-
-			ws.send(
-				JSON.stringify({
-					type: "lanyard",
-					data: lanyardData,
-				}),
-				true,
-			);
-		},
-
-		message: async (ws, message) => {
-			try {
-				const msg = JSON.parse(message as string) as {
-					type: string;
-					data: string;
-				};
-				const { type } = msg;
-
-				switch (type) {
-					case "ping":
-						{
-							ws.send(JSON.stringify({ type: "pong", data: "" }), true);
-						}
-						break;
-					default:
-						{
-						}
-						break;
-				}
-			} catch (_e) {
-				// ignore
+			if (await res.exists()) {
+				return await compressResponse(req.headers, res);
 			}
+
+			return new Response(null, { status: 404 });
 		},
+
+		"/*": Response.redirect("/"),
 	},
 
+	port: 80,
 	development: process.env.NODE_ENV !== "production" && {
-		// Enable browser hot reloading in development
 		hmr: true,
-
-		// Echo console logs from the browser to the server
 		console: true,
 	},
 });
+
+console.log(`🚀 Server running at ${server.url}`);
