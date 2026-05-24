@@ -30,7 +30,6 @@ const server = serve({
 		"/*": Response.redirect("/"),
 	},
 
-	port: 80,
 	development: process.env.NODE_ENV !== "production" && {
 		hmr: true,
 		console: true,
