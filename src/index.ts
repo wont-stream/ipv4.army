@@ -1,3 +1,4 @@
+import { readdir } from "node:fs/promises";
 import { type BunRequest, file, serve } from "bun";
 import { compressResponse } from "./util/compress";
 import index from "./web/index.html";
@@ -5,6 +6,8 @@ import index from "./web/index.html";
 const serveIndex = async (req: BunRequest<"/">) => {
 	return await compressResponse(req.headers, file("./src/web/index.min.html"));
 };
+
+const buttons = await readdir("./src/web/public/88x31");
 
 const server = serve({
 	routes: {
@@ -26,7 +29,11 @@ const server = serve({
 
 			return new Response(null, { status: 404 });
 		},
-
+		"/public/button.png": async () => {
+			const file =
+				buttons[Math.floor(Math.random() * buttons.length)] || "tejo.png";
+			return new Response(Bun.file(`./src/web/public/88x31/${file}`));
+		},
 		"/*": Response.redirect("/"),
 	},
 
