@@ -32,28 +32,31 @@ export async function compressResponse(
 		return new Response(file);
 	}
 
-	const fileBuffer = await file.arrayBuffer();
-
 	const responseHeaders = new Headers({
 		"Content-Type": file.type || "application/octet-stream",
 	});
 
-	// Bun.gzipSync / deflateSync / etc. based on format
-	const data = new Uint8Array(fileBuffer);
-	let compressedData: Uint8Array;
-	switch (format) {
-		case "gzip":
-			compressedData = Bun.gzipSync(data);
-			break;
-		case "deflate":
-			compressedData = Bun.deflateSync(data);
-			break;
-		/*case "br":
-			compressedData = Bun.brotliCompressSync(new Uint8Array(fileBuffer));
-			break;*/
-		case "zstd":
-			compressedData = await Bun.zstdCompress(data);
-			break;
+	// Use streaming compression for better memory efficiency
+	const compressedStream = file.stream().pipeThrough(
+		new CompressionStream(format)
+	);
+
+	const reader = compressedStream.getReader();
+	const chunks: Uint8Array[] = [];
+
+	while (true) {
+		const { done, value } = await reader.read();
+		if (done) break;
+		chunks.push(value);
+	}
+
+	const compressedData = new Uint8Array(
+		chunks.reduce((acc, chunk) => acc + chunk.length, 0)
+	);
+	let offset = 0;
+	for (const chunk of chunks) {
+		compressedData.set(chunk, offset);
+		offset += chunk.length;
 	}
 
 	responseHeaders.set("Content-Encoding", COMPRESSION_HEADERS[format]);

@@ -8,6 +8,7 @@ const serveIndex = async (req: BunRequest<"/">) => {
 };
 
 const buttons = await readdir("./src/web/public/88x31");
+const publicBasePath = "./src/web/public";
 
 const server = serve({
 	routes: {
@@ -21,7 +22,7 @@ const server = serve({
 			const { url } = req;
 			const { pathname } = new URL(url);
 
-			const res = Bun.file(`./src/web${pathname}`);
+			const res = Bun.file(`${publicBasePath}${pathname}`);
 
 			if (await res.exists()) {
 				return await compressResponse(req.headers, res);
@@ -30,9 +31,8 @@ const server = serve({
 			return new Response(null, { status: 404 });
 		},
 		"/public/button.png": async () => {
-			const file =
-				buttons[Math.floor(Math.random() * buttons.length)] || "tejo.png";
-			return new Response(Bun.file(`./src/web/public/88x31/${file}`));
+			const fileName = buttons[Math.floor(Math.random() * buttons.length)] || "tejo.png";
+			return new Response(Bun.file(`${publicBasePath}/88x31/${fileName}`));
 		},
 		"/*": Response.redirect("/"),
 	},
