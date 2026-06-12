@@ -37,9 +37,9 @@ export async function compressResponse(
 	});
 
 	// Use streaming compression for better memory efficiency
-	const compressedStream = file.stream().pipeThrough(
-		new CompressionStream(format)
-	);
+	const compressedStream = file
+		.stream()
+		.pipeThrough(new CompressionStream(format));
 
 	const reader = compressedStream.getReader();
 	const chunks: Uint8Array[] = [];
@@ -51,7 +51,7 @@ export async function compressResponse(
 	}
 
 	const compressedData = new Uint8Array(
-		chunks.reduce((acc, chunk) => acc + chunk.length, 0)
+		chunks.reduce((acc, chunk) => acc + chunk.length, 0),
 	);
 	let offset = 0;
 	for (const chunk of chunks) {

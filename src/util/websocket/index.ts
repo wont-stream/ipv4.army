@@ -33,8 +33,8 @@ class ReconnectingWebSocket {
 		}
 
 		const delay = Math.min(
-			this.baseReconnectDelay * Math.pow(2, this.reconnectAttempts),
-			30000
+			this.baseReconnectDelay * 2 ** this.reconnectAttempts,
+			30000,
 		);
 
 		this.reconnectTimeout = setTimeout(() => {

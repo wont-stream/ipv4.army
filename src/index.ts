@@ -31,7 +31,8 @@ const server = serve({
 			return new Response(null, { status: 404 });
 		},
 		"/public/button.png": async () => {
-			const fileName = buttons[Math.floor(Math.random() * buttons.length)] || "tejo.png";
+			const fileName =
+				buttons[Math.floor(Math.random() * buttons.length)] || "tejo.png";
 			return new Response(Bun.file(`${publicBasePath}/88x31/${fileName}`));
 		},
 		"/*": Response.redirect("/"),
