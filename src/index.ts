@@ -35,6 +35,7 @@ const server = serve({
 				buttons[Math.floor(Math.random() * buttons.length)] || "tejo.png";
 			return new Response(Bun.file(`${publicBasePath}/88x31/${fileName}`));
 		},
+		"/api": Response.json(process.arch),
 		"/*": Response.redirect("/"),
 	},
 
