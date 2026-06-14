@@ -18,6 +18,11 @@ const server = serve({
 			await compressResponse(req.headers, file("./src/web/public/favicon.ico")),
 		"/robots.txt": async (req) =>
 			await compressResponse(req.headers, file("./src/web/public/robots.txt")),
+		"/public/button.png": async () => {
+			const fileName =
+				buttons[Math.floor(Math.random() * buttons.length)] || "tejo.png";
+			return new Response(Bun.file(`${publicBasePath}/88x31/${fileName}`));
+		},
 		"/public/*": async (req) => {
 			const { url } = req;
 			const { pathname } = new URL(url);
@@ -30,12 +35,6 @@ const server = serve({
 
 			return new Response(null, { status: 404 });
 		},
-		"/public/button.png": async () => {
-			const fileName =
-				buttons[Math.floor(Math.random() * buttons.length)] || "tejo.png";
-			return new Response(Bun.file(`${publicBasePath}/88x31/${fileName}`));
-		},
-		"/api": Response.json(process.platform),
 		"/*": Response.redirect("/"),
 	},
 
