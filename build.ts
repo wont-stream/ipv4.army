@@ -37,7 +37,7 @@ const gitmal = await fetch(
 if (gitmal.status !== 200) throw new Error(await gitmal.text());
 
 await Bun.write(path, gitmal);
-await Bun.$`chmod +x ${path}`;
+try { await Bun.$`chmod +x ${path}`; } catch (_e) {/*ignore*/ }
 const proc = spawn([
 	path,
 	"--minify",
