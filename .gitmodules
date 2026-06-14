@@ -1,3 +1,4 @@
 [submodule "src/web/content"]
 	path = src/web/content
 	url = https://heliopolis.live/seth/seth.git
+	branch = main
