@@ -4,30 +4,31 @@ import { compressResponse } from "./util/compress";
 import index from "./web/index.html";
 
 const serveIndex = async (req: BunRequest<"/">) => {
-	return await compressResponse(req.headers, file("./src/web/index.min.html"));
+	return await compressResponse(req.headers, file("./src/web/index.html"));
 };
 
 const buttons = await readdir("./src/web/public/88x31");
-const publicBasePath = "./src/web/public";
+const basePath = "./src/web";
+const publicPath = `${basePath}/public`;
 
 const server = serve({
 	routes: {
 		"/": process.env.NODE_ENV !== "production" ? index : serveIndex,
 
 		"/favicon.ico": async (req) =>
-			await compressResponse(req.headers, file("./src/web/public/favicon.ico")),
+			await compressResponse(req.headers, file(`${publicPath}/favicon.ico`)),
 		"/robots.txt": async (req) =>
-			await compressResponse(req.headers, file("./src/web/public/robots.txt")),
+			await compressResponse(req.headers, file(`${publicPath}/robots.txt`)),
 		"/public/button.png": async () => {
 			const fileName =
 				buttons[Math.floor(Math.random() * buttons.length)] || "tejo.png";
-			return new Response(Bun.file(`${publicBasePath}/88x31/${fileName}`));
+			return new Response(Bun.file(`${publicPath}/88x31/${fileName}`));
 		},
 		"/public/*": async (req) => {
 			const { url } = req;
 			const { pathname } = new URL(url);
 
-			const res = Bun.file(`${publicBasePath}${pathname}`);
+			const res = Bun.file(`${basePath}${pathname}`);
 
 			if (await res.exists()) {
 				return await compressResponse(req.headers, res);
