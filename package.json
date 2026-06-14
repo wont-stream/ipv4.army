@@ -14,5 +14,8 @@
 		"lint": "bunx --bun biome check --write",
 		"precommit": "bun run lint;"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"badge-maker": "^5.0.2"
+	}
 }
