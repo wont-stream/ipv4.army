@@ -41,9 +41,9 @@ await Bun.$`chmod +x ${path}`;
 const proc = spawn([
 	path,
 	"--minify",
-	"--output='./src/web/public/dist'",
-	"--name='Website'",
-	"--owner='S€TH'",
+	"--output=./src/web/public/dist",
+	"--name=Website",
+	"--owner=S€TH",
 	"--theme=xcode-dark",
 	"./src/web/content",
 ]);
