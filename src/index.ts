@@ -1,8 +1,8 @@
 import { readdir } from "node:fs/promises";
 import { type BunRequest, file, serve } from "bun";
 import { compressResponse } from "./util/compress";
-import index from "./web/index.html";
 import { makeSVG } from "./util/heliopolis";
+import index from "./web/index.html";
 
 const serveIndex = async (req: BunRequest<"/">) => {
 	return await compressResponse(req.headers, file("./src/web/index.html"));
@@ -37,7 +37,11 @@ const server = serve({
 
 			return new Response(null, { status: 404 });
 		},
-		"/api/heliopolis/langs": async () => { return new Response(await makeSVG(), { headers: { "Content-Type": "image/svg+xml" } }) },
+		"/api/heliopolis/langs": async () => {
+			return new Response(await makeSVG(), {
+				headers: { "Content-Type": "image/svg+xml" },
+			});
+		},
 		"/*": Response.redirect("/"),
 	},
 
