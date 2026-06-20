@@ -18,9 +18,7 @@ export default function Layout({ children }: LayoutProps<"/">) {
 }
 
 if (!process.env.NEXT_PUBLIC_URL) {
-  throw new Error(
-    "NEXT_PUBLIC_URL is not set.",
-  );
+  throw new Error("NEXT_PUBLIC_URL is not set.");
 }
 
 export const metadata: Metadata = {
