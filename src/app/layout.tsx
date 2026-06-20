@@ -1,7 +1,7 @@
 import { RootProvider } from "fumadocs-ui/provider/next";
 import "./global.css";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Metadata } from "next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,5 +21,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_URL || "http://localhost:3000"),
   title: "S€TH @ IPv4 Army",
   description: "A guy, but a man of few words",
-  keywords: ["S€TH", "Seth", "IPv4 Army", "portfolio", "virtual reality", "VR", "developer"],
+  keywords: [
+    "S€TH",
+    "Seth",
+    "IPv4 Army",
+    "portfolio",
+    "virtual reality",
+    "VR",
+    "developer",
+  ],
 };
