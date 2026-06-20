@@ -6,7 +6,7 @@ const withMDX = createMDX();
 const config: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  async redirects() {
+  /*async redirects() {
     return [
       {
         source: "/",
@@ -14,7 +14,7 @@ const config: NextConfig = {
         permanent: true,
       },
     ];
-  },
+  },*/
 };
 
 export default withMDX(config);
