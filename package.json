@@ -1,21 +1,35 @@
 {
-	"name": "bun-react-template",
-	"version": "0.1.0",
-	"devDependencies": {
-		"@biomejs/biome": "2.4.15",
-		"@types/bun": "latest"
-	},
-	"private": true,
-	"scripts": {
-		"dev": "bun --hot src/index.ts",
-		"build": "bun run build.ts",
-		"build:old": "bun build ./src/web/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
-		"start": "NODE_ENV=production; bun run build; bun run src/index.ts",
-		"lint": "bunx --bun biome check --write",
-		"precommit": "bun run lint;"
-	},
-	"type": "module",
-	"dependencies": {
-		"badge-maker": "^5.0.2"
-	}
+  "name": "ipv4.army",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start",
+    "types:check": "fumadocs-mdx && next typegen && tsc --noEmit",
+    "postinstall": "fumadocs-mdx",
+    "lint": "biome check",
+    "format": "biome format --write"
+  },
+  "dependencies": {
+    "fumadocs-core": "16.10.4",
+    "fumadocs-mdx": "15.0.12",
+    "fumadocs-ui": "16.10.4",
+    "lucide-react": "^1.20.0",
+    "next": "16.2.9",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.1",
+    "@types/mdx": "^2.0.14",
+    "@types/node": "^25.9.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^4.3.1",
+    "typescript": "^6.0.3",
+    "@biomejs/biome": "^2.5.0"
+  }
 }
