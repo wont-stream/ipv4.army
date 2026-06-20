@@ -11,8 +11,8 @@ const inter = Inter({
 if (!process.env.NEXT_PUBLIC_URL) {
   throw new Error("NEXT_PUBLIC_URL is not set.");
 }
-if (!process.env.UMAMI_production_ID || !process.env.UMAMI_development_ID) {
-  throw new Error("UMAMI_production_ID or UMAMI_development_ID is not set.");
+if (!process.env.UMAMI_PRODUCTION_ID || !process.env.UMAMI_DEVELOPMENT_ID) {
+  throw new Error("UMAMI_PRODUCTION_ID or UMAMI_DEVELOPMENT_ID is not set.");
 }
 
 const isProd = process.env.NODE_ENV === "production";
