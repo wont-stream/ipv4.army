@@ -17,8 +17,14 @@ export default function Layout({ children }: LayoutProps<"/">) {
   );
 }
 
+if (!process.env.NEXT_PUBLIC_URL) {
+  throw new Error(
+    "NEXT_PUBLIC_URL is not set.",
+  );
+}
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_URL || "http://localhost:3000"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_URL),
   title: "S€TH @ IPv4 Army",
   description: "A guy, but a man of few words",
   keywords: [
