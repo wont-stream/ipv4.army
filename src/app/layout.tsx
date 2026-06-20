@@ -2,7 +2,8 @@ import { RootProvider } from "fumadocs-ui/provider/next";
 import "./global.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import UmamiProvider from "next-umami";
+
+//import UmamiProvider from "next-umami";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,20 +21,21 @@ const isProd = process.env.NODE_ENV === "production";
 export default function Layout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
-      <head>
-        <UmamiProvider
-          websiteId={
-            process.env[
-              isProd ? "UMAMI_PRODUCTION_ID" : "UMAMI_DEVELOPMENT_ID"
-            ] || ""
-          }
-          src="https://u.ipv4.army/script.js"
-          hostUrl="https://u.ipv4.army"
-          performance={true}
-        />
-      </head>
       <body className="flex flex-col min-h-screen">
-        <RootProvider>{children}</RootProvider>
+        <RootProvider>
+          <main>{children}</main>
+        </RootProvider>
+        <script
+          async
+          defer
+          src="https://u.ipv4.army/script.js"
+          data-website-id={
+            isProd
+              ? process.env.UMAMI_PRODUCTION_ID
+              : process.env.UMAMI_DEVELOPMENT_ID
+          }
+          data-performance="true"
+        ></script>
       </body>
     </html>
   );
