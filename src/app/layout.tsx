@@ -2,6 +2,7 @@ import { RootProvider } from "fumadocs-ui/provider/next";
 import "./global.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 
 //import UmamiProvider from "next-umami";
 
@@ -25,7 +26,7 @@ export default function Layout({ children }: LayoutProps<"/">) {
         <RootProvider search={{ enabled: false }}>
           <main>{children}</main>
         </RootProvider>
-        <script
+        <Script
           async
           defer
           src="https://u.ipv4.army/script.js"
@@ -35,7 +36,7 @@ export default function Layout({ children }: LayoutProps<"/">) {
               : process.env.UMAMI_DEVELOPMENT_ID
           }
           data-performance="true"
-        ></script>
+        />
       </body>
     </html>
   );
