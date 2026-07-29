@@ -7,8 +7,8 @@ const config: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   experimental: {
-    useTypeScriptCli: true
-  }
+    useTypeScriptCli: true,
+  },
   /*async redirects() {
     return [
       {
