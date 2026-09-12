@@ -1,0 +1,16 @@
+.footer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.footer .copyright {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.footer .copyright a {
+	font-size: 0.8rem;
+}

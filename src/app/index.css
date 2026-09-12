@@ -1,0 +1,49 @@
+@import "beercss/src/cdn/beer.css";
+
+.site {
+	max-width: 75rem;
+	margin: 0 auto;
+	padding: 2rem 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.site .content {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+/* Custom */
+:not(:is(.grid, nav, .row))
+	> :not(progress.max)
+	+ :is(
+		address,
+		article,
+		blockquote,
+		code,
+		.field,
+		fieldset,
+		form,
+		.grid,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		nav,
+		ol,
+		p,
+		pre,
+		.row,
+		section,
+		aside,
+		table,
+		.tabs,
+		ul
+	):not(:is([class*="margin"], .right, .left, .top, .bottom)) {
+	margin-block-start: 0.5rem;
+	margin-block-end: 0.5rem;
+}

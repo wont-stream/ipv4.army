@@ -1,30 +1,34 @@
-# deps
-/node_modules
+# dependencies (bun install)
+node_modules
 
-# generated content
-.source
+# output
+out
+dist
+*.tgz
 
-# test & build
-/coverage
-/.next/
-/out/
-/build
+# code coverage
+coverage
+*.lcov
+
+# logs
+logs
+_.log
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# caches
+.eslintcache
+.cache
 *.tsbuildinfo
 
-# misc
+# IntelliJ based IDEs
+.idea
+
+# Finder (MacOS) folder config
 .DS_Store
-*.pem
-/.pnp
-.pnp.js
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# others
-.env
-.env*.local
-.vercel
-next-env.d.ts
-
-# nextgen website
-/ipv4.army

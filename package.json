@@ -1,44 +1,30 @@
 {
-  "name": "ipv4.army",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "build": "next build",
-    "dev": "next dev --webpack",
-    "start": "next build && next start",
-    "types:check": "fumadocs-mdx && next typegen && tsc --noEmit",
-    "postinstall": "fumadocs-mdx",
-    "lint": "biome check",
-    "format": "biome format --write",
-    "precommit": "bun run lint"
-  },
-  "dependencies": {
-    "@fuma-translate/react": "^1.0.2",
-    "@radix-ui/react-collapsible": "^1.1.20",
-    "@radix-ui/react-popover": "^1.1.23",
-    "@radix-ui/react-presence": "^1.1.10",
-    "@radix-ui/react-scroll-area": "^1.2.18",
-    "class-variance-authority": "^0.7.1",
-    "fumadocs-core": "16.13.0",
-    "fumadocs-mdx": "15.2.0",
-    "fumadocs-ui": "16.13.0",
-    "lucide-react": "^1.38.0",
-    "next": "16.2.12",
-    "next-themes": "^0.4.6",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "scroll-into-view-if-needed": "^3.1.0",
-    "tailwind-merge": "^3.6.0"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.3",
-    "@types/mdx": "^2.0.14",
-    "@types/node": "^26.4.0",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.5",
-    "postcss": "^8.5.26",
-    "tailwindcss": "^4.3.3",
-    "typescript": "^7.0.2",
-    "@biomejs/biome": "^2.5.11"
-  }
+	"name": "bun-react-template",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "bun --hot src/index.ts",
+		"build": "bun build ./src/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
+		"start": "NODE_ENV=production bun src/index.ts",
+		"biome": "bunx --bun @biomejs/biome check --write --unsafe"
+	},
+	"dependencies": {
+		"@material-symbols-svg/react": "^0.14.0",
+		"beercss": "^5.0.3",
+		"material-dynamic-colors": "^1.1.4",
+		"react": "^19.3.0",
+		"react-dom": "^19.3.0",
+		"react-icons": "^5.7.0",
+		"use-lanyard": "^2.0.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.5.13",
+		"@types/bun": "latest",
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0"
+	},
+	"peerDependencies": {
+		"typescript": "^7.0.2"
+	}
 }
