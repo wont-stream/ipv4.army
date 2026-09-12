@@ -8,7 +8,8 @@
 		"build": "bun build ./src/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
 		"start": "NODE_ENV=production bun src/index.ts",
 		"precommit": "bunx --bun @biomejs/biome check",
-		"biome": "bunx --bun @biomejs/biome check --write --unsafe"
+		"biome": "bunx --bun @biomejs/biome check --write --unsafe",
+		"maintenance": "bun update"
 	},
 	"dependencies": {
 		"@material-symbols-svg/react": "^0.14.0",
