@@ -1,5 +1,5 @@
 import { SiBun, SiJavascript, SiReact, SiTypescript } from "react-icons/si";
-import { VscVscode } from "react-icons/vsc";
+import { VscVscode, VscVscodeOutline   } from "react-icons/vsc";
 import { Card } from "@/components/ui/card";
 import { Chip, ChipBag } from "@/components/ui/chip";
 import { Label } from "@/components/ui/label";
@@ -9,7 +9,7 @@ export const Tools = () => {
 		<Card>
 			<Label>IDEs</Label>
 			<ChipBag>
-				<Chip icons={{ default: <VscVscode /> }}>Visual Studio Code</Chip>
+				<Chip icons={{ default: <VscVscodeOutline  />, hovered: <VscVscode /> }}>Visual Studio Code</Chip>
 			</ChipBag>
 
 			<Label>Language</Label>
