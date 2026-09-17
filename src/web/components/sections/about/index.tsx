@@ -22,18 +22,30 @@ export const About = () => {
 			<h4>Hey, I'm S€TH.</h4>
 			I'm any guy, but a man of few words and many hobbies.
 			<ChipBag>
-				<Chip icons={{ default: <Person />, hovered: <PersonFill /> }}>
+				<Chip
+					icons={{
+						default: <Person title="Person Icon" />,
+						hovered: <PersonFill title="Person Icon Filled" />,
+					}}
+				>
 					he/him
 				</Chip>
 				<Chip
 					icons={{
-						default: <NestClockFarsightAnalog />,
-						hovered: <NestClockFarsightAnalogFill />,
+						default: <NestClockFarsightAnalog title="Clock Icon" />,
+						hovered: (
+							<NestClockFarsightAnalogFill title="Clock Icon Icon Filled" />
+						),
 					}}
 				>
 					<Time />
 				</Chip>
-				<Chip icons={{ default: <LocationOn />, hovered: <LocationOnFill /> }}>
+				<Chip
+					icons={{
+						default: <LocationOn title="Location Icon" />,
+						hovered: <LocationOnFill title="Location Icon Filled" />,
+					}}
+				>
 					NC, USA
 				</Chip>
 			</ChipBag>

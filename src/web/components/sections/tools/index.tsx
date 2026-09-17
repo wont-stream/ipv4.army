@@ -9,17 +9,24 @@ export const Tools = () => {
 		<Card>
 			<Label>IDEs</Label>
 			<ChipBag>
-				<Chip icons={{ default: <VscVscodeOutline />, hovered: <VscVscode /> }}>
+				<Chip
+					icons={{
+						default: <VscVscodeOutline title="Visual Studio Code Icon" />,
+						hovered: <VscVscode title="Visual Studio Code Icon Filled" />,
+					}}
+				>
 					Visual Studio Code
 				</Chip>
 			</ChipBag>
 
 			<Label>Language</Label>
 			<ChipBag>
-				<Chip icons={{ default: <SiTypescript /> }}>TypeScript</Chip>
+				<Chip icons={{ default: <SiTypescript title="TypeScript Icon" /> }}>
+					TypeScript
+				</Chip>
 				<Chip
 					icons={{
-						default: <SiJavascript />,
+						default: <SiJavascript title="JavaScript Icon" />,
 					}}
 				>
 					JavaScript
@@ -27,10 +34,10 @@ export const Tools = () => {
 			</ChipBag>
 			<Label>Frameworks</Label>
 			<ChipBag>
-				<Chip icons={{ default: <SiReact /> }}>React</Chip>
+				<Chip icons={{ default: <SiReact title="React Icon" /> }}>React</Chip>
 				<Chip
 					icons={{
-						default: <SiBun />,
+						default: <SiBun title="Bun Icon" />,
 					}}
 				>
 					Bun
