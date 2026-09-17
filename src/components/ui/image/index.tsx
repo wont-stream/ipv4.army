@@ -1,15 +1,14 @@
-type Props = {
-	className?: string;
-	src: string;
-	alt: string;
-};
-
-export const Image = ({ className, src, alt }: Props) => {
+export const Image = (
+	props: React.DetailedHTMLProps<
+		React.ImgHTMLAttributes<HTMLImageElement>,
+		HTMLImageElement
+	>,
+) => {
 	return (
 		<img
-			src={`https://wsrv.nl?output=webp&url=${encodeURIComponent(src)}}`}
-			className={className}
-			alt={alt}
+			{...props}
+			alt={props.alt}
+			src={`https://wsrv.nl?output=webp&url=${encodeURIComponent(props.src as string)}`}
 		/>
 	);
 };
