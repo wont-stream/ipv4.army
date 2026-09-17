@@ -1,18 +1,19 @@
 import { useLanyard } from "use-lanyard";
 import { Card } from "@/components/ui/card";
+import { Image } from "@/components/ui/image";
 import { site } from "../../../data/site";
 
 export const NowPlaying = () => {
 	const lanyard = useLanyard(site.discordUserId);
 	const spotify = lanyard?.spotify;
 
-	if (!spotify) return null;
+	if (!spotify || !spotify.album_art_url) return null;
 
 	return (
 		<Card className="no-padding small">
-			<img
+			<Image
 				className="responsive"
-				src={spotify.album_art_url ?? undefined}
+				src={spotify.album_art_url}
 				alt=""
 			/>
 			<div className="row absolute bottom left right padding bottom-shadow bottom-round truncate">

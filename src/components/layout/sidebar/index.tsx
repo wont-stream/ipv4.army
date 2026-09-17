@@ -1,10 +1,11 @@
 import { NowPlaying } from "../../sections/nowplaying";
+import { Image } from "@/components/ui/image";
 import "./index.css";
 
 export const Sidebar = () => {
 	return (
 		<div className="sidebar">
-			<img className="responsive round large" src="/pfp.png" alt="Avatar" />
+			<Image className="responsive round large" src="/pfp.png" alt="Avatar" />
 			<NowPlaying />
 		</div>
 	);

@@ -1,5 +1,7 @@
 import { friends } from "../../../data/friends";
 import { Label } from "../../ui/label";
+import { Image } from "@/components/ui/image";
+
 import "./index.css";
 
 export const Friends = () => {
@@ -16,7 +18,7 @@ export const Friends = () => {
 						rel="noreferrer"
 						aria-label={`Visit ${friend.name}'s website`}
 					>
-						<img
+						<Image
 							className="avatar circle large"
 							src={friend.avatar}
 							alt={`${friend.name}'s avatar`}
