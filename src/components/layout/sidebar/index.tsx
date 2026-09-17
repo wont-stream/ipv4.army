@@ -9,6 +9,7 @@ export const Sidebar = () => {
 				className="responsive round large"
 				src={`${location.href}pfp.png`}
 				alt="Avatar"
+				fetchPriority="high"
 			/>
 			<NowPlaying />
 		</div>

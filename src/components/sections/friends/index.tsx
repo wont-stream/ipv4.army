@@ -22,6 +22,8 @@ export const Friends = () => {
 							className="avatar circle large"
 							src={friend.avatar}
 							alt={`${friend.name}'s avatar`}
+							width={84}
+							height={84}
 						/>
 					</a>
 				))}

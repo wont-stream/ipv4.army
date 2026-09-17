@@ -11,7 +11,7 @@ export const NowPlaying = () => {
 
 	return (
 		<Card className="no-padding small">
-			<Image className="responsive" src={spotify.album_art_url} alt="" />
+			<Image className="responsive" src={spotify.album_art_url} alt="Spotify Album Art" width={288} height={288} />
 			<div className="row absolute bottom left right padding bottom-shadow bottom-round truncate">
 				<p>{spotify.song}</p>
 			</div>
