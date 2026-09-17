@@ -1,4 +1,4 @@
-import { site } from "../../../data/site";
+import { site } from "@/data/site";
 import "./index.css";
 
 export const Footer = () => {

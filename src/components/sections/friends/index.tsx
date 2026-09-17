@@ -1,5 +1,5 @@
-import { friends } from "../../../data/friends";
-import { Label } from "../../ui/label";
+import { friends } from "@/data/friends";
+import { Label } from "@/components/ui/label";
 import { Image } from "@/components/ui/image";
 
 import "./index.css";
