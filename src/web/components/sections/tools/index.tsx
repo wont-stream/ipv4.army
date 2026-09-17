@@ -1,8 +1,8 @@
 import { SiBun, SiJavascript, SiReact, SiTypescript } from "react-icons/si";
 import { VscVscode, VscVscodeOutline } from "react-icons/vsc";
-import { Card } from "@/components/ui/card";
-import { Chip, ChipBag } from "@/components/ui/chip";
-import { Label } from "@/components/ui/label";
+import { Card } from "@/web/components/ui/card";
+import { Chip, ChipBag } from "@/web/components/ui/chip";
+import { Label } from "@/web/components/ui/label";
 
 export const Tools = () => {
 	return (

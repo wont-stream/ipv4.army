@@ -1,9 +1,22 @@
 import { serve } from "bun";
-import index from "./app/index.html";
+import { materialDynamicColors, toCss } from "./util/mdc";
+import index from "./web/index.html";
 
 const server = serve({
 	routes: {
 		"/": index,
+
+		"/api/color": async (req) => {
+			const { searchParams } = new URL(req.url);
+
+			const src = searchParams.get("src") || undefined;
+			const color = searchParams.get("color") || undefined;
+
+			const colors = await materialDynamicColors({ src, color });
+			const css = toCss(colors);
+
+			return new Response(css);
+		},
 
 		// for stupidity
 		"/public/*": async (req) => {

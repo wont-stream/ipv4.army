@@ -1,5 +1,5 @@
-import { NowPlaying } from "@/components/sections/nowplaying";
-import { Image } from "@/components/ui/image";
+import { NowPlaying } from "@/web/components/sections/nowplaying";
+import { Image } from "@/web/components/ui/image";
 import "./index.css";
 
 export const Sidebar = () => {
@@ -7,9 +7,11 @@ export const Sidebar = () => {
 		<div className="sidebar">
 			<Image
 				className="responsive round large"
-				src={`${location.href}pfp.png`}
+				src={`https://ipv4.army/pfp.png`}
 				alt="Avatar"
 				fetchPriority="high"
+				width={570}
+				height={570}
 			/>
 			<NowPlaying />
 		</div>

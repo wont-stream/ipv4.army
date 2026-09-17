@@ -10,10 +10,10 @@ import {
 	Person,
 	PersonFill,
 } from "@material-symbols-svg/react/rounded/icons/person";
-import { Card } from "@/components/ui/card";
-import { Chip, ChipBag } from "@/components/ui/chip";
-import { Label } from "@/components/ui/label";
-import { Time } from "@/util/time";
+import { Card } from "@/web/components/ui/card";
+import { Chip, ChipBag } from "@/web/components/ui/chip";
+import { Label } from "@/web/components/ui/label";
+import { Time } from "@/web/util/time";
 
 export const About = () => {
 	return (
