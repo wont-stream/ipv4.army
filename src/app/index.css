@@ -1,4 +1,4 @@
-@import "beercss/src/cdn/beer.css";
+@import "./beer.css";
 
 .site {
 	max-width: 75rem;

@@ -1,4 +1,4 @@
-import ui from "beercss";
+import { ui } from "beercss/src/cdn/beer"
 import { useEffect } from "react";
 import { useLanyard } from "use-lanyard";
 import { site } from "../data/site";

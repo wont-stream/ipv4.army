@@ -7,7 +7,7 @@ type Props = {
 export const Image = ({ className, src, alt }: Props) => {
 	return (
 		<img
-			src={`https://wsrv.nl?url=${encodeURIComponent(src)}&default=${encodeURIComponent(`${location.href}${src}`)}`}
+			src={`https://wsrv.nl?output=webp&url=${encodeURIComponent(src)}}`}
 			className={className}
 			alt={alt}
 		/>
