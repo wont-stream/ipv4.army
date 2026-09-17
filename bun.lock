@@ -6,9 +6,9 @@
       "name": "bun-react-template",
       "dependencies": {
         "@material-symbols-svg/react": "^0.14.0",
+        "@material/material-color-utilities": "^0.4.0",
         "@napi-rs/canvas": "^1.0.9",
         "beercss": "^5.0.3",
-        "material-dynamic-colors": "^1.1.4",
         "react": "^19.3.0",
         "react-dom": "^19.3.0",
         "react-icons": "^5.7.0",
@@ -46,7 +46,7 @@
 
     "@material-symbols-svg/react": ["@material-symbols-svg/react@0.14.0", "", { "peerDependencies": { "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0" } }, "sha512-9ca/Oupu92t1fhO4aNOMvnI2DGgtUxQF4IVglmW7iEGogtR2MPqP7GPU2MRIkWirGrRgA0LxbaxZWoynLnUjwA=="],
 
-    "@material/material-color-utilities": ["@material/material-color-utilities@0.3.0", "", {}, "sha512-ztmtTd6xwnuh2/xu+Vb01btgV8SQWYCaK56CkRK8gEkWe5TuDyBcYJ0wgkMRn+2VcE9KUmhvkz+N9GHrqw/C0g=="],
+    "@material/material-color-utilities": ["@material/material-color-utilities@0.4.0", "", {}, "sha512-dlq6VExJReb8dhjj3a/yTigr3ncNwoFmL5Iy2ENtbDX03EmNeOEdZ+vsaGrj7RTuO+mB7L58II4LCsl4NpM8uw=="],
 
     "@napi-rs/canvas": ["@napi-rs/canvas@1.0.9", "", { "optionalDependencies": { "@napi-rs/canvas-android-arm64": "1.0.9", "@napi-rs/canvas-darwin-arm64": "1.0.9", "@napi-rs/canvas-darwin-x64": "1.0.9", "@napi-rs/canvas-linux-arm-gnueabihf": "1.0.9", "@napi-rs/canvas-linux-arm64-gnu": "1.0.9", "@napi-rs/canvas-linux-arm64-musl": "1.0.9", "@napi-rs/canvas-linux-riscv64-gnu": "1.0.9", "@napi-rs/canvas-linux-x64-gnu": "1.0.9", "@napi-rs/canvas-linux-x64-musl": "1.0.9", "@napi-rs/canvas-win32-arm64-msvc": "1.0.9", "@napi-rs/canvas-win32-x64-msvc": "1.0.9" } }, "sha512-QviPdJImDi/jMAvBfqaw+19BndMd/sizXVW3NnpMd3VJGz++QXkOHcP9kWR/smHG0hNjHeyuHFyrx/5lD0oNcQ=="],
 
@@ -145,5 +145,7 @@
     "undici-types": ["undici-types@8.9.0", "", {}, "sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg=="],
 
     "use-lanyard": ["use-lanyard@2.0.0", "", { "dependencies": { "@prequist/lanyard": "^2.0.0" }, "peerDependencies": { "react": "*", "react-dom": "*" } }, "sha512-neRkEScUN9kRk7/Wb00/lM3focC0WKEL56x0Z/PE9gCziCTxq5yoxXiScF+PhJRdWAm+ibeEGNGXyohGB1cDoA=="],
+
+    "material-dynamic-colors/@material/material-color-utilities": ["@material/material-color-utilities@0.3.0", "", {}, "sha512-ztmtTd6xwnuh2/xu+Vb01btgV8SQWYCaK56CkRK8gEkWe5TuDyBcYJ0wgkMRn+2VcE9KUmhvkz+N9GHrqw/C0g=="],
   }
 }
