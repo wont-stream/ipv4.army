@@ -1,8 +1,7 @@
+import { type Format, makeBadge } from "badge-maker";
 import { serve } from "bun";
 import { materialDynamicColors, toCss } from "./util/mdc";
 import index from "./web/index.html";
-import { makeBadge, type Format } from 'badge-maker'
-
 
 const server = serve({
 	routes: {
@@ -19,27 +18,26 @@ const server = serve({
 				const css = toCss(colors);
 
 				return new Response(css);
-			}
-			catch (e) {
+			} catch (e) {
 				return new Response(e as string);
 			}
 		},
 
 		"/api/badge": async (req) => {
-
 			try {
 				const { searchParams } = new URL(req.url);
 
-				return new Response(makeBadge(searchParams.toJSON() as unknown as Format),
+				return new Response(
+					makeBadge(searchParams.toJSON() as unknown as Format),
 					{
 						headers: {
 							"Cache-Control": "public, max-age=31536000, immutable",
 							"content-type": "image/svg+xml",
-							"Vary": "Accept-Encoding"
-						}
-					})
-			}
-			catch (e) {
+							Vary: "Accept-Encoding",
+						},
+					},
+				);
+			} catch (e) {
 				return new Response(e as string);
 			}
 		},
@@ -49,8 +47,7 @@ const server = serve({
 			try {
 				const url = new URL(req.url);
 				return Response.redirect(url.pathname.replace("/public", ""), 301);
-			}
-			catch (e) {
+			} catch (e) {
 				return new Response(e as string);
 			}
 		},
@@ -70,4 +67,4 @@ const server = serve({
 console.log(`🚀 Server running at ${server.url}`);
 
 // just in case..
-setInterval(Bun.gc, 60_000)
+setInterval(Bun.gc, 60_000);
