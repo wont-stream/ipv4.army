@@ -10,6 +10,7 @@
         "@napi-rs/canvas": "^1.0.9",
         "badge-maker": "^6.0.0",
         "beercss": "^5.0.3",
+        "bun-cache": "^2.0.0",
         "react": "^19.3.0",
         "react-dom": "^19.3.0",
         "react-icons": "^5.7.0",
@@ -130,6 +131,8 @@
     "beercss": ["beercss@5.0.3", "", { "dependencies": { "material-dynamic-colors": "^1.1.4" } }, "sha512-d451Q/em0v+QJdymVPs9RP7tKwJbZiyv8TfvSeNT4ikbz65DJZu/rCwQllA5BHdQyn3g0yMW+QPQSQa2JYAz2A=="],
 
     "binary-search": ["binary-search@1.3.6", "", {}, "sha512-nbE1WxOTTrUWIfsfZ4aHGYu5DOuNkbxGokjV6Z2kxfJK3uaAb8zNK1muzOeipoLHZjInT4Br88BHpzevc681xA=="],
+
+    "bun-cache": ["bun-cache@2.0.0", "", { "peerDependencies": { "typescript": "^5.9.3" } }, "sha512-GGkgPN2BBP+vmUCZnsdyAupUdi3XQCpf/DfxO4eODTc1dNs+HLPTIhRsnhRy9XUT1QXpmIOqEXE+ORqQAaQnwQ=="],
 
     "bun-types": ["bun-types@1.4.2", "", { "dependencies": { "@types/node": "*" } }, "sha512-bxV1FgK7yBIzjRe5zBozIM4Bem11ZJcCXSrjWRG3YWLt8yFDePu4cLjpebO8OvPeIE9trbyPF4fuj3Cia4Fj3w=="],
 
