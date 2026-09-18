@@ -15,7 +15,7 @@ const server = serve({
 
 		"/api/color": async (req) => {
 			const { searchParams } = new URL(req.url);
-			const key = searchParams.toString();
+			const key = Bun.hash.rapidhash(searchParams.toString()).toString();
 
 			let res = "";
 
@@ -45,7 +45,7 @@ const server = serve({
 
 		"/api/badge": async (req) => {
 			const { searchParams } = new URL(req.url);
-			const key = searchParams.toString();
+			const key = Bun.hash.rapidhash(searchParams.toString()).toString();
 
 			let res = "";
 
