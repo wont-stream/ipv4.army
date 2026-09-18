@@ -1,23 +1,14 @@
 import {
 	argbFromHex,
 	hexFromArgb,
+	sourceColorFromImageBytes,
 	type Theme,
-	themeFromImage,
 	themeFromSourceColor,
 } from "@material/material-color-utilities";
 import type {
 	IMaterialDynamicColorsTheme,
 	IMaterialDynamicColorsThemeColor,
 } from "./types";
-
-const { createCanvas, loadImage } = require("@napi-rs/canvas");
-
-globalThis.document = {
-	createElement: () => {
-		return createCanvas(640, 640);
-	},
-	// biome-ignore lint/suspicious/noExplicitAny: pls
-} as any;
 
 const themeToJson = (theme: Theme): IMaterialDynamicColorsTheme => {
 	const json = JSON.parse(JSON.stringify(theme.schemes));
@@ -59,10 +50,11 @@ export const materialDynamicColors = async ({
 	color?: string;
 }): Promise<IMaterialDynamicColorsTheme> => {
 	if (src) {
-		const image = await loadImage(src);
-		image.dataset = {};
-
-		const theme = await themeFromImage(image);
+		const imgReq = await fetch(src);
+		const img = await imgReq.arrayBuffer();
+		const sourceColor = sourceColorFromImageBytes(new Uint8ClampedArray(img))
+		const theme = themeFromSourceColor(sourceColor)
+		
 		return themeToJson(theme);
 	}
 
