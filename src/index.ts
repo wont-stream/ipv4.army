@@ -17,7 +17,14 @@ const server = serve({
 				const colors = await materialDynamicColors({ src, color });
 				const css = toCss(colors);
 
-				return new Response(css);
+				return new Response(css,
+					{
+						headers: {
+							"Cache-Control": "public, max-age=31536000, immutable",
+							"content-type": "text/plain",
+							Vary: "Accept-Encoding",
+						},
+					});
 			} catch (e) {
 				return new Response(e as string);
 			}
