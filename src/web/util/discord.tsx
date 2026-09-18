@@ -8,18 +8,10 @@ export const DiscordProvider = () => {
 	>(undefined);
 
 	useEffect(() => {
-		let cancelled = false;
-
 		(async () => {
 			const data = await get(site.discordUserId);
-			if (!cancelled) {
-				setInitialData(data);
-			}
+			setInitialData(data);
 		})();
-
-		return () => {
-			cancelled = true;
-		};
 	}, []);
 
 	useLanyard(site.discordUserId, {
