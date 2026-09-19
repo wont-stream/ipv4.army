@@ -82,7 +82,7 @@ const server = serve({
 	},
 
 	fetch: async (_req, _server) => {
-		return new Response("Not Found", { status: 404 });
+		return Response.redirect("/", 307)
 	},
 
 	development: process.env.NODE_ENV !== "production" && {
