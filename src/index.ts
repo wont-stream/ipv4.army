@@ -19,57 +19,45 @@ const server = serve({
 		"/": index,
 
 		"/api/color": async (req) => {
-			const { searchParams } = new URL(req.url);
-			const key = Bun.hash.rapidhash(searchParams.toString()).toString();
+			const { search, searchParams } = new URL(req.url);
+			const key = Bun.hash.rapidhash(search).toString();
 
-			let res = "";
+			let res = cache.color.get(key) as string | null;
 
-			try {
-				if (cache.color.hasKey(key)) {
-					res = cache.color.get(key) as string;
-				} else {
-					const src = searchParams.get("src") || undefined;
-					const color = searchParams.get("color") || undefined;
+			if (!res) {
+				const src = searchParams.get("src") || undefined;
+				const color = searchParams.get("color") || undefined;
 
-					const colors = await materialDynamicColors({ src, color });
-					res = toCss(colors);
-					cache.color.put(key, res, 60_000);
-				}
-
-				return new Response(res, {
-					headers: {
-						...headers,
-						"Content-Type": "text/plain",
-					},
-				});
-			} catch (e) {
-				return new Response(e as string);
+				const colors = await materialDynamicColors({ src, color });
+				res = toCss(colors);
+				cache.color.put(key, res, 60_000);
 			}
+
+			return new Response(res, {
+				headers: {
+					...headers,
+					"Content-Type": "text/plain",
+				},
+			});
 		},
 
 		"/api/badge": async (req) => {
-			const { searchParams } = new URL(req.url);
-			const key = Bun.hash.rapidhash(searchParams.toString()).toString();
+			const { search, searchParams } = new URL(req.url);
+			const key = Bun.hash.rapidhash(search).toString();
 
-			let res = "";
+			let res = cache.color.get(key) as string | null;
 
-			try {
-				if (cache.badge.hasKey(key)) {
-					res = cache.badge.get(key) as string;
-				} else {
-					res = makeBadge(searchParams.toJSON() as unknown as Format);
-					cache.color.put(key, res, 60_000);
-				}
-
-				return new Response(res, {
-					headers: {
-						...headers,
-						"Content-Type": "image/svg+xml",
-					},
-				});
-			} catch (e) {
-				return new Response(e as string);
+			if (!res) {
+				res = makeBadge(searchParams.toJSON() as unknown as Format);
+				cache.color.put(key, res, 60_000);
 			}
+
+			return new Response(res, {
+				headers: {
+					...headers,
+					"Content-Type": "image/svg+xml",
+				},
+			});
 		},
 
 		// for stupidity
