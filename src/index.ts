@@ -9,6 +9,11 @@ const cache = {
 	color: new BunCache(),
 };
 
+const headers = {
+	"Cache-Control": "public, max-age=31536000, immutable",
+	Vary: "Accept-Encoding",
+};
+
 const server = serve({
 	routes: {
 		"/": index,
@@ -33,9 +38,8 @@ const server = serve({
 
 				return new Response(res, {
 					headers: {
-						"Cache-Control": "public, max-age=31536000, immutable",
-						"content-type": "text/plain",
-						Vary: "Accept-Encoding",
+						...headers,
+						"Content-Type": "text/plain",
 					},
 				});
 			} catch (e) {
@@ -59,9 +63,8 @@ const server = serve({
 
 				return new Response(res, {
 					headers: {
-						"Cache-Control": "public, max-age=31536000, immutable",
-						"content-type": "image/svg+xml",
-						Vary: "Accept-Encoding",
+						...headers,
+						"Content-Type": "image/svg+xml",
 					},
 				});
 			} catch (e) {
