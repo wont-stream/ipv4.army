@@ -1,9 +1,13 @@
-export const Image = (
-	{ alt, src, width, height, ...props }: React.DetailedHTMLProps<
-		React.ImgHTMLAttributes<HTMLImageElement>,
-		HTMLImageElement
-	>,
-) => {
+export const Image = ({
+	alt,
+	src,
+	width,
+	height,
+	...props
+}: React.DetailedHTMLProps<
+	React.ImgHTMLAttributes<HTMLImageElement>,
+	HTMLImageElement
+>) => {
 	const params = new URLSearchParams({
 		output: "webp",
 		url: src ?? "",
@@ -11,11 +15,5 @@ export const Image = (
 		h: height?.toString() ?? "0",
 	});
 
-	return (
-		<img
-			{...props}
-			alt={alt}
-			src={`https://wsrv.nl?${params}`}
-		/>
-	);
+	return <img {...props} alt={alt} src={`https://wsrv.nl?${params}`} />;
 };
