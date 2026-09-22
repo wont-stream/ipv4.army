@@ -13,7 +13,7 @@ export const friends: FriendSpec[] = [
 
 	{
 		name: "Creations",
-		avatar: "https://creations.works/api/pfp?theme=dark",
+		avatar: "https://heliopolis.live/creations.png",
 		href: "https://creations.works",
 	},
 
