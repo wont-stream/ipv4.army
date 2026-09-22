@@ -34,4 +34,9 @@ export const friends: FriendSpec[] = [
 		avatar: "https://heliopolis.live/zyqunix.png",
 		href: "https://zyqunix.github.io/",
 	},
+	{
+		name: "Mohammad",
+		avatar: "https://github.com/vMohammad24.png",
+		href: "https://github.com/vMohammad24"
+	}
 ];
