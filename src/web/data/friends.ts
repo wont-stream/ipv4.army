@@ -37,6 +37,6 @@ export const friends: FriendSpec[] = [
 	{
 		name: "Mohammad",
 		avatar: "https://github.com/vMohammad24.png",
-		href: "https://github.com/vMohammad24"
-	}
+		href: "https://github.com/vMohammad24",
+	},
 ];
