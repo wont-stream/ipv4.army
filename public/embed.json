@@ -1,0 +1,17 @@
+{
+    "$schema": "https://wont-stream.github.io/wont-stream/schema/oembed.json",
+    "type": "rich",
+    "html": "",
+    "width": 0,
+    "height": 0,
+    "version": "1.0",
+    "author_url": "https://ipv4.army",
+    "provider_url": "https://ipv4.army/pfp.png",
+    "thumbnail_url": "https://ipv4.army/pfp.png",
+    "thumbnail_height": 1080,
+    "thumbnail_width": 1080,
+    "title": "ipv4.army",
+    "author_name": "S€TH",
+    "provider_name": "ipv4.army",
+    "cache_age": 3600
+}
