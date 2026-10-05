@@ -1,4 +1,3 @@
-import sharp from "sharp";
 import {
 	argbFromHex,
 	hexFromArgb,
@@ -6,6 +5,7 @@ import {
 	type Theme,
 	themeFromSourceColor,
 } from "@material/material-color-utilities";
+import sharp from "sharp";
 import type {
 	IMaterialDynamicColorsTheme,
 	IMaterialDynamicColorsThemeColor,
