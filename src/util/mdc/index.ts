@@ -1,3 +1,4 @@
+import sharp from "sharp";
 import {
 	argbFromHex,
 	hexFromArgb,
@@ -52,8 +53,9 @@ export const materialDynamicColors = async ({
 	if (src) {
 		const imgReq = await fetch(src);
 		const imgRes = await imgReq.arrayBuffer();
+		const sharpOut = await sharp(imgRes).ensureAlpha().raw().toBuffer();
 		const sourceColor = sourceColorFromImageBytes(
-			new Uint8ClampedArray(imgRes),
+			new Uint8ClampedArray(sharpOut),
 		);
 		const theme = themeFromSourceColor(sourceColor);
 
