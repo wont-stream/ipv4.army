@@ -1,5 +1,12 @@
 @import "@/../../../node_modules/beercss/src/cdn/beer.css";
 
+* {
+	transition:
+		background-color 100ms ease,
+		/* biome-ignore lint/complexity/noImportantStyles: override beer styles */
+		color 100ms ease !important;
+}
+
 .site {
 	max-width: 75rem;
 	margin: 0 auto;
