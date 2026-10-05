@@ -6,6 +6,7 @@ import index from "./web/index.html";
 
 const cache = {
 	badge: new BunCache(),
+	placeholder: new BunCache(),
 	color: new BunCache(),
 };
 
@@ -37,6 +38,31 @@ const server = serve({
 				headers: {
 					...headers,
 					"Content-Type": "text/plain",
+				},
+			});
+		},
+
+		"/api/placeholder": async (req) => {
+			const { search, searchParams } = new URL(req.url);
+			const key = Bun.hash.rapidhash(search).toString();
+
+			let res = cache.placeholder.get(key) as string | null;
+
+			if (!res) {
+				const src = searchParams.get("src");
+				if (!src) return new Response("Missing src parameter", { status: 400 });
+
+				const imageReq = await fetch(src);
+				const image = new Bun.Image(await imageReq.arrayBuffer());
+
+				res = await image.placeholder();
+				cache.placeholder.put(key, res, 60_000);
+			}
+
+			return new Response(await (await fetch(res)).arrayBuffer(), {
+				headers: {
+					...headers,
+					"Content-Type": "image/png",
 				},
 			});
 		},
