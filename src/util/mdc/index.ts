@@ -51,8 +51,8 @@ export const materialDynamicColors = async ({
 }): Promise<IMaterialDynamicColorsTheme> => {
 	if (src) {
 		const imgReq = await fetch(src);
-		const img = await imgReq.arrayBuffer();
-		const sourceColor = sourceColorFromImageBytes(new Uint8ClampedArray(img));
+		const imgRes = await imgReq.arrayBuffer();
+		const sourceColor = sourceColorFromImageBytes(new Uint8ClampedArray(imgRes));
 		const theme = themeFromSourceColor(sourceColor);
 
 		return themeToJson(theme);
