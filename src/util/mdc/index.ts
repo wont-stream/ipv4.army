@@ -52,7 +52,9 @@ export const materialDynamicColors = async ({
 	if (src) {
 		const imgReq = await fetch(src);
 		const imgRes = await imgReq.arrayBuffer();
-		const sourceColor = sourceColorFromImageBytes(new Uint8ClampedArray(imgRes));
+		const sourceColor = sourceColorFromImageBytes(
+			new Uint8ClampedArray(imgRes),
+		);
 		const theme = themeFromSourceColor(sourceColor);
 
 		return themeToJson(theme);
