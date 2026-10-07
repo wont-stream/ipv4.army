@@ -6,3 +6,10 @@
 	position: sticky;
 	top: 2rem;
 }
+
+.sidebar .pfpContainer {
+	background-color: var(--surface-container-lowest);
+}
+.sidebar .pfpContainer img {
+	mix-blend-mode: exclusion;
+}
