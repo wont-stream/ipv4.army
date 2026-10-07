@@ -34,31 +34,38 @@ const checkURL = (url: string) => {
 	return allowedHosts.includes(hostname) && pathname.split("/").length === 2;
 };
 
+const middleware = (req: Bun.BunRequest<"/*">) => {
+	if (!allowedOrigins.includes(req.headers.get("origin"))) {
+		return new Response("Unauthorized", { status: 403 });
+	}
+}
+
+const getParams = (req: Bun.BunRequest<"/*">, params: string[]) => {
+	const { searchParams } = new URL(req.url);
+
+	return params.reduce((acc, param) => {
+		acc[param] = searchParams.get(param) || undefined;
+		return acc;
+	}, {} as Record<string, string | undefined>);
+}
+
 const server = serve({
 	routes: {
 		"/": index,
 
 		"/api/color": async (req) => {
-			if (!allowedOrigins.includes(req.headers.get("origin"))) {
-				return new Response("Unauthorized", { status: 403 });
-			}
+			const middlewareResult = middleware(req);
+			if (middlewareResult) return middlewareResult;
 
-			const { searchParams } = new URL(req.url);
-			const src = searchParams.get("src") || undefined;
-			const color = searchParams.get("color") || undefined;
+			const { src, color } = getParams(req, ["src", "color"]);
 
-			if (!src && !color)
-				return new Response("Missing src or color parameter", { status: 400 });
+			const value = src ?? color;
 
-			if (src && !checkURL(src)) {
-				return new Response("Unauthorized", { status: 403 });
-			}
+			if (!value) return new Response("Missing src or color parameter", { status: 400 });
 
-			const keySource = src ?? color;
-			if (!keySource)
-				return new Response("Missing src or color parameter", { status: 400 });
-			const key = Bun.hash.rapidhash(keySource).toString();
-
+			if (src && !checkURL(src)) return new Response("Unauthorized", { status: 403 });
+			
+			const key = Bun.hash.rapidhash(value).toString();
 			let res = cache.color.get(key) as string | null;
 
 			if (!res) {
@@ -76,12 +83,10 @@ const server = serve({
 		},
 
 		"/api/placeholder": async (req) => {
-			if (!allowedOrigins.includes(req.headers.get("origin"))) {
-				return new Response("Unauthorized", { status: 403 });
-			}
+			const middlewareResult = middleware(req);
+			if (middlewareResult) return middlewareResult;
 
-			const { searchParams } = new URL(req.url);
-			const src = searchParams.get("src");
+			const { src } = getParams(req, ["src"]);
 
 			if (!src) return new Response("Missing src parameter", { status: 400 });
 			if (!checkURL(src)) {
@@ -89,7 +94,6 @@ const server = serve({
 			}
 
 			const key = Bun.hash.rapidhash(src).toString();
-
 			let res = cache.placeholder.get(key) as string | null;
 
 			if (!res) {
