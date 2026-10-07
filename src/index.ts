@@ -36,10 +36,7 @@ const server = serve({
 				return new Response("Unauthorized", { status: 403 });
 			}
 
-			const { hostname, search, searchParams } = new URL(req.url);
-					if (!allowedHosts.includes(hostname)) {
-						return new Response("Unauthorized", { status: 403 });
-					}
+			const { search, searchParams } = new URL(req.url);
 
 			const key = Bun.hash.rapidhash(search).toString();
 
@@ -47,6 +44,10 @@ const server = serve({
 
 			if (!res) {
 				const src = searchParams.get("src") || undefined;
+				if (src && !allowedHosts.includes(new URL(src).hostname)) {
+					return new Response("Unauthorized", { status: 403 });
+				}
+
 				const color = searchParams.get("color") || undefined;
 
 				const colors = await materialDynamicColors({ src, color });
@@ -67,10 +68,7 @@ const server = serve({
 				return new Response("Unauthorized", { status: 403 });
 			}
 
-			const { hostname, search, searchParams } = new URL(req.url);
-						if (!allowedHosts.includes(hostname)) {
-				return new Response("Unauthorized", { status: 403 });
-			}
+			const { search, searchParams } = new URL(req.url);
 
 			const key = Bun.hash.rapidhash(search).toString();
 
@@ -79,6 +77,9 @@ const server = serve({
 			if (!res) {
 				const src = searchParams.get("src");
 				if (!src) return new Response("Missing src parameter", { status: 400 });
+					if (!allowedHosts.includes(new URL(src).hostname)) {
+					return new Response("Unauthorized", { status: 403 });
+				}
 
 				const imageReq = await fetch(src);
 				const image = new Bun.Image(await imageReq.arrayBuffer());
