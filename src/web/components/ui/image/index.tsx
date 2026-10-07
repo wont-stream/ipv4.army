@@ -1,5 +1,5 @@
-import { images } from "@/web/data/images";
 import { useEffect, useState } from "react";
+import { images } from "@/web/data/images";
 
 let output = "jpg";
 for await (const { type, src } of images) {

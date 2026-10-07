@@ -26,7 +26,7 @@ const allowedOrigins = [null, "https://ipv4.army"];
 
 const checkURL = (url: string) => {
 	const { hostname, pathname } = new URL(url);
-	
+
 	if (hostname === "i.scdn.co") {
 		return true;
 	}
