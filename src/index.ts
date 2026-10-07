@@ -5,7 +5,6 @@ import { materialDynamicColors, toCss } from "./util/mdc";
 import index from "./web/index.html";
 
 const cache = {
-	badge: new BunCache(),
 	placeholder: new BunCache(),
 	color: new BunCache(),
 };
@@ -72,7 +71,7 @@ const server = serve({
 						if (!allowedHosts.includes(hostname)) {
 				return new Response("Unauthorized", { status: 403 });
 			}
-			
+
 			const key = Bun.hash.rapidhash(search).toString();
 
 			let res = cache.placeholder.get(key) as string | null;
@@ -97,17 +96,9 @@ const server = serve({
 		},
 
 		"/api/badge": async (req) => {
-			const { search, searchParams } = new URL(req.url);
-			const key = Bun.hash.rapidhash(search).toString();
+			const { searchParams } = new URL(req.url);
 
-			let res = cache.color.get(key) as string | null;
-
-			if (!res) {
-				res = makeBadge(searchParams.toJSON() as unknown as Format);
-				cache.color.put(key, res, 60_000);
-			}
-
-			return new Response(res, {
+			return new Response(makeBadge(searchParams.toJSON() as unknown as Format), {
 				headers: {
 					...headers,
 					"Content-Type": "image/svg+xml",
