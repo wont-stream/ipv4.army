@@ -15,12 +15,26 @@ const headers = {
 	Vary: "Accept-Encoding",
 };
 
+const allowedHosts = [
+	"localhost",
+	"ipv4.army",
+	"heliopolis.live",
+	"github.com",
+	"i.scdn.co"
+];
+
+const allowedOrigins = [
+	"https://ipv4.army",
+	"https://heliopolis.live",
+	"https://github.com"
+];
+
 const server = serve({
 	routes: {
 		"/": index,
 
-		"/api/color": async (req) => {
-			const { search, searchParams } = new URL(req.url);
+		"/api/color": async (req) => {console.log(req.headers.get("origin"), req.headers.toJSON())
+			const { hostname, search, searchParams } = new URL(req.url);
 			const key = Bun.hash.rapidhash(search).toString();
 
 			let res = cache.color.get(key) as string | null;
