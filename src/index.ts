@@ -19,13 +19,10 @@ const allowedHosts = [
 	"ipv4.army",
 	"heliopolis.live",
 	"github.com",
-	"i.scdn.co"
+	"i.scdn.co",
 ];
 
-const allowedOrigins = [
-	null,
-	"https://ipv4.army"
-];
+const allowedOrigins = [null, "https://ipv4.army"];
 
 const server = serve({
 	routes: {
@@ -64,7 +61,7 @@ const server = serve({
 		},
 
 		"/api/placeholder": async (req) => {
-						if (!allowedOrigins.includes(req.headers.get("origin"))) {
+			if (!allowedOrigins.includes(req.headers.get("origin"))) {
 				return new Response("Unauthorized", { status: 403 });
 			}
 
@@ -77,7 +74,7 @@ const server = serve({
 			if (!res) {
 				const src = searchParams.get("src");
 				if (!src) return new Response("Missing src parameter", { status: 400 });
-					if (!allowedHosts.includes(new URL(src).hostname)) {
+				if (!allowedHosts.includes(new URL(src).hostname)) {
 					return new Response("Unauthorized", { status: 403 });
 				}
 
@@ -99,12 +96,15 @@ const server = serve({
 		"/api/badge": async (req) => {
 			const { searchParams } = new URL(req.url);
 
-			return new Response(makeBadge(searchParams.toJSON() as unknown as Format), {
-				headers: {
-					...headers,
-					"Content-Type": "image/svg+xml",
+			return new Response(
+				makeBadge(searchParams.toJSON() as unknown as Format),
+				{
+					headers: {
+						...headers,
+						"Content-Type": "image/svg+xml",
+					},
 				},
-			});
+			);
 		},
 
 		// for stupidity
