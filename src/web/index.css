@@ -2,8 +2,11 @@
 
 @media (prefers-reduced-motion: no-preference) {
 	* {
-		/* biome-ignore lint/complexity/noImportantStyles: need to override beercss */
-		transition: all 0.5s linear !important;
+		transition:
+			background 0.5s linear,
+			background-color 0.5s linear,
+			/* biome-ignore lint/complexity/noImportantStyles: need to override beercss */
+			opacity 0.5s linear !important;
 	}
 }
 
