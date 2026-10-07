@@ -43,20 +43,22 @@ const server = serve({
 				return new Response("Unauthorized", { status: 403 });
 			}
 
-			const { search, searchParams } = new URL(req.url);
+			const { searchParams } = new URL(req.url);
+			const src = searchParams.get("src");
+			const color = searchParams.get("color");
 
-			const key = Bun.hash.rapidhash(search).toString();
+			if (!src || !color)
+				return new Response("Missing src or color parameter", { status: 400 });
+
+			if (src && !checkURL(src)) {
+				return new Response("Unauthorized", { status: 403 });
+			}
+
+			const key = Bun.hash.rapidhash(src || color).toString();
 
 			let res = cache.color.get(key) as string | null;
 
 			if (!res) {
-				const src = searchParams.get("src") || undefined;
-				if (src && !checkURL(src)) {
-					return new Response("Unauthorized", { status: 403 });
-				}
-
-				const color = searchParams.get("color") || undefined;
-
 				const colors = await materialDynamicColors({ src, color });
 				res = toCss(colors);
 				cache.color.put(key, res, 60_000);
@@ -75,19 +77,19 @@ const server = serve({
 				return new Response("Unauthorized", { status: 403 });
 			}
 
-			const { search, searchParams } = new URL(req.url);
+			const { searchParams } = new URL(req.url);
+			const src = searchParams.get("src");
 
-			const key = Bun.hash.rapidhash(search).toString();
+			if (!src) return new Response("Missing src parameter", { status: 400 });
+			if (!checkURL(src)) {
+				return new Response("Unauthorized", { status: 403 });
+			}
+
+			const key = Bun.hash.rapidhash(src).toString();
 
 			let res = cache.placeholder.get(key) as string | null;
 
 			if (!res) {
-				const src = searchParams.get("src");
-				if (!src) return new Response("Missing src parameter", { status: 400 });
-				if (!checkURL(src)) {
-					return new Response("Unauthorized", { status: 403 });
-				}
-
 				const imageReq = await fetch(src);
 				const image = new Bun.Image(await imageReq.arrayBuffer());
 
