@@ -3,6 +3,7 @@
 * {
 	transition:
 		background-color 1s ease,
+		opacity 1s ease,
 		/* biome-ignore lint/complexity/noImportantStyles: override beer styles */
 		color 1s ease !important;
 }
