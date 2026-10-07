@@ -1,49 +1,12 @@
 import { type Format, makeBadge } from "badge-maker";
 import { serve } from "bun";
-import { BunCache } from "bun-cache";
+import { cache } from "./data/cache";
+import { defaultHeaders } from "./data/defaultHeaders";
+import { checkURL } from "./util/checkURL";
+import { getParams } from "./util/getParams";
 import { materialDynamicColors } from "./util/mdc";
-import { middleware } from "./util/middleware/checkOrigin";
+import { middleware } from "./util/middleware";
 import index from "./web/index.html";
-
-const cache = {
-	placeholder: new BunCache(),
-	color: new BunCache(),
-};
-
-const headers = {
-	"Cache-Control": "public, max-age=31536000, immutable",
-	Vary: "Accept-Encoding",
-};
-
-const allowedHosts = [
-	"localhost",
-	"ipv4.army",
-	"heliopolis.live",
-	"github.com",
-	"i.scdn.co",
-];
-
-const checkURL = (url: string) => {
-	const { hostname, pathname } = new URL(url);
-
-	if (hostname === "i.scdn.co") {
-		return true;
-	}
-
-	return allowedHosts.includes(hostname) && pathname.split("/").length === 2;
-};
-
-const getParams = (req: Bun.BunRequest<"/*">, params: string[]) => {
-	const { searchParams } = new URL(req.url);
-
-	return params.reduce(
-		(acc, param) => {
-			acc[param] = searchParams.get(param) || undefined;
-			return acc;
-		},
-		{} as Record<string, string | undefined>,
-	);
-};
 
 const server = serve({
 	routes: {
@@ -73,7 +36,7 @@ const server = serve({
 
 			return new Response(res, {
 				headers: {
-					...headers,
+					...defaultHeaders,
 					"Content-Type": "text/plain",
 				},
 			});
@@ -103,7 +66,7 @@ const server = serve({
 
 			return new Response(await (await fetch(res)).arrayBuffer(), {
 				headers: {
-					...headers,
+					...defaultHeaders,
 					"Content-Type": "image/png",
 				},
 			});
@@ -116,7 +79,7 @@ const server = serve({
 				makeBadge(searchParams.toJSON() as unknown as Format),
 				{
 					headers: {
-						...headers,
+						...defaultHeaders,
 						"Content-Type": "image/svg+xml",
 					},
 				},
