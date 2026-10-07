@@ -1,47 +1,6 @@
-import {
-	argbFromHex,
-	hexFromArgb,
-	sourceColorFromImageBytes,
-	type Theme,
-	themeFromSourceColor,
-} from "@material/material-color-utilities";
-import sharp from "sharp";
-import type {
-	IMaterialDynamicColorsTheme,
-	IMaterialDynamicColorsThemeColor,
-} from "./types";
-
-const themeToJson = (theme: Theme): IMaterialDynamicColorsTheme => {
-	const json = JSON.parse(JSON.stringify(theme.schemes));
-	delete json.light;
-
-	for (const key of Object.keys(json.dark)) {
-		json.dark[key] = hexFromArgb(json.dark[key]);
-	}
-
-	json.dark.surfaceDim = hexFromArgb(theme.palettes.neutral.tone(6));
-	json.dark.surface = hexFromArgb(theme.palettes.neutral.tone(6));
-	json.dark.surfaceBright = hexFromArgb(theme.palettes.neutral.tone(24));
-	json.dark.surfaceContainerLowest = hexFromArgb(
-		theme.palettes.neutral.tone(4),
-	);
-	json.dark.surfaceContainerLow = hexFromArgb(theme.palettes.neutral.tone(10));
-	json.dark.surfaceContainer = hexFromArgb(theme.palettes.neutral.tone(12));
-	json.dark.surfaceContainerHigh = hexFromArgb(theme.palettes.neutral.tone(17));
-	json.dark.surfaceContainerHighest = hexFromArgb(
-		theme.palettes.neutral.tone(22),
-	);
-	json.dark.onSurface = hexFromArgb(theme.palettes.neutral.tone(90));
-	json.dark.onSurfaceVariant = hexFromArgb(
-		theme.palettes.neutralVariant.tone(80),
-	);
-	json.dark.outline = hexFromArgb(theme.palettes.neutralVariant.tone(60));
-	json.dark.outlineVariant = hexFromArgb(
-		theme.palettes.neutralVariant.tone(30),
-	);
-
-	return json;
-};
+import { themeJsonToCss } from "./converter/css";
+import { themeToJson } from "./converter/json";
+import { generateTheme } from "./generateTheme";
 
 export const materialDynamicColors = async ({
 	src,
@@ -49,40 +8,8 @@ export const materialDynamicColors = async ({
 }: {
 	src?: string;
 	color?: string;
-}): Promise<IMaterialDynamicColorsTheme> => {
-	if (src) {
-		const imgReq = await fetch(src);
-		const imgRes = await imgReq.arrayBuffer();
-		const sharpOut = await sharp(imgRes).ensureAlpha().raw().toBuffer();
-		const sourceColor = sourceColorFromImageBytes(
-			new Uint8ClampedArray(sharpOut),
-		);
-		const theme = themeFromSourceColor(sourceColor);
-
-		return themeToJson(theme);
-	}
-
-	if (color) {
-		const theme = themeFromSourceColor(argbFromHex(color));
-		return themeToJson(theme);
-	}
-
-	throw new Error();
-};
-
-export const toCss = (data: IMaterialDynamicColorsTheme) => {
-	let style = "";
-
-	for (const key of Object.keys(data.dark) as Array<
-		keyof IMaterialDynamicColorsThemeColor
-	>) {
-		const value = data.dark[key];
-		const kebabCase = key
-			.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, "$1-$2")
-			.toLowerCase();
-
-		style += `--${kebabCase}:${value};`;
-	}
-
-	return style;
+}): Promise<string> => {
+	const theme = await generateTheme({ src, color });
+	const json = themeToJson(theme);
+	return themeJsonToCss(json);
 };

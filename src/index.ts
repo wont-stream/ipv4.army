@@ -1,7 +1,8 @@
 import { type Format, makeBadge } from "badge-maker";
 import { serve } from "bun";
 import { BunCache } from "bun-cache";
-import { materialDynamicColors, toCss } from "./util/mdc";
+import { materialDynamicColors } from "./util/mdc";
+import { middleware } from "./util/middleware/checkOrigin";
 import index from "./web/index.html";
 
 const cache = {
@@ -22,8 +23,6 @@ const allowedHosts = [
 	"i.scdn.co",
 ];
 
-const allowedOrigins = [null, "https://ipv4.army"];
-
 const checkURL = (url: string) => {
 	const { hostname, pathname } = new URL(url);
 
@@ -34,20 +33,17 @@ const checkURL = (url: string) => {
 	return allowedHosts.includes(hostname) && pathname.split("/").length === 2;
 };
 
-const middleware = (req: Bun.BunRequest<"/*">) => {
-	if (!allowedOrigins.includes(req.headers.get("origin"))) {
-		return new Response("Unauthorized", { status: 403 });
-	}
-}
-
 const getParams = (req: Bun.BunRequest<"/*">, params: string[]) => {
 	const { searchParams } = new URL(req.url);
 
-	return params.reduce((acc, param) => {
-		acc[param] = searchParams.get(param) || undefined;
-		return acc;
-	}, {} as Record<string, string | undefined>);
-}
+	return params.reduce(
+		(acc, param) => {
+			acc[param] = searchParams.get(param) || undefined;
+			return acc;
+		},
+		{} as Record<string, string | undefined>,
+	);
+};
 
 const server = serve({
 	routes: {
@@ -61,16 +57,17 @@ const server = serve({
 
 			const value = src ?? color;
 
-			if (!value) return new Response("Missing src or color parameter", { status: 400 });
+			if (!value)
+				return new Response("Missing src or color parameter", { status: 400 });
 
-			if (src && !checkURL(src)) return new Response("Unauthorized", { status: 403 });
-			
+			if (src && !checkURL(src))
+				return new Response("Unauthorized", { status: 403 });
+
 			const key = Bun.hash.rapidhash(value).toString();
 			let res = cache.color.get(key) as string | null;
 
 			if (!res) {
-				const colors = await materialDynamicColors({ src, color });
-				res = toCss(colors);
+				res = await materialDynamicColors({ src, color });
 				cache.color.put(key, res, 60_000);
 			}
 

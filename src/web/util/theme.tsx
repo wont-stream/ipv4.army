@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLanyard } from "use-lanyard";
-import { site } from "@/web/data/site";
+import { site } from "@/data/site";
 
 const THEME_BY_STATUS: Record<string, string> = {
 	online: "00FF00",
