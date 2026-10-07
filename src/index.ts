@@ -47,14 +47,16 @@ const server = serve({
 			const src = searchParams.get("src") || undefined;
 			const color = searchParams.get("color") || undefined;
 
-			if (!src && !color) return new Response("Missing src or color parameter", { status: 400 });
+			if (!src && !color)
+				return new Response("Missing src or color parameter", { status: 400 });
 
 			if (src && !checkURL(src)) {
 				return new Response("Unauthorized", { status: 403 });
 			}
 
 			const keySource = src ?? color;
-			if (!keySource) return new Response("Missing src or color parameter", { status: 400 });
+			if (!keySource)
+				return new Response("Missing src or color parameter", { status: 400 });
 			const key = Bun.hash.rapidhash(keySource).toString();
 
 			let res = cache.color.get(key) as string | null;
