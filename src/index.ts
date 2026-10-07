@@ -24,17 +24,24 @@ const allowedHosts = [
 ];
 
 const allowedOrigins = [
-	"https://ipv4.army",
-	"https://heliopolis.live",
-	"https://github.com"
+	null,
+	"https://ipv4.army"
 ];
 
 const server = serve({
 	routes: {
 		"/": index,
 
-		"/api/color": async (req) => {console.log(req.headers.get("origin"), req.headers.toJSON())
+		"/api/color": async (req) => {
+			if (!allowedOrigins.includes(req.headers.get("origin"))) {
+				return new Response("Unauthorized", { status: 403 });
+			}
+
 			const { hostname, search, searchParams } = new URL(req.url);
+					if (!allowedHosts.includes(hostname)) {
+						return new Response("Unauthorized", { status: 403 });
+					}
+
 			const key = Bun.hash.rapidhash(search).toString();
 
 			let res = cache.color.get(key) as string | null;
@@ -57,7 +64,15 @@ const server = serve({
 		},
 
 		"/api/placeholder": async (req) => {
-			const { search, searchParams } = new URL(req.url);
+						if (!allowedOrigins.includes(req.headers.get("origin"))) {
+				return new Response("Unauthorized", { status: 403 });
+			}
+
+			const { hostname, search, searchParams } = new URL(req.url);
+						if (!allowedHosts.includes(hostname)) {
+				return new Response("Unauthorized", { status: 403 });
+			}
+			
 			const key = Bun.hash.rapidhash(search).toString();
 
 			let res = cache.placeholder.get(key) as string | null;
