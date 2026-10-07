@@ -24,6 +24,16 @@ const allowedHosts = [
 
 const allowedOrigins = [null, "https://ipv4.army"];
 
+const checkURL = (url: string) => {
+	const { hostname, pathname } = new URL(url);
+	
+	if (hostname === "i.scdn.co") {
+		return true;
+	}
+
+	return allowedHosts.includes(hostname) && pathname.split("/").length === 2;
+};
+
 const server = serve({
 	routes: {
 		"/": index,
@@ -41,7 +51,7 @@ const server = serve({
 
 			if (!res) {
 				const src = searchParams.get("src") || undefined;
-				if (src && !allowedHosts.includes(new URL(src).hostname)) {
+				if (src && !checkURL(src)) {
 					return new Response("Unauthorized", { status: 403 });
 				}
 
@@ -74,7 +84,7 @@ const server = serve({
 			if (!res) {
 				const src = searchParams.get("src");
 				if (!src) return new Response("Missing src parameter", { status: 400 });
-				if (!allowedHosts.includes(new URL(src).hostname)) {
+				if (!checkURL(src)) {
 					return new Response("Unauthorized", { status: 403 });
 				}
 

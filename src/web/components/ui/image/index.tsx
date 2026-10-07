@@ -1,4 +1,21 @@
+import { images } from "@/web/data/images";
 import { useEffect, useState } from "react";
+
+let output = "jpg";
+for await (const { type, src } of images) {
+	const image = new window.Image();
+	image.src = `data:image/${type};base64,${src}`;
+
+	const loaded = await new Promise<boolean>((resolve) => {
+		image.onload = () => {
+			output = type;
+			resolve(true);
+		};
+		image.onerror = () => resolve(false);
+	});
+
+	if (loaded) break;
+}
 
 export const Image = ({
 	alt,
@@ -17,7 +34,7 @@ export const Image = ({
 		: undefined;
 
 	const full = `https://wsrv.nl?${new URLSearchParams({
-		output: "webp",
+		output,
 		url: src ?? "",
 		w: width?.toString() ?? "0",
 		h: height?.toString() ?? "0",
