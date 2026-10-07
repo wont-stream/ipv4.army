@@ -1,7 +1,7 @@
 import { useLanyard } from "use-lanyard";
+import { site } from "@/data/site";
 import { Card } from "@/web/components/ui/card";
 import { Image } from "@/web/components/ui/image";
-import { site } from "@/web/data/site";
 
 export const NowPlaying = () => {
 	const lanyard = useLanyard(site.discordUserId);

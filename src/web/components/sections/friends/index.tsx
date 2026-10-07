@@ -1,6 +1,6 @@
+import { friends } from "@/data/friends";
 import { Image } from "@/web/components/ui/image";
 import { Label } from "@/web/components/ui/label";
-import { friends } from "@/web/data/friends";
 
 import "./index.css";
 

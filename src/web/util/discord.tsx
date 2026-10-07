@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { get, useLanyard } from "use-lanyard";
-import { site } from "@/web/data/site";
+import { site } from "@/data/site";
 
 export const DiscordProvider = () => {
 	const [initialData, setInitialData] = useState<
