@@ -9,7 +9,7 @@ export const NowPlaying = () => {
 	if (!spotify?.album_art_url) return null;
 
 	return (
-		<div className="pfpContainer responsive round large">
+		<div className="pfpContainer responsive round large truncate">
 			<Image
 				className="responsive large"
 				src={spotify.album_art_url}
@@ -18,11 +18,11 @@ export const NowPlaying = () => {
 				height={570}
 			/>
 
-			<div className="round row absolute top left right padding top-shadow truncate">
+			<div className="round row absolute top left right padding top-shadow">
 				<p>{spotify.artist}</p>
 			</div>
 
-			<div className="round row absolute bottom left right padding bottom-shadow truncate">
+			<div className="round row absolute bottom left right padding bottom-shadow">
 				<p>{spotify.song}</p>
 			</div>
 		</div>
