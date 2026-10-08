@@ -1,4 +1,5 @@
-import { SiBun, SiJavascript, SiReact, SiTypescript } from "react-icons/si";
+import { SiBun, SiReact } from "react-icons/si";
+import { BsJavascript, BsTypescript } from "react-icons/bs";
 import { VscVscode, VscVscodeOutline } from "react-icons/vsc";
 import { Card } from "@/web/components/ui/card";
 import { Chip, ChipBag } from "@/web/components/ui/chip";
@@ -21,12 +22,12 @@ export const Tools = () => {
 
 			<Label>Language</Label>
 			<ChipBag>
-				<Chip icons={{ default: <SiTypescript title="TypeScript Icon" /> }}>
+				<Chip icons={{ default: <BsTypescript title="TypeScript Icon" /> }}>
 					TypeScript
 				</Chip>
 				<Chip
 					icons={{
-						default: <SiJavascript title="JavaScript Icon" />,
+						default: <BsJavascript title="JavaScript Icon" />,
 					}}
 				>
 					JavaScript
