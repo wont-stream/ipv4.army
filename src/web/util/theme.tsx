@@ -22,9 +22,13 @@ export const ThemeProvider = () => {
 		}
 		(async () => {
 			const req = await fetch(`/api/color?${query.toString()}`);
-			if (!req.ok) return;
-			const res = await req.text();
-			document.body.style = res;
+			if (!req.ok) {
+				// failsafe if api is down
+				document.body.style.opacity = "1"
+			} else {
+				const res = await req.text();
+				document.body.style = res;
+			}
 		})();
 	}, [art, status]);
 
