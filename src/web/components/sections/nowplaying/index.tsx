@@ -14,17 +14,17 @@ export const NowPlaying = () => {
 				className="responsive large"
 				src={spotify.album_art_url}
 				alt="Spotify Album Art"
-					width={570}
-					height={570}
+				width={570}
+				height={570}
 			/>
 
-						<div className="round row absolute top left right padding top-shadow truncate">
+			<div className="round row absolute top left right padding top-shadow truncate">
 				<p>{spotify.artist}</p>
 			</div>
 
 			<div className="round row absolute bottom left right padding bottom-shadow truncate">
 				<p>{spotify.song}</p>
 			</div>
-			</div>
+		</div>
 	);
 };
