@@ -1,5 +1,5 @@
-import { SiBun, SiReact } from "react-icons/si";
 import { BsJavascript, BsTypescript } from "react-icons/bs";
+import { SiBun, SiReact } from "react-icons/si";
 import { VscVscode, VscVscodeOutline } from "react-icons/vsc";
 import { Card } from "@/web/components/ui/card";
 import { Chip, ChipBag } from "@/web/components/ui/chip";
