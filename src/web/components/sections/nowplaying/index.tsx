@@ -9,7 +9,7 @@ export const NowPlaying = () => {
 	if (!spotify?.album_art_url) return null;
 
 	return (
-		<div className="responsive round large">
+		<div className="pfpContainer responsive round large">
 			<Image
 				className="responsive large"
 				src={spotify.album_art_url}
