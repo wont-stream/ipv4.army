@@ -1,6 +1,5 @@
 import { useLanyard } from "use-lanyard";
 import { site } from "@/data/site";
-import { Card } from "@/web/components/ui/card";
 import { Image } from "@/web/components/ui/image";
 
 export const NowPlaying = () => {
@@ -10,21 +9,22 @@ export const NowPlaying = () => {
 	if (!spotify?.album_art_url) return null;
 
 	return (
-		<Card className="no-padding small">
+		<div className="responsive round large">
 			<Image
-				className="responsive"
+				className="responsive large"
 				src={spotify.album_art_url}
 				alt="Spotify Album Art"
-				width={288}
-				height={288}
+					width={570}
+					height={570}
 			/>
-			<div className="row absolute bottom left right padding bottom-shadow bottom-round truncate">
-				<p>{spotify.song}</p>
-			</div>
 
-			<div className="row absolute top left right padding top-shadow bottom-round truncate">
+						<div className="round row absolute top left right padding top-shadow truncate">
 				<p>{spotify.artist}</p>
 			</div>
-		</Card>
+
+			<div className="round row absolute bottom left right padding bottom-shadow truncate">
+				<p>{spotify.song}</p>
+			</div>
+			</div>
 	);
 };
