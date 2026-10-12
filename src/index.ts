@@ -86,6 +86,8 @@ const server = serve({
 			);
 		},
 
+		"/api/ok": new Response(),
+
 		// for stupidity
 		"/public/*": async (req) => {
 			try {
