@@ -33,7 +33,7 @@ export const Tools = () => {
 					JavaScript
 				</Chip>
 			</ChipBag>
-			
+
 			<Label>Frameworks</Label>
 			<ChipBag>
 				<Chip icons={{ default: <SiReact title="React Icon" /> }}>React</Chip>

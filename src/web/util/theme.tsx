@@ -24,7 +24,7 @@ export const ThemeProvider = () => {
 			const req = await fetch(`/api/color?${query.toString()}`);
 			if (!req.ok) {
 				// failsafe if api is down
-				document.body.style.opacity = "1"
+				document.body.style.opacity = "1";
 			} else {
 				const res = await req.text();
 				document.body.style = res;

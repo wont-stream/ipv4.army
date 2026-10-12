@@ -112,3 +112,5 @@ console.log(`🚀 Server running at ${server.url}`);
 
 // just in case..
 setInterval(Bun.gc, 60_000);
+
+process.on("uncaughtException", console.error);
