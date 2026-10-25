@@ -420,7 +420,13 @@ var getBundle = async () => {
 		"https://nightly.link/revenge-mod/revenge-bundle-next/workflows/build/main/revenge-bundle.zip",
 	);
 	const zip = unzipSync(new Uint8Array(await zipReq.bytes()));
-	return new Response(zip["revenge.bundle"]);
+	return new Response(
+		await Bun.zstdCompress(zip["revenge.bundle"], {
+			level: 22,
+		}),
+	);
 };
+
+Bun.gzipSync;
 
 export { getBundle };
