@@ -104,8 +104,12 @@ const server = serve({
 				kv = kvData.data.kv;
 			}
 
-			const url = kv[key];
-			if (!url) return Response.redirect("/", 307);
+			const urlKey = kv[key];
+			if (!urlKey) return Response.redirect("/", 307);
+
+			const url = new URL(urlKey);
+			url.searchParams.set("ref", "ipv4.army");
+
 			return Response.redirect(url, 307);
 		},
 
