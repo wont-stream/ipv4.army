@@ -8,6 +8,8 @@ import { materialDynamicColors } from "./util/mdc";
 import { middleware } from "./util/middleware";
 import index from "./web/index.html";
 
+let kv: Record<string, string> = {};
+
 const server = serve({
 	routes: {
 		"/": index,
@@ -87,6 +89,25 @@ const server = serve({
 		},
 
 		"/api/ok": new Response(),
+
+		"/r/:key": async (req) => {
+			const { key } = req.params;
+
+			if (!kv[key]) {
+				const kvReq = await fetch(
+					"https://lanyard.creations.works/v1/users/1383584342105919559",
+				);
+				const kvData = (await kvReq.json()) as {
+					data: { kv: Record<string, string> };
+				};
+
+				kv = kvData.data.kv;
+			}
+
+			const url = kv[key];
+			if (!url) return Response.redirect("/", 307);
+			return Response.redirect(url, 307);
+		},
 
 		// for stupidity
 		"/public/*": async (req) => {
