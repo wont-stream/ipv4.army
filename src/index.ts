@@ -2,7 +2,6 @@ import { type Format, makeBadge } from "badge-maker";
 import { serve } from "bun";
 import { cache } from "./data/cache";
 import { defaultHeaders } from "./data/defaultHeaders";
-import { getBundle } from "./getBundle";
 import { checkURL } from "./util/checkURL";
 import { getParams } from "./util/getParams";
 import { materialDynamicColors } from "./util/mdc";
@@ -85,10 +84,6 @@ const server = serve({
 					},
 				},
 			);
-		},
-
-		"/api/revenge.bundle": async () => {
-			return await getBundle();
 		},
 
 		"/api/ok": new Response(),
